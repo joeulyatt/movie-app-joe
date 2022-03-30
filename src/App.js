@@ -28,12 +28,16 @@ const App = () => {
   }, [val]);
 
   const handleAddFavourite = (movie) => {
+    if (favourites.includes(movie)) {
+      return
+    }
     const newFavouriteList = [...favourites, movie];
     setFavourites(newFavouriteList);
   }
 
   const handleRemoveFavourite = (movie) => {
-    const newFavouriteList =  [...favourites].splice(movie, 1)
+    const newFavouriteList =  [...favourites];
+    newFavouriteList.splice(movie, 1);
     setFavourites(newFavouriteList);
   }
 
