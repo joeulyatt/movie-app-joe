@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MovieList from './Components/MovieList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -28,13 +28,16 @@ const App = () => {
     }
   ]);
 
-  const getMovieRequest = () => {
+  const getMovieRequest = async () => {
     const url="http://www.omdbapi.com/?s=lord&apikey=ca4d40cb";
-    const response = fetch(url);
-    const responseJson = response.json();
+    const response = await fetch(url);
+    const responseJson = await response.json();
     console.log(responseJson)
   }
 
+  useEffect(() => {
+    getMovieRequest();
+  }, []);
 
   return (
     <div className="container-fluid movie-app">
