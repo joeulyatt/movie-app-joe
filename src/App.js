@@ -27,20 +27,25 @@ const App = () => {
     getMovieRequest(val);
   }, [val]);
 
+  const handleAlreadyFavourited = () => {
+    alert("already favourited")
+  };
+
   const handleAddFavourite = (movie) => {
     if (favourites.includes(movie)) {
+      handleAlreadyFavourited()
       return
     }
     const newFavouriteList = [...favourites, movie];
     setFavourites(newFavouriteList);
-  }
+  };
 
   const handleRemoveFavourite = (movie) => {
     const newFavouriteList =  [...favourites];
     let index = newFavouriteList.indexOf(movie)
     newFavouriteList.splice(index, 1);
     setFavourites(newFavouriteList);
-  }
+  };
 
   return (
     <div className="container-fluid movie-app">
@@ -52,7 +57,8 @@ const App = () => {
         <MovieList 
           movies={movies} 
           handleFavourites={handleAddFavourite} 
-          FavouriteComponent={AddFavourites}/>
+          FavouriteComponent={AddFavourites}
+          alreadyFavourited={handleAlreadyFavourited}/>
       </div>
       <div className="row d-flex align-items-center mt-4 mb-4">
         <MovieHeading heading="Favourites"/>
