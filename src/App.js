@@ -6,11 +6,13 @@ import MovieHeading from './Components/MovieHeading';
 import SearchBox from './Components/SearchBox';
 import AddFavourites from './Components/AddFavourites';
 import RemoveFavourites from './Components/RemoveFavourites';
+import AlreadyFavouritedComponent from './Components/AlreadyFavourited';
 
 
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [favourites, setFavourites] = useState([]);
+  const [alreadyFavourited, setAlreadyFavourited] = useState(false)
   const [val, setVal] = useState("")
 
   const getMovieRequest = async (val) => {
@@ -27,13 +29,13 @@ const App = () => {
     getMovieRequest(val);
   }, [val]);
 
-  const handleAlreadyFavourited = () => {
-    alert("already favourited")
-  };
+    const handleAlreadyFavourited = () => {
+      alert("already favourited")
+    };
 
   const handleAddFavourite = (movie) => {
     if (favourites.includes(movie)) {
-      handleAlreadyFavourited()
+      setAlreadyFavourited(true)
       return
     }
     const newFavouriteList = [...favourites, movie];
@@ -57,8 +59,8 @@ const App = () => {
         <MovieList 
           movies={movies} 
           handleFavourites={handleAddFavourite} 
-          FavouriteComponent={AddFavourites}
-          alreadyFavourited={handleAlreadyFavourited}/>
+          FavouriteComponent={alreadyFavourited ? AlreadyFavouritedComponent : AddFavourites}
+        />
       </div>
       <div className="row d-flex align-items-center mt-4 mb-4">
         <MovieHeading heading="Favourites"/>

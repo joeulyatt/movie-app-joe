@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AlreadyFavourited = () => {
+const AlreadyFavouritedComponent = () => {
     return ( 
         <>
             <span className="mr-2">Already favourited!
@@ -10,4 +10,4 @@ const AlreadyFavourited = () => {
     );
 };
 
-export default AlreadyFavourited;
+export default AlreadyFavouritedComponent;
