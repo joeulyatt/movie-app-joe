@@ -24,7 +24,7 @@ const App = () => {
     <div className="container-fluid movie-app">
       <div className="row d-flex align-items-center mt-4 mb-4">
         <MovieHeading heading="Movies"/>
-        <SearchBox/>
+        <SearchBox val={val} setVal={setVal}/>
       </div>
       <div className="row movies flex-nowrap">
         <MovieList movies={movies}/>

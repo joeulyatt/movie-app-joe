@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const SearchBox = () => {
+const SearchBox = ( {val, setVal}) => {
     return ( 
         <div className="col col-sm-4">
-            <input className="form-control" type="text" placeholder="Search Here"></input>
+            <input 
+                className="form-control" 
+                type="text" 
+                placeholder="Search Here"
+                value={val}
+                onChange={e => setVal(e.target.value)}
+            ></input>
         </div>
     );
 };
