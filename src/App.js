@@ -31,8 +31,8 @@ const App = () => {
   const getMovieRequest = async () => {
     const url="http://www.omdbapi.com/?s=lord&apikey=ca4d40cb";
     const response = await fetch(url);
-    const responseJson = await response.json();
-    console.log(responseJson)
+    const json = await response.json();
+    setMovies(json.Search);
   }
 
   useEffect(() => {
