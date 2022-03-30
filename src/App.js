@@ -3,6 +3,7 @@ import MovieList from './Components/MovieList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import MovieHeading from './Components/MovieHeading';
+import SearchBox from './Components/SearchBox';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -23,6 +24,7 @@ const App = () => {
     <div className="container-fluid movie-app">
       <div className="row">
         <MovieHeading heading={"Movies"}/>
+        <SearchBox/>
       </div>
       <div className="row flex-nowrap">
         <MovieList movies={movies}/>
