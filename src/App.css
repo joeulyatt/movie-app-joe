@@ -8,8 +8,9 @@ body {
   overflow-y: clip;
 }
 
-.movie-app .movies div {
+.movie-app .movies .image-container {
   flex: 1 1 auto;
+  max-width: fit-content;
 }
 
 .image-container {
