@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import MovieHeading from './Components/MovieHeading';
 import SearchBox from './Components/SearchBox';
+import AddFavourite from './Components/AddFavourites';
 
 
 const App = () => {
@@ -31,7 +32,7 @@ const App = () => {
         <SearchBox val={val} setVal={setVal}/>
       </div>
       <div className="row movies flex-nowrap">
-        <MovieList movies={movies}/>
+        <MovieList movies={movies} FavouriteComponent={AddFavourite}/>
       </div>
     </div>
   );
