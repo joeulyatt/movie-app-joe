@@ -5,6 +5,7 @@ import './App.css';
 import MovieHeading from './Components/MovieHeading';
 import SearchBox from './Components/SearchBox';
 
+
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [val, setVal] = useState("")
