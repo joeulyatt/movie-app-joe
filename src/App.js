@@ -29,13 +29,12 @@ const App = () => {
     getMovieRequest(val);
   }, [val]);
 
-    const handleAlreadyFavourited = () => {
-      alert("already favourited")
-    };
-
   const handleAddFavourite = (movie) => {
     if (favourites.includes(movie)) {
       setAlreadyFavourited(true)
+      setTimeout(() => {
+        setAlreadyFavourited(false)
+      }, 1000);
       return
     }
     const newFavouriteList = [...favourites, movie];
