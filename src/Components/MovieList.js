@@ -5,7 +5,7 @@ const MovieList = ( {movies} ) => {
         <>
             {movies.map((movie, idx) => (
                 <div className="d-flex justify-content-start m-3">
-                    <img src={movie.Poster} alt={movie.imdbID} srcset=""></img>
+                    <img src={movie.Poster} alt={movie.Title} key={movie.imdbID} srcset=""></img>
                 </div>
             ))}
         </>

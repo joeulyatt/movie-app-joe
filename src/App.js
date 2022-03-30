@@ -28,6 +28,13 @@ const App = () => {
     }
   ]);
 
+  const getMovieRequest = () => {
+    const url="http://www.omdbapi.com/?s=lord&apikey=ca4d40cb";
+    const response = fetch(url);
+    const responseJson = response.json();
+    console.log(responseJson)
+  }
+
 
   return (
     <div className="container-fluid movie-app">
