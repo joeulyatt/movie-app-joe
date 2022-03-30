@@ -3,7 +3,9 @@ body {
   color: #ADEFD1FF;
 }
 
-
+.movie-app .row {
+  overflow-x: auto;
+}
 
 .movie-app .movies div {
   flex: 1 1 auto;
