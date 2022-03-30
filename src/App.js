@@ -32,6 +32,11 @@ const App = () => {
     setFavourites(newFavouriteList);
   }
 
+  const handleRemoveFavourite = (movie) => {
+    const newFavouriteList =  [...favourites].splice(movie, 1)
+    setFavourites(newFavouriteList);
+  }
+
   return (
     <div className="container-fluid movie-app">
       <div className="row d-flex align-items-center mt-4 mb-4">
@@ -50,7 +55,7 @@ const App = () => {
       <div className="row movies flex-nowrap">
         <MovieList 
           movies={favourites}
-          handleAddFavourite={handleAddFavourite} 
+          handleAddFavourite={handleRemoveFavourite} 
           FavouriteComponent={RemoveFavourites}/>
       </div>
     </div>
