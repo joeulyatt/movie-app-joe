@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MovieList from './Components/MovieList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import MovieHeading from './Components/MovieHeading';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -20,6 +21,9 @@ const App = () => {
 
   return (
     <div className="container-fluid movie-app">
+      <div className="row">
+        <MovieHeading heading={"Movies"}/>
+      </div>
       <div className="row flex-nowrap">
         <MovieList movies={movies}/>
       </div>
@@ -28,3 +32,4 @@ const App = () => {
 };
 
 export default App;
+ 

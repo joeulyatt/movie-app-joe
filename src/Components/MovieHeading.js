@@ -1,9 +1,9 @@
 import React from 'react'
 
-const MovieHeading = () => {
+const MovieHeading = ( {heading} ) => {
     return ( 
         <div className="col">
-            <h1></h1>
+            <h1>{heading}</h1>
         </div>
     );
 }
