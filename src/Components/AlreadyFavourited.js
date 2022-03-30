@@ -5,7 +5,6 @@ const AlreadyFavouritedComponent = () => {
         <>
             <span className="mr-2">Already favourited!
             </span>
-
         </>
     );
 };

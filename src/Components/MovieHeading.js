@@ -7,5 +7,5 @@ const MovieHeading = ( {heading} ) => {
         </div>
     );
 }
- 
+
 export default MovieHeading;
