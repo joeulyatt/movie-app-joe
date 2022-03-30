@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import MovieHeading from './Components/MovieHeading';
 import SearchBox from './Components/SearchBox';
-import AddFavourite from './Components/AddFavourites';
+import AddFavourites from './Components/AddFavourites';
+import RemoveFavourites from './Components/RemoveFavourites';
 
 
 const App = () => {
@@ -41,7 +42,16 @@ const App = () => {
         <MovieList 
           movies={movies} 
           handleAddFavourite={handleAddFavourite} 
-          FavouriteComponent={AddFavourite}/>
+          FavouriteComponent={AddFavourites}/>
+      </div>
+      <div className="row d-flex align-items-center mt-4 mb-4">
+        <MovieHeading heading="Favourites"/>
+      </div>
+      <div className="row movies flex-nowrap">
+        <MovieList 
+          movies={favourites}
+          handleAddFavourite={handleAddFavourite} 
+          FavouriteComponent={RemoveFavourites}/>
       </div>
     </div>
   );
