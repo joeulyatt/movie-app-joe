@@ -1,8 +1,8 @@
 import React from 'react';
 
-const MovieList = () => {
+const MovieList = ( {movies} ) => {
     return ( 
-
+        
     );
 }
  

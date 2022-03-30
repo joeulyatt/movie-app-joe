@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import MovieList from './Components/MovieList';
 import './App.css';
 
 const App = () => {
@@ -28,7 +29,7 @@ const App = () => {
 
 
   return <div>
-  
+    <MovieList movies={movies}/>
   </div>
 };
 
