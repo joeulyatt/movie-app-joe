@@ -22,11 +22,11 @@ const App = () => {
 
   return (
     <div className="container-fluid movie-app">
-      <div className="row">
-        <MovieHeading heading={"Movies"}/>
+      <div className="row d-flex align-items-center mt-4 mb-4">
+        <MovieHeading heading="Movies"/>
         <SearchBox/>
       </div>
-      <div className="row flex-nowrap">
+      <div className="row movies flex-nowrap">
         <MovieList movies={movies}/>
       </div>
     </div>
