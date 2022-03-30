@@ -29,9 +29,13 @@ const App = () => {
   ]);
 
 
-  return <div>
-    <MovieList movies={movies}/>
-  </div>
+  return (
+    <div className="container-fluid movie-app">
+      <div className="row flex-nowrap">
+        <MovieList movies={movies}/>
+      </div>
+    </div>
+  );
 };
 
 export default App;

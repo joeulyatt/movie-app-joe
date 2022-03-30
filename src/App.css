@@ -2,3 +2,9 @@ body {
   background: #00203FFF;
   color: #ADEFD1FF;
 }
+
+
+
+.movie-app .row div {
+  flex: 1 1 auto;
+}
