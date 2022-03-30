@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import MovieList from './Components/MovieList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Logo from './img/logo.png'
+import DefaultPic from './img/default-search-pic.png'
 import MovieHeading from './Components/MovieHeading';
 import SearchBox from './Components/SearchBox';
 import AddFavourites from './Components/AddFavourites';
@@ -10,7 +12,7 @@ import AlreadyFavouritedComponent from './Components/AlreadyFavourited';
 
 
 const App = () => {
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState([{Poster: DefaultPic}]);
     const [favourites, setFavourites] = useState([]);
     const [alreadyFavourited, setAlreadyFavourited] = useState(false)
     const [val, setVal] = useState("")
@@ -50,6 +52,7 @@ const App = () => {
 
   return (
     <div className="container-fluid movie-app">
+        <img src={Logo} alt="" srcset=""></img>
         <div className="row d-flex align-items-center mt-4 mb-4">
             <MovieHeading heading="Movies"/>
             <SearchBox val={val} setVal={setVal}/>
