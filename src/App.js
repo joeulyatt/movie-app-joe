@@ -41,11 +41,10 @@ const App = () => {
         if (favourites.includes(movie)) {
             setAlreadyFavourited(true)
             setTimeout(() => {
-                console.log(movie)
                 setAlreadyFavourited(false)
-            }, 600);
+            }, 500);
             return
-        }
+        };
         // Adds movie to favourites
         const newFavouriteList = [...favourites, movie];
         setFavourites(newFavouriteList);
