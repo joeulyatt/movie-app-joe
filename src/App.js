@@ -47,7 +47,7 @@ const App = () => {
         };
         // Adds movie to favourites
         const newFavouriteList = [...favourites, movie];
-        if (favourites.some(e => e.Poster === DefaultFavourite)) {newFavouriteList.splice(0, 1)}
+        if (favourites.some(e => e.Poster === DefaultFavourite)) {newFavouriteList.splice(0, 1)};
         setFavourites(newFavouriteList);
     };
 
@@ -56,6 +56,7 @@ const App = () => {
         let index = newFavouriteList.indexOf(movie)
         newFavouriteList.splice(index, 1);
         setFavourites(newFavouriteList);
+        if (newFavouriteList.length === 0) {setFavourites([{Poster: DefaultFavourite}])}
     };
 
   return (
