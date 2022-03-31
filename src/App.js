@@ -22,6 +22,7 @@ const App = () => {
         const url=`http://www.omdbapi.com/?s=${val}&apikey=ca4d40cb`;
         const response = await fetch(url);
         const json = await response.json();
+        // Sets init pic if search box is empty
         if (json.Search) {
             setMovies(json.Search);
             setInitPic(false)
@@ -36,13 +37,16 @@ const App = () => {
     }, [val]);
 
     const handleAddFavourite = (movie) => {
+        // Checks if movie is already favourited and adds overlay if true
         if (favourites.includes(movie)) {
             setAlreadyFavourited(true)
             setTimeout(() => {
+                console.log(movie)
                 setAlreadyFavourited(false)
             }, 600);
             return
         }
+        // Adds movie to favourites
         const newFavouriteList = [...favourites, movie];
         setFavourites(newFavouriteList);
     };
