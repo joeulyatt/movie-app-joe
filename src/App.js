@@ -16,7 +16,8 @@ const App = () => {
     const [favourites, setFavourites] = useState([{Poster: DefaultFavourite}]);
     const [alreadyFavourited, setAlreadyFavourited] = useState(false);
     const [val, setVal] = useState("");
-    const [initPic, setInitPic] = useState(true)
+    const [initPic, setInitPic] = useState(true);
+    const [initFavouritePic, setInitFavouritePic] = useState(true);
 
     const getMovieRequest = async (val) => {
         const url=`http://www.omdbapi.com/?s=${val}&apikey=ca4d40cb`;
@@ -38,6 +39,7 @@ const App = () => {
 
     const handleAddFavourite = (movie) => {
         // Checks if movie is already favourited and adds overlay if true
+        setInitFavouritePic(false)
         if (favourites.includes(movie)) {
             setAlreadyFavourited(true)
             setTimeout(() => {
@@ -56,7 +58,10 @@ const App = () => {
         let index = newFavouriteList.indexOf(movie)
         newFavouriteList.splice(index, 1);
         setFavourites(newFavouriteList);
-        if (newFavouriteList.length === 0) {setFavourites([{Poster: DefaultFavourite}])}
+        // Checks if array is empty and adds init favourites pic if true
+        if (newFavouriteList.length === 0) 
+            {setFavourites([{Poster: DefaultFavourite}]) 
+            setInitFavouritePic(true)} 
     };
 
   return (
@@ -79,7 +84,7 @@ const App = () => {
             <MovieList 
                 movies={favourites}
                 handleFavourites={handleRemoveFavourite} 
-                FavouriteComponent={RemoveFavourites}
+                FavouriteComponent={initFavouritePic ? null : RemoveFavourites}
             />
         </div>
     </div>
