@@ -13,7 +13,7 @@ import AlreadyFavouritedComponent from './Components/AlreadyFavourited';
 
 const App = () => {
     const [movies, setMovies] = useState([{Poster: DefaultPic}]);
-    const [favourites, setFavourites] = useState([{Poster: DefaultFavourite, Init: true}]);
+    const [favourites, setFavourites] = useState([{Poster: DefaultFavourite}]);
     const [alreadyFavourited, setAlreadyFavourited] = useState(false);
     const [val, setVal] = useState("");
     const [initPic, setInitPic] = useState(true)
@@ -37,7 +37,6 @@ const App = () => {
     }, [val]);
 
     const handleAddFavourite = (movie) => {
-        if (favourites.some(e => e.Init === true)) {console.log("yay")}
         // Checks if movie is already favourited and adds overlay if true
         if (favourites.includes(movie)) {
             setAlreadyFavourited(true)
@@ -48,6 +47,7 @@ const App = () => {
         };
         // Adds movie to favourites
         const newFavouriteList = [...favourites, movie];
+        if (favourites.some(e => e.Poster === DefaultFavourite)) {newFavouriteList.splice(0)}
         setFavourites(newFavouriteList);
     };
 
