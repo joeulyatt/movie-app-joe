@@ -1,10 +1,13 @@
 import React from 'react';
 
-const MovieList = ( {movies, FavouriteComponent, handleFavourites, getMovieInfo} ) => {
+const MovieList = ( {movies, FavouriteComponent, handleFavourites, getMovieInfo, plot, showPlot} ) => {
     return ( 
         <>
             {movies.map((movie, idx) => (
                 <div className="image-container d-flex justify-content-start m-3 " key={idx}>
+                            <div class="popup">
+                                <span className={showPlot ? "show popuptext" : null} id="myPopup">{plot}</span>
+                            </div>
                     <img src={movie.Poster} alt={movie.Title} srcSet=""></img>
                     {/* Checks init pic and displays AddToFavourites if false */}
                     {FavouriteComponent !== null ?

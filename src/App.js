@@ -41,6 +41,7 @@ const App = () => {
       const response = await fetch(url);
       const json = await response.json();
       setPlot(json.Plot)
+      setShowPlot(true)
     };
 
     useEffect(() => {
@@ -74,12 +75,6 @@ const App = () => {
             setInitFavouritePic(true)} 
     };
 
-    function myFunction() {
-      // var popup = document.getElementById("myPopup");
-      // popup.classList.toggle("show");
-      setShowPlot(true)
-    };
-
   return (
       <div className="container-fluid movie-app">
           <div className="col d-flex justify-content-center">
@@ -107,10 +102,11 @@ const App = () => {
                   handleFavourites={handleRemoveFavourite} 
                   FavouriteComponent={initFavouritePic ? null : RemoveFavourites}
                   getMovieInfo={getMovieInfo}
+                  plot={plot}
+                  showPlot={showPlot}
               />
           </div>
-          <h3>{plot}</h3>
-              <div className="popup" onClick={() => myFunction()}>Click me!
+              <div className="popup">
                 <span className={showPlot ? "show popuptext" : null} id="myPopup">{plot}</span>
               </div>
       </div>
