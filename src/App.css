@@ -51,6 +51,18 @@ body {
   text-align: center;
 }
 
+.overlay-top {
+  position: absolute;
+  background: black;
+  width: 100%;
+  transition: 0.5s ease;
+  opacity: 0;
+  bottom: 0;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
 .row>* {
   padding: 0px;
 }
