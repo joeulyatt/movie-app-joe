@@ -34,8 +34,16 @@ const App = () => {
         };
     };
 
+    const getMovieInfo = async (movie) => {
+      const url = "http://www.omdbapi.com/?t=The+Lord+of+the+Rings%3A+The+Fellowship+of+the+Ring&apikey=ca4d40cb"
+      const response = await fetch(url);
+      const json = await response.json();
+      console.log(json)
+    };
+
     useEffect(() => {
         getMovieRequest(val);
+        getMovieInfo();
     }, [val]);
 
     const handleAddFavourite = (movie) => {
