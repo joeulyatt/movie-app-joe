@@ -40,7 +40,7 @@ const App = () => {
             setAlreadyFavourited(true)
             setTimeout(() => {
                 setAlreadyFavourited(false)
-            }, 1000);
+            }, 600);
             return
         }
         const newFavouriteList = [...favourites, movie];
@@ -65,7 +65,7 @@ const App = () => {
                 movies={movies} 
                 handleFavourites={handleAddFavourite} 
                 // FavouriteComponent={alreadyFavourited ? AlreadyFavouritedComponent : AddFavourites}
-                FavouriteComponent={!initPic ? AddFavourites : null}
+                FavouriteComponent={!initPic ? (alreadyFavourited ? AlreadyFavouritedComponent : AddFavourites) : null}
             />
         </div>
         <div className="row d-flex align-items-center ps-3 mt-4 mb-4">
