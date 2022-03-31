@@ -38,12 +38,11 @@ const App = () => {
       const url = "http://www.omdbapi.com/?t=The+Lord+of+the+Rings%3A+The+Fellowship+of+the+Ring&apikey=ca4d40cb"
       const response = await fetch(url);
       const json = await response.json();
-      console.log(json)
+      console.log(json.Plot)
     };
 
     useEffect(() => {
         getMovieRequest(val);
-        getMovieInfo();
     }, [val]);
 
     const handleAddFavourite = (movie) => {
@@ -98,6 +97,7 @@ const App = () => {
                   movies={favourites}
                   handleFavourites={handleRemoveFavourite} 
                   FavouriteComponent={initFavouritePic ? null : RemoveFavourites}
+                  getMovieInfo={getMovieInfo}
               />
           </div>
       </div>

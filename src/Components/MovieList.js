@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
+const MovieList = ( {movies, FavouriteComponent, handleFavourites, getMovieInfo} ) => {
     return ( 
         <>
             {movies.map((movie, idx) => (
@@ -10,6 +10,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
                     {FavouriteComponent !== null ?
                     <div onClick={() => handleFavourites(movie)} className="overlay d-flex align-items=center justify-content-center">
                         <FavouriteComponent/>
+                        <h1 onClick={() => getMovieInfo(movie)}>click meh</h1>
                     </div>
                     : null}
                 </div>
