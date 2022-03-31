@@ -40,7 +40,6 @@ const App = () => {
       const response = await fetch(url);
       const json = await response.json();
       setPlot(json.Plot)
-      console.log(plot)
     };
 
     useEffect(() => {
@@ -89,6 +88,7 @@ const App = () => {
                   movies={movies} 
                   handleFavourites={handleAddFavourite} 
                   FavouriteComponent={!initPic ? (alreadyFavourited ? AlreadyFavouritedComponent : AddFavourites) : null}
+                  getMovieInfo={getMovieInfo}
               />
           </div>
           <div className="row d-flex align-items-center ps-3 mt-4 mb-4">
@@ -102,6 +102,7 @@ const App = () => {
                   getMovieInfo={getMovieInfo}
               />
           </div>
+          <h3>{plot}</h3>
       </div>
   );
 };
