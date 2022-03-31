@@ -13,6 +13,8 @@ body {
   font-family: 'Quattrocento', serif;
 }
 
+/* App Stlying */
+
 .movie-app .row {
   overflow-x: auto;
   overflow-y: clip;
@@ -51,4 +53,11 @@ body {
 
 .row>* {
   padding: 0px;
+}
+
+#root hr {
+  height: 6px;
+  margin-left: 20px;
+  margin-right: 24px;
+  opacity: 70%;
 }

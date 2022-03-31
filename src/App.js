@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import MovieList from './Components/MovieList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import DefaultPic from './img/default-search-pic.png'
-import DefaultFavourite from './img/default-favourite-pic.png'
+import DefaultPic from './img/default-search-pic.png';
+import DefaultFavourite from './img/default-favourite-pic.png';
+import Logo from './img/logo.png';
 import MovieHeading from './Components/MovieHeading';
 import SearchBox from './Components/SearchBox';
 import AddFavourites from './Components/AddFavourites';
@@ -23,11 +24,11 @@ const App = () => {
         const url=`http://www.omdbapi.com/?s=${val}&apikey=ca4d40cb`;
         const response = await fetch(url);
         const json = await response.json();
-        // Sets init pic if search box is empty
         if (json.Search) {
-            setMovies(json.Search);
-            setInitPic(false)
+          setMovies(json.Search);
+          setInitPic(false)
         } else if (!json.Search) {
+          // Sets init pic if search box is empty
             setMovies([{Poster: DefaultPic}])
             setInitPic(true)
         };
@@ -65,29 +66,33 @@ const App = () => {
     };
 
   return (
-    <div className="container-fluid movie-app">
-        <div className="row d-flex align-items-center ps-3 mt-4 mb-4 pe-5">
-            <MovieHeading heading="Movies"/>
-            <SearchBox val={val} setVal={setVal}/>
-        </div>
-        <div className="row movies flex-nowrap">
-            <MovieList 
-                movies={movies} 
-                handleFavourites={handleAddFavourite} 
-                FavouriteComponent={!initPic ? (alreadyFavourited ? AlreadyFavouritedComponent : AddFavourites) : null}
-            />
-        </div>
-        <div className="row d-flex align-items-center ps-3 mt-4 mb-4">
-            <MovieHeading heading="Favourites"/>
-        </div>
-        <div className="row movies flex-nowrap">
-            <MovieList 
-                movies={favourites}
-                handleFavourites={handleRemoveFavourite} 
-                FavouriteComponent={initFavouritePic ? null : RemoveFavourites}
-            />
-        </div>
-    </div>
+      <div className="container-fluid movie-app">
+          <div className="col d-flex justify-content-center">
+            <img src={Logo} alt="" srcSet=""></img>
+          </div>
+          <hr></hr>
+          <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
+              <MovieHeading heading="Movies"/>
+              <SearchBox val={val} setVal={setVal}/>
+          </div>
+          <div className="row movies flex-nowrap">
+              <MovieList 
+                  movies={movies} 
+                  handleFavourites={handleAddFavourite} 
+                  FavouriteComponent={!initPic ? (alreadyFavourited ? AlreadyFavouritedComponent : AddFavourites) : null}
+              />
+          </div>
+          <div className="row d-flex align-items-center ps-3 mt-4 mb-4">
+              <MovieHeading heading="Favourites"/>
+          </div>
+          <div className="row movies flex-nowrap">
+              <MovieList 
+                  movies={favourites}
+                  handleFavourites={handleRemoveFavourite} 
+                  FavouriteComponent={initFavouritePic ? null : RemoveFavourites}
+              />
+          </div>
+      </div>
   );
 };
 
