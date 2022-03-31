@@ -19,8 +19,8 @@ const App = () => {
     const [val, setVal] = useState("");
     const [initPic, setInitPic] = useState(true);
     const [initFavouritePic, setInitFavouritePic] = useState(true);
-    const [plot, setPlot] = useState("");
-    const [showPlot, setShowPlot] = useState(false);
+    // const [plot, setPlot] = useState("");
+    // const [showPlot, setShowPlot] = useState(false);
 
     const getMovieRequest = async (val) => {
         const url=`http://www.omdbapi.com/?s=${val}&apikey=ca4d40cb`;
@@ -36,13 +36,13 @@ const App = () => {
         };
     };
 
-    const getMovieInfo = async (movie) => {
-      const url = `http://www.omdbapi.com/?t=${movie.Title}&apikey=ca4d40cb`;
-      const response = await fetch(url);
-      const json = await response.json();
-      setPlot(json.Plot)
-      setShowPlot(true)
-    };
+    // const getMovieInfo = async (movie) => {
+    //   const url = `http://www.omdbapi.com/?t=${movie.Title}&apikey=ca4d40cb`;
+    //   const response = await fetch(url);
+    //   const json = await response.json();
+    //   setPlot(json.Plot)
+    //   setShowPlot(true)
+    // };
 
     useEffect(() => {
         getMovieRequest(val);
@@ -90,7 +90,7 @@ const App = () => {
                   movies={movies} 
                   handleFavourites={handleAddFavourite} 
                   FavouriteComponent={!initPic ? (alreadyFavourited ? AlreadyFavouritedComponent : AddFavourites) : null}
-                  getMovieInfo={getMovieInfo}
+                  // getMovieInfo={getMovieInfo}
               />
           </div>
           <div className="row d-flex align-items-center ps-3 mt-4 mb-4">
@@ -101,14 +101,11 @@ const App = () => {
                   movies={favourites}
                   handleFavourites={handleRemoveFavourite} 
                   FavouriteComponent={initFavouritePic ? null : RemoveFavourites}
-                  getMovieInfo={getMovieInfo}
-                  plot={plot}
-                  showPlot={showPlot}
+                  // getMovieInfo={getMovieInfo}
+                  // plot={plot}
+                  // showPlot={showPlot}
               />
           </div>
-              <div className="popup">
-                <span className={showPlot ? "show popuptext" : null} id="myPopup">{plot}</span>
-              </div>
       </div>
   );
 };
