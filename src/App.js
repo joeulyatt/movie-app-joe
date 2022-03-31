@@ -19,7 +19,8 @@ const App = () => {
     const [val, setVal] = useState("");
     const [initPic, setInitPic] = useState(true);
     const [initFavouritePic, setInitFavouritePic] = useState(true);
-    const [plot, setPlot] = useState ("");
+    const [plot, setPlot] = useState("");
+    const [showPlot, setShowPlot] = useState(false);
 
     const getMovieRequest = async (val) => {
         const url=`http://www.omdbapi.com/?s=${val}&apikey=ca4d40cb`;
@@ -73,6 +74,12 @@ const App = () => {
             setInitFavouritePic(true)} 
     };
 
+    function myFunction() {
+      // var popup = document.getElementById("myPopup");
+      // popup.classList.toggle("show");
+      setShowPlot(true)
+    };
+
   return (
       <div className="container-fluid movie-app">
           <div className="col d-flex justify-content-center">
@@ -103,6 +110,9 @@ const App = () => {
               />
           </div>
           <h3>{plot}</h3>
+              <div className="popup" onClick={() => myFunction()}>Click me!
+                <span className={showPlot ? "show popuptext" : null} id="myPopup">{plot}</span>
+              </div>
       </div>
   );
 };
