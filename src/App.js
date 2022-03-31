@@ -12,21 +12,23 @@ import AlreadyFavouritedComponent from './Components/AlreadyFavourited';
 
 
 const App = () => {
-    const [movies, setMovies] = useState([{Poster: DefaultPic}]);
+    const [movies, setMovies] = useState([{Set: false, Poster: DefaultPic}]);
     const [favourites, setFavourites] = useState([{Poster: DefaultFavourite}]);
-    const [alreadyFavourited, setAlreadyFavourited] = useState(false)
-    const [val, setVal] = useState("")
+    const [alreadyFavourited, setAlreadyFavourited] = useState(false);
+    const [val, setVal] = useState("");
+    const [initPic, setInitPic] = useState(true)
 
     const getMovieRequest = async (val) => {
         const url=`http://www.omdbapi.com/?s=${val}&apikey=ca4d40cb`;
         const response = await fetch(url);
         const json = await response.json();
-
-      if (json.Search) {
-          setMovies(json.Search);
-      } else if (!json.Search) {
-        setMovies([{Poster: DefaultPic}])
-      }
+        if (json.Search) {
+            setMovies(json.Search);
+            setInitPic(false)
+        } else if (!json.Search) {
+            setMovies([{Poster: DefaultPic}])
+            setInitPic(true)
+        };
     };
 
     useEffect(() => {
@@ -62,7 +64,8 @@ const App = () => {
             <MovieList 
                 movies={movies} 
                 handleFavourites={handleAddFavourite} 
-                FavouriteComponent={alreadyFavourited ? AlreadyFavouritedComponent : AddFavourites}
+                // FavouriteComponent={alreadyFavourited ? AlreadyFavouritedComponent : AddFavourites}
+                FavouriteComponent={!initPic ? AddFavourites : null}
             />
         </div>
         <div className="row d-flex align-items-center ps-3 mt-4 mb-4">
