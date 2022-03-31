@@ -54,7 +54,7 @@ const App = () => {
 
   return (
     <div className="container-fluid movie-app">
-        <div className="row d-flex align-items-center mt-4 mb-4">
+        <div className="row d-flex align-items-center ps-3 mt-4 mb-4 pe-5">
             <MovieHeading heading="Movies"/>
             <SearchBox val={val} setVal={setVal}/>
         </div>
@@ -65,7 +65,7 @@ const App = () => {
                 FavouriteComponent={alreadyFavourited ? AlreadyFavouritedComponent : AddFavourites}
             />
         </div>
-        <div className="row d-flex align-items-center mt-4 mb-4">
+        <div className="row d-flex align-items-center ps-3 mt-4 mb-4">
             <MovieHeading heading="Favourites"/>
         </div>
         <div className="row movies flex-nowrap">
