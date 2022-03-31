@@ -19,6 +19,7 @@ const App = () => {
     const [val, setVal] = useState("");
     const [initPic, setInitPic] = useState(true);
     const [initFavouritePic, setInitFavouritePic] = useState(true);
+    const [plot, setPlot] = useState ("");
 
     const getMovieRequest = async (val) => {
         const url=`http://www.omdbapi.com/?s=${val}&apikey=ca4d40cb`;
@@ -38,7 +39,8 @@ const App = () => {
       const url = `http://www.omdbapi.com/?t=${movie.Title}&apikey=ca4d40cb`;
       const response = await fetch(url);
       const json = await response.json();
-      console.log(json.Plot)
+      setPlot(json.Plot)
+      console.log(plot)
     };
 
     useEffect(() => {
