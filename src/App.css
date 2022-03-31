@@ -1,6 +1,16 @@
+/* General Styling */
 body {
   background: #00203FFF;
   color: #ADEFD1FF;
+  font-family: 'Oswald', sans-serif;
+}
+
+.oswald {
+  font-family: 'Oswald', sans-serif;
+}
+
+.quatt {
+  font-family: 'Quattrocento', serif;
 }
 
 .movie-app .row {
