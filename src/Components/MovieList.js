@@ -10,9 +10,9 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, getMovieInfo}
                     {FavouriteComponent !== null ?
                     <div onClick={() => handleFavourites(movie)} className="overlay d-flex align-items=center justify-content-center">
                         <FavouriteComponent/>
-                        <h1 onClick={() => getMovieInfo(movie)}>click meh</h1>
                     </div>
                     : null}
+                    <h1 className="overlay" onClick={() => getMovieInfo(movie)}>click meh</h1>
                 </div>
             ))}
         </>
