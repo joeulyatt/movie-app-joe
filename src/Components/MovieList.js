@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
     const [plot, setPlot] = useState("");
@@ -13,10 +13,15 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
         console.log(json)
         setPlot(json.Plot);
         setInfo(json);
-        setShowInfo(idx !== plotIdx ? showInfo : !showInfo);
+        setShowInfo(!showInfo);
         setPlotIdx(idx);
         console.log(movie)
     };
+
+    // Ensures Info appears on correct movie
+    useEffect(() => {
+        setShowInfo(true)
+    }, [plotIdx])
     
     return ( 
         <>
