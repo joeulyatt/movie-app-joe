@@ -10,12 +10,10 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
         const url = `http://www.omdbapi.com/?t=${movie.Title}&apikey=ca4d40cb`;
         const response = await fetch(url);
         const json = await response.json();
-        console.log(json)
         setPlot(json.Plot);
         setInfo(json);
         setShowInfo(!showInfo);
         setPlotIdx(idx);
-        console.log(movie)
     };
 
     // Ensures Info appears on correct movie
@@ -23,6 +21,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
         setShowInfo(true)
     }, [plotIdx])
 
+    // Shows Info
     useEffect(() => {
         setShowInfo(false)
     }, [handleFavourites])
@@ -35,7 +34,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
                 <div className="image-container d-flex justify-content-start m-3 " key={idx}>
                     <div className="popup">
                         <div>
-                            {/* Shows Info when clicked, hides when clicked */}
+            {/* Shows Info when clicked, hides when clicked */}
                             <span
                                 className={showInfo && idx === plotIdx ? "text-center myInfo show popuptext" : null}
                                 id="myPopup"
@@ -53,7 +52,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
                                     )
                                 : null}
                             </span>
-                            {/* Shows movie plot*/}
+            {/* Shows movie plot*/}
                             <span
                                 className={showInfo && idx === plotIdx ? "myPlot show popuptext" : null}
                                 id="myPopup"
@@ -65,7 +64,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
 
                     </div>
                     <img src={movie.Poster} alt={movie.Title} srcSet=""></img>
-                    {/* Checks init pic and displays AddToFavourites if false */}
+            {/* Checks init pic and displays AddToFavourites if false */}
                     {FavouriteComponent !== null ?
                         <>
                             <div class="d-flex overlay w-100">
@@ -83,6 +82,6 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
             ))}
         </>
     );
-}
+};
 
 export default MovieList;
