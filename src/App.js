@@ -10,6 +10,7 @@ import SearchBox from './Components/SearchBox';
 import AddFavourites from './Components/AddFavourites';
 import RemoveFavourites from './Components/RemoveFavourites';
 import AlreadyFavouritedComponent from './Components/AlreadyFavourited';
+import Footer from './Components/Footer';
 
 
 const App = () => {
@@ -106,6 +107,7 @@ const App = () => {
                   // showPlot={showPlot}
               />
           </div>
+          <Footer/>
       </div>
   );
 };

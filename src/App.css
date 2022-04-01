@@ -13,7 +13,7 @@ body {
   font-family: 'Quattrocento', serif;
 }
 
-/* App Stlying */
+/* App Styling */
 
 .movie-app .row {
   overflow-x: auto;
@@ -139,4 +139,10 @@ svg:hover {
 @keyframes fadeIn {
   from {opacity: 0;}
   to {opacity:1 ;}
+}
+
+/* Footer Styling */
+
+footer {
+  color:rgba(173, 239, 209, 0.635);
 }
