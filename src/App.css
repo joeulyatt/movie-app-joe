@@ -46,34 +46,21 @@ body {
 .overlay {
   position: absolute;
   background: black;
-  width: 100%;
+  width: 50%;
   transition: 0.5s ease;
   opacity: 0;
-  /* bottom: 0; */
-  font-size: 20px;
-  padding: 20px;
-  text-align: center;
-}
-
-.putToTop {
-  top: 0;
-}
-
-.putToBottom {
   bottom: 0;
-}
-
-
-.overlay-top {
-  position: absolute;
-  background: black;
-  width: 100%;
-  transition: 0.5s ease;
-  /* opacity: 0; */
-  top: 0;
   font-size: 20px;
   padding: 20px;
   text-align: center;
+}
+
+.myPlot {
+  margin-top: 300px;
+}
+
+.info-overlay {
+  margin-top: 200px;
 }
 
 .row>* {
