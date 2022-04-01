@@ -25,6 +25,14 @@ body {
   max-width: fit-content;
 }
 
+/* Search Box Styling */
+
+.form-control {
+  color:#ADEFD1FF;
+}
+
+/* Movie Card Styling */
+
 .image-container {
   position: relative;
   transition: transform 0.2s;
@@ -99,7 +107,7 @@ svg:hover {
 }
 
 
-/* Plot Popup Style */
+/*  Popup Styling */
 
 /* Popup container */
 .popup {

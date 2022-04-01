@@ -13,13 +13,16 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
         console.log(json)
         setPlot(json.Plot);
         setInfo(json);
-        setShowInfo(idx !== plotIdx ? true : false);
+        setShowInfo(idx !== plotIdx ? showInfo : !showInfo);
         setPlotIdx(idx);
+        console.log(movie)
     };
     
     return ( 
         <>
             {movies.map((movie, idx) => (
+            /* checks if img is available */
+            movie.Poster !== "N/A" ?
                 <div className="image-container d-flex justify-content-start m-3 " key={idx}>
                     <div className="popup">
                         <div>
@@ -67,7 +70,8 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
                         </>
                     : null}
                 </div>
-            ))};
+            : null
+            ))}
         </>
     );
 }
