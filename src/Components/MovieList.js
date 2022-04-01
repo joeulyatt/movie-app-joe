@@ -22,6 +22,10 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
     useEffect(() => {
         setShowInfo(true)
     }, [plotIdx])
+
+    useEffect(() => {
+        setShowInfo(false)
+    }, [handleFavourites])
     
     return ( 
         <>
