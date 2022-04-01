@@ -79,6 +79,24 @@ body {
   opacity: 70%;
 }
 
+svg {
+  padding-top: 2px;
+}
+
+svg:hover {
+  fill: rgb(254, 102, 102);
+  transition: 0.2s;
+}
+
+.svgBig {
+  size: 120%;
+  transition: 0.2s;
+}
+
+.myInfo:hover {
+  color:rgb(255, 255, 255);
+  transition: 0.2s;
+}
 
 
 /* Plot Popup Style */
@@ -108,8 +126,8 @@ body {
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .popup .show {
   visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s
 }
 
 /* Add animation (fade in the popup) */

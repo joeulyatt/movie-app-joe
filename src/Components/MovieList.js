@@ -58,7 +58,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
                         <>
                             <div class="d-flex overlay w-100">
                                 <div onClick={() => getMovieInfo(movie, idx)} className="col">
-                                    <h2>Info</h2>
+                                    <h2 className="myInfo">Info</h2>
                                 </div>
                                 <div onClick={() => handleFavourites(movie)} className="col">
                                     <FavouriteComponent/>
