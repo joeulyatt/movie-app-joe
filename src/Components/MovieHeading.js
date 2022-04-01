@@ -1,11 +1,5 @@
 import React from 'react'
 
-const MovieHeading = ( {heading} ) => {
-    return ( 
-        <div className="col ms-3">
-            <h1>{heading}</h1>
-        </div>
-    );
-}
+const MovieHeading = ( {heading} ) => <h1 className="col ms-3">{heading}</h1>
 
 export default MovieHeading;
