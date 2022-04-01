@@ -56,11 +56,16 @@ body {
 }
 
 .myPlot {
-  margin-top: 300px;
+  bottom: 0;
+  margin-bottom: 85px;
 }
 
 .info-overlay {
   margin-top: 200px;
+}
+
+.infoList span {
+  color: #ADEFD1FF;
 }
 
 .row>* {
@@ -98,17 +103,7 @@ body {
   z-index: 1;
 }
 
-/* Popup arrow */
-.popup .popuptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
+
 
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .popup .show {

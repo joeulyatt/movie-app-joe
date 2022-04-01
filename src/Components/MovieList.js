@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
     const [plot, setPlot] = useState("");
     const [info, setInfo] = useState("");
-    const [showPlot, setShowPlot] = useState(false);
     const [showInfo, setShowInfo] = useState(false);
     const [plotIdx, setPlotIdx] = useState(); 
 
@@ -14,8 +13,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
         console.log(json)
         setPlot(json.Plot);
         setInfo(json);
-        setShowPlot(true);
-        setShowInfo(true);
+        setShowInfo(idx !== plotIdx ? true : false);
         setPlotIdx(idx);
     };
     
@@ -34,20 +32,20 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
                                 
                                 {idx === plotIdx && showInfo ?
                                     (
-                                    <>
-                                        <div>Year: {info.Year}</div>
-                                        <div>RunTime: {info.Runtime}</div>
-                                        <div>Genre: {info.Genre}</div>
-                                        <div>Actors: {info.Actors}</div>
-                                    </>
+                                    <div className="infoList">
+                                        <div><span>Year: </span>{info.Year}</div>
+                                        <div><span>RunTime: </span>{info.Runtime}</div>
+                                        <div><span>Genre: </span>{info.Genre}</div>
+                                        <div><span>Actors: </span>{info.Actors}</div>
+                                    </div>
                                     )
                                 : null}
                             </span>
-                            {/* Shows movie plot when clicked, hides when clicked */}
+                            {/* Shows movie plot*/}
                             <span
                                 className={showInfo && idx === plotIdx ? "myPlot show popuptext" : null}
                                 id="myPopup"
-                                onClick={() => setShowPlot(false)}
+                                onClick={() => setShowInfo(false)}
                             >
                                 {idx === plotIdx && showInfo ? plot : null}
                             </span>
@@ -62,9 +60,6 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
                                 <div onClick={() => getMovieInfo(movie, idx)} className="col">
                                     <h2>Info</h2>
                                 </div>
-                                {/* <div onClick={() => getMovieInfo(movie, idx)} className="info-overlay overlay d-flex align-items=center justify-content-center">
-                                    <h2>Info</h2>
-                                </div> */}
                                 <div onClick={() => handleFavourites(movie)} className="col">
                                     <FavouriteComponent/>
                                 </div>
