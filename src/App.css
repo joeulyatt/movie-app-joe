@@ -31,6 +31,8 @@ body {
 .image-container {
   position: relative;
   transition: transform 0.2s;
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s
 }
 
 .image-container img {

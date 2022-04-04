@@ -22,7 +22,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites} )
     // Hides info when favourite is removed
     useEffect(() => {
         setShowInfo(false)
-    }, [favourites])
+    }, [favourites, movies])
     
     return ( 
         <>
