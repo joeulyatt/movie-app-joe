@@ -90,10 +90,13 @@ body {
 
 .bi-suit-heart-fill {
   color: red;
+}
+
+.myIcon {
   font-size: 1.8rem;
 }
 
-.bi-suit-heart-fill:hover {
+.myIcon:hover  {
   color: rgb(254, 102, 102);
   transition: 0.2s;
 }
