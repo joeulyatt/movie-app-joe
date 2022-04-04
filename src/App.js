@@ -34,7 +34,6 @@ const App = () => {
     const handleAddFavourite = (movie, idx) => {
         setInitFavouritePic(false);
         if (favourites.includes(movie)) return;
-    // Adds movie to favourites
         const newFavouriteList = [...favourites, movie];
         if (favourites.some(e => e.Poster === DefaultFavourite)) {newFavouriteList.splice(0, 1)};
         setFavourites(newFavouriteList);
