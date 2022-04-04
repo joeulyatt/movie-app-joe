@@ -82,27 +82,22 @@ body {
   opacity: 70%;
 }
 
-svg {
-  padding-top: 2px;
-}
-
-svg:hover {
-  fill: rgb(254, 102, 102);
-  transition: 0.2s;
-}
-
-.svgBig {
-  size: 120%;
-  transition: 0.2s;
-}
 
 .myInfo:hover {
   color:rgb(255, 255, 255);
   transition: 0.2s;
 }
 
+.bi-suit-heart-fill {
+  color: red;
+  font-size: 1.8rem;
+}
 
-/*  Popup Styling */
+.bi-suit-heart-fill:hover {
+  color: rgb(254, 102, 102);
+  transition: 0.2s;
+}
+
 
 /* Popup container */
 .popup {
