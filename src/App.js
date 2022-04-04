@@ -6,7 +6,6 @@ import MovieHeading from './Components/MovieHeading';
 import SearchBox from './Components/SearchBox';
 import AddFavourites from './Components/AddFavourites';
 import RemoveFavourites from './Components/RemoveFavourites';
-import AlreadyFavouritedComponent from './Components/AlreadyFavourited';
 import Footer from './Components/Footer';
 
 import DefaultPic from './img/default-search-pic.png';
@@ -16,7 +15,6 @@ import Logo from './img/logo.png';
 const App = () => {
     const [movies, setMovies] = useState([{Poster: DefaultPic}]);
     const [favourites, setFavourites] = useState([{Poster: DefaultFavourite}]);
-    const [alreadyFavourited, setAlreadyFavourited] = useState(false);
     const [val, setVal] = useState("");
     const [initPic, setInitPic] = useState(true);
     const [initFavouritePic, setInitFavouritePic] = useState(true);
@@ -33,16 +31,9 @@ const App = () => {
         getMovieRequest(val);
     }, [val]);
 
-    const handleAddFavourite = (movie) => {
+    const handleAddFavourite = (movie, idx) => {
         setInitFavouritePic(false);
-    // Alerts if movie is already in favourites
-        if (favourites.includes(movie)) {
-            setAlreadyFavourited(true);
-            setTimeout(() => {
-                setAlreadyFavourited(false);
-            }, 500);
-            return
-        };
+        if (favourites.includes(movie)) return;
     // Adds movie to favourites
         const newFavouriteList = [...favourites, movie];
         if (favourites.some(e => e.Poster === DefaultFavourite)) {newFavouriteList.splice(0, 1)};
@@ -73,7 +64,8 @@ const App = () => {
                 <MovieList 
                     movies={movies} 
                     handleFavourites={handleAddFavourite} 
-                    FavouriteComponent={!initPic ? (alreadyFavourited ? AlreadyFavouritedComponent : AddFavourites) : null}
+                    FavouriteComponent={!initPic ? AddFavourites : null}
+                    favourites={favourites}
                 />
             </div>
             <div className="row d-flex align-items-center ps-3 mt-4 mb-4">
@@ -84,7 +76,6 @@ const App = () => {
                     movies={favourites}
                     handleFavourites={handleRemoveFavourite} 
                     FavouriteComponent={initFavouritePic ? null : RemoveFavourites}
-                    favourites={favourites}
                 />
             </div>
             <Footer/>

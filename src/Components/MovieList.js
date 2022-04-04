@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites} ) => {
+const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, alreadyFavourited} ) => {
     const [info, setInfo] = useState("");
     const [showInfo, setShowInfo] = useState(false);
     const [movieIdx, setMovieIdx] = useState(); 
@@ -29,7 +29,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites} )
             {movies.map((movie, idx) => (
             /* checks if img is available */
             movie.Poster !== "N/A" ? 
-                <div className="image-container d-flex justify-content-start m-3 " key={idx}>
+                <div className="image-container d-flex justify-content-start m-3" key={idx}>
                     {idx === movieIdx && showInfo ?
                         <div className="popup text-center" onClick={() => setShowInfo(false)}>
                             <span className="infoList show popuptext">
@@ -50,7 +50,11 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites} )
                                     <h2 className="myInfo">Info</h2>
                                 </div>
                                 <div onClick={() => handleFavourites(movie, idx)} className="col">
-                                    <FavouriteComponent/>
+                                    <FavouriteComponent 
+                                        alreadyFavourited={alreadyFavourited}
+                                        favourites={favourites}
+                                        movie={movie}
+                                    />
                                 </div>
                             </div>
                         </>
