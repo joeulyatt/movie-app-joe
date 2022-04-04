@@ -58,7 +58,6 @@ const App = () => {
     };
 
     const handleRemoveFavourite = (movie) => {
-    
         const newFavouriteList =  [...favourites];
         const index = newFavouriteList.indexOf(movie);
         newFavouriteList.splice(index, 1);
@@ -94,6 +93,7 @@ const App = () => {
                     movies={favourites}
                     handleFavourites={handleRemoveFavourite} 
                     FavouriteComponent={initFavouritePic ? null : RemoveFavourites}
+                    favourites={favourites}
                 />
             </div>
             <Footer/>

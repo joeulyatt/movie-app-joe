@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
+const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites} ) => {
     const [info, setInfo] = useState("");
     const [showInfo, setShowInfo] = useState(false);
     const [movieIdx, setMovieIdx] = useState(); 
@@ -17,12 +17,12 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
     // Ensures Info appears on correct movie
     useEffect(() => {
         setShowInfo(true)
-    }, [movieIdx, handleFavourites])
+    }, [movieIdx])
 
-    // Shows Info
-    // useEffect(() => {
-    //     setShowInfo(false)
-    // }, [handleFavourites])
+    // Hides info when favourite is removed
+    useEffect(() => {
+        setShowInfo(false)
+    }, [favourites])
     
     return ( 
         <>
@@ -57,7 +57,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
                     : null}
                 </div>
             : null
-            ))};
+            ))}
         </>
     );
 };
