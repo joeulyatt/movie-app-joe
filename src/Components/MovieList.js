@@ -1,70 +1,48 @@
 import React, { useEffect, useState } from 'react';
 
 const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
-    const [plot, setPlot] = useState("");
     const [info, setInfo] = useState("");
     const [showInfo, setShowInfo] = useState(false);
-    const [plotIdx, setPlotIdx] = useState(); 
+    const [movieIdx, setMovieIdx] = useState(); 
 
     const getMovieInfo = async (movie, idx) => {
         const url = `http://www.omdbapi.com/?t=${movie.Title}&apikey=ca4d40cb`;
         const response = await fetch(url);
         const json = await response.json();
-        setPlot(json.Plot);
         setInfo(json);
+        setMovieIdx(idx);
         setShowInfo(!showInfo);
-        setPlotIdx(idx);
     };
 
     // Ensures Info appears on correct movie
     useEffect(() => {
         setShowInfo(true)
-    }, [plotIdx])
+    }, [movieIdx, handleFavourites])
 
     // Shows Info
-    useEffect(() => {
-        setShowInfo(false)
-    }, [handleFavourites])
+    // useEffect(() => {
+    //     setShowInfo(false)
+    // }, [handleFavourites])
     
     return ( 
         <>
             {movies.map((movie, idx) => (
             /* checks if img is available */
-            movie.Poster !== "N/A" ?
+            movie.Poster !== "N/A" ? 
                 <div className="image-container d-flex justify-content-start m-3 " key={idx}>
-                    <div className="popup">
-                        <div>
-            {/* Shows Info when clicked, hides when clicked */}
-                            <span
-                                className={showInfo && idx === plotIdx ? "text-center myInfo show popuptext" : null}
-                                id="myPopup"
-                                onClick={() => setShowInfo(false)}
-                            >
-                                
-                                {idx === plotIdx && showInfo ?
-                                    (
-                                    <div className="infoList">
-                                        <div><span>Year: </span>{info.Year}</div>
-                                        <div><span>RunTime: </span>{info.Runtime}</div>
-                                        <div><span>Genre: </span>{info.Genre}</div>
-                                        <div><span>Actors: </span>{info.Actors}</div>
-                                    </div>
-                                    )
-                                : null}
+                    {idx === movieIdx && showInfo ?
+                        <div className="popup text-center" onClick={() => setShowInfo(false)}>
+                            <span className="infoList show popuptext">
+                                <div><span>Year: </span>{info.Year}</div>
+                                <div><span>RunTime: </span>{info.Runtime}</div>
+                                <div><span>Genre: </span>{info.Genre}</div>
+                                <div><span>Actors: </span>{info.Actors}</div>
                             </span>
-            {/* Shows movie plot*/}
-                            <span
-                                className={showInfo && idx === plotIdx ? "myPlot show popuptext" : null}
-                                id="myPopup"
-                                onClick={() => setShowInfo(false)}
-                            >
-                                {idx === plotIdx && showInfo ? plot : null}
-                            </span>
+                            <span className="myPlot show popuptext">{info.Plot}</span>
                         </div>
-
-                    </div>
+                    : null}
                     <img src={movie.Poster} alt={movie.Title} srcSet=""></img>
-            {/* Checks init pic and displays AddToFavourites if false */}
+            {/* Bottom section - Hides if initPic is true */}
                     {FavouriteComponent !== null ?
                         <>
                             <div class="d-flex overlay w-100">
@@ -79,7 +57,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites} ) => {
                     : null}
                 </div>
             : null
-            ))}
+            ))};
         </>
     );
 };
