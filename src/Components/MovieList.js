@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import DefaultPic from '../img/default-search-pic.png'
 
-const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, alreadyFavourited} ) => {
+const MovieList = ( {movies, initPic, FavouriteComponent, handleFavourites, favourites, alreadyFavourited} ) => {
     const [info, setInfo] = useState("");
     const [showInfo, setShowInfo] = useState(false);
     const [movieIdx, setMovieIdx] = useState(); 
@@ -27,8 +28,6 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, a
     return ( 
         <>
             {movies.map((movie, idx) => (
-            /* checks if img is available */
-            movie.poster_path !== "N/A" ? 
                 <div className="image-container d-flex justify-content-start m-3" key={idx}>
                     {idx === movieIdx && showInfo ?
                         <div className="popup text-center" onClick={() => setShowInfo(false)}>
@@ -41,7 +40,10 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, a
                             <span className="myPlot show popuptext">{info.Plot}</span>
                         </div>
                     : null}
-                    <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt={movie.Title} srcSet=""></img>
+                    <img src={ !initPic ?
+                        `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
+                        : DefaultPic
+                        } alt={movie.Title} srcSet=""></img>
             {/* Bottom section - Hides if initPic is true */}
                     {FavouriteComponent !== null ?
                         <>
@@ -60,7 +62,6 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, a
                         </>
                     : null}
                 </div>
-            : null
             ))}
         </>
     );

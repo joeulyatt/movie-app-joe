@@ -13,7 +13,7 @@ import DefaultFavourite from './img/default-favourite-pic.png';
 import Logo from './img/logo.png';
 
 const App = () => {
-    const [movies, setMovies] = useState([{Poster: DefaultPic}]);
+    const [movies, setMovies] = useState([{poster_path: DefaultPic}]);
     const [trending, setTrending] = useState([])
     const [favourites, setFavourites] = useState([{Poster: DefaultFavourite}]);
     const [val, setVal] = useState("");
@@ -24,8 +24,9 @@ const App = () => {
         const url=`https://api.themoviedb.org/3/search/movie?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&query=${val}`
         const response = await fetch(url);
         const json = await response.json();
-        setMovies(json.results ? json.results : [{Poster: DefaultPic}]);
+        setMovies(json.results ? json.results : [{poster_path: DefaultPic}]);
         setInitPic(json.results ? false : true);
+        console.log(initPic)
     };
 
     const getTrending = async () => {
@@ -57,7 +58,7 @@ const App = () => {
         setFavourites(newFavouriteList);
     // Adds init pic if array is empty
         if (newFavouriteList.length === 0) 
-            {setFavourites([{Poster: DefaultFavourite}])
+            {setFavourites([{poster_path: DefaultPic}])
             setInitFavouritePic(true)};
     };
 
@@ -85,6 +86,7 @@ const App = () => {
             <div className="row movies flex-nowrap">
                 <MovieList 
                     movies={movies} 
+                    initPic={initPic}
                     handleFavourites={handleAddFavourite} 
                     FavouriteComponent={!initPic ? AddFavourites : null}
                     favourites={favourites}
