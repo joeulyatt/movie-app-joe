@@ -28,7 +28,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, a
         <>
             {movies.map((movie, idx) => (
             /* checks if img is available */
-            movie.Poster !== "N/A" ? 
+            movie.poster_path !== "N/A" ? 
                 <div className="image-container d-flex justify-content-start m-3" key={idx}>
                     {idx === movieIdx && showInfo ?
                         <div className="popup text-center" onClick={() => setShowInfo(false)}>
@@ -41,7 +41,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, a
                             <span className="myPlot show popuptext">{info.Plot}</span>
                         </div>
                     : null}
-                    <img src={movie.Poster} alt={movie.Title} srcSet=""></img>
+                    <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt={movie.Title} srcSet=""></img>
             {/* Bottom section - Hides if initPic is true */}
                     {FavouriteComponent !== null ?
                         <>
