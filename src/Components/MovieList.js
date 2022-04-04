@@ -45,11 +45,11 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites} )
             {/* Bottom section - Hides if initPic is true */}
                     {FavouriteComponent !== null ?
                         <>
-                            <div class="d-flex overlay w-100">
+                            <div className="d-flex overlay w-100">
                                 <div onClick={() => getMovieInfo(movie, idx)} className="col">
                                     <h2 className="myInfo">Info</h2>
                                 </div>
-                                <div onClick={() => handleFavourites(movie)} className="col">
+                                <div onClick={() => handleFavourites(movie, idx)} className="col">
                                     <FavouriteComponent/>
                                 </div>
                             </div>

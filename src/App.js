@@ -49,10 +49,9 @@ const App = () => {
         setFavourites(newFavouriteList);
     };
 
-    const handleRemoveFavourite = (movie) => {
+    const handleRemoveFavourite = (movie, idx) => {
         const newFavouriteList =  [...favourites];
-        const index = newFavouriteList.indexOf(movie);
-        newFavouriteList.splice(index, 1);
+        newFavouriteList.splice(idx, 1);
         setFavourites(newFavouriteList);
     // Adds init pic if array is empty
         if (newFavouriteList.length === 0) 
