@@ -25,29 +25,21 @@ const App = () => {
         const url=`http://www.omdbapi.com/?s=${val}&apikey=ca4d40cb`;
         const response = await fetch(url);
         const json = await response.json();
-    // Sets Movie Array
-        if (json.Search) {
-            setMovies(json.Search);
-            setInitPic(false);
-        } else if (!json.Search) {
-    // Sets init pic if search box is empty
-            setMovies([{Poster: DefaultPic}]);
-            setInitPic(true);
-        };
+        setMovies(json.Search ? json.Search : [{Poster: DefaultPic}]);
+        setInitPic(json.Search ? false : true);
     };
 
-    // Updates movie array on user input
     useEffect(() => {
         getMovieRequest(val);
     }, [val]);
 
     const handleAddFavourite = (movie) => {
         setInitFavouritePic(false);
-    // Checks if movie is already favourited and alerts if true
+    // Alerts if movie is already in favourites
         if (favourites.includes(movie)) {
             setAlreadyFavourited(true);
             setTimeout(() => {
-                setAlreadyFavourited(false)
+                setAlreadyFavourited(false);
             }, 500);
             return
         };
@@ -62,7 +54,7 @@ const App = () => {
         const index = newFavouriteList.indexOf(movie);
         newFavouriteList.splice(index, 1);
         setFavourites(newFavouriteList);
-    // Checks if array is empty and adds init favourites pic if true
+    // Adds init pic if array is empty
         if (newFavouriteList.length === 0) 
             {setFavourites([{Poster: DefaultFavourite}])
             setInitFavouritePic(true)};
