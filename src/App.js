@@ -13,9 +13,9 @@ import DefaultFavourite from './img/default-favourite-pic.png';
 import Logo from './img/logo.png';
 
 const App = () => {
-    const [movies, setMovies] = useState([{poster_path: DefaultPic}]);
+    const [movies, setMovies] = useState([]);
     const [trending, setTrending] = useState([])
-    const [favourites, setFavourites] = useState([{Poster: DefaultFavourite}]);
+    const [favourites, setFavourites] = useState([{poster_path: DefaultFavourite}]);
     const [val, setVal] = useState("");
     const [initPic, setInitPic] = useState(true);
     const [initFavouritePic, setInitFavouritePic] = useState(true);
@@ -26,7 +26,6 @@ const App = () => {
         const json = await response.json();
         setMovies(json.results ? json.results : [{poster_path: DefaultPic}]);
         setInitPic(json.results ? false : true);
-        console.log(initPic)
     };
 
     const getTrending = async () => {
@@ -48,7 +47,7 @@ const App = () => {
         setInitFavouritePic(false);
         if (favourites.includes(movie)) return;
         const newFavouriteList = [...favourites, movie];
-        if (favourites.some(e => e.Poster === DefaultFavourite)) {newFavouriteList.splice(0, 1)};
+        if (favourites.some(e => e.poster_path.includes("default"))) {newFavouriteList.splice(0, 1)};
         setFavourites(newFavouriteList);
     };
 
@@ -56,7 +55,6 @@ const App = () => {
         const newFavouriteList =  [...favourites];
         newFavouriteList.splice(idx, 1);
         setFavourites(newFavouriteList);
-    // Adds init pic if array is empty
         if (newFavouriteList.length === 0) 
             {setFavourites([{poster_path: DefaultPic}])
             setInitFavouritePic(true)};
@@ -75,7 +73,7 @@ const App = () => {
                 <MovieList 
                     movies={trending} 
                     handleFavourites={handleAddFavourite} 
-                    FavouriteComponent={!initPic ? AddFavourites : null}
+                    FavouriteComponent={AddFavourites}
                     favourites={favourites}
                 />
             </div>
@@ -87,6 +85,7 @@ const App = () => {
                 <MovieList 
                     movies={movies} 
                     initPic={initPic}
+                    defaultImg={DefaultPic}
                     handleFavourites={handleAddFavourite} 
                     FavouriteComponent={!initPic ? AddFavourites : null}
                     favourites={favourites}
@@ -98,6 +97,8 @@ const App = () => {
             <div className="row movies flex-nowrap">
                 <MovieList 
                     movies={favourites}
+                    initPic={initFavouritePic}
+                    defaultImg={DefaultFavourite}
                     handleFavourites={handleRemoveFavourite} 
                     FavouriteComponent={initFavouritePic ? null : RemoveFavourites}
                 />
