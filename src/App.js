@@ -115,7 +115,7 @@ const App = () => {
                     </div>
                     <div className="row movies flex-nowrap">
                         <MovieList 
-                            movies={activeTab === "Movies" || "TV Shows" ? trendingMovies : favourites } 
+                            movies={activeTab !== "Watchlist" ? trendingMovies : favourites } 
                             handleFavourites={activeTab !== "Watchlist" ? handleAddFavourite : handleRemoveFavourite} 
                             FavouriteComponent={activeTab !== "Watchlist" ? AddFavourites : RemoveFavourites}
                             favourites={favourites}
