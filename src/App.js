@@ -80,24 +80,23 @@ const App = () => {
 
 
         <div className="container-fluid movie-app">
-            <div className="col d-flex justify-content-center">
-                <img src={Logo} alt="" srcSet=""></img>
-            </div>
-            <hr></hr>
-            <div>
-                {types.map(type => (
-                <button
-                    className={activeTab === type ? "myButtonActive" : "myButton"}
-                    key={type}
-                    active={activeTab === type}
-                    onClick={() => setActiveTab(type)}
-                >
-                    <h1>{type}</h1>
-                </button>
-                ))}
+            <div className="d-flex justify-content-between">
+                <div class="mt-2">
+                    <img src={Logo} alt="" srcSet="" height="100px" className="me-5"></img>
+                    {types.map(type => (
+                    <button
+                        className={activeTab === type ? "myButtonActive" : "myButton"}
+                        key={type}
+                        active={activeTab === type}
+                        onClick={() => setActiveTab(type)}
+                    >
+                        <h1>{type}</h1>
+                    </button>
+                    ))}
+                </div>
                 <SearchBox val={val} setVal={setVal}/>
             </div>
-
+            
             {activeTab === 'TV Shows' ? 
             <>
 
@@ -132,7 +131,6 @@ const App = () => {
             <>
             <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
                 <MovieHeading heading="Movies"/>
-                <SearchBox val={val} setVal={setVal}/>
             </div>
             <div className="row movies flex-nowrap">
                 <MovieList 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SearchBox = ( {val, setVal}) => 
-        <div className="col col-sm-4">
+        <div className="col col-sm-4 me-4 align-self-center">
             <input 
                 type="text" 
                 className="form-control" 

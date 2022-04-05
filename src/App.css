@@ -15,6 +15,14 @@ body {
   font-family: 'Quattrocento', serif;
 }
 
+h1 {
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
 /* App Styling */
 
 .movie-app .row {
