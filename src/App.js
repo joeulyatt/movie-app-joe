@@ -18,7 +18,7 @@ const types = ['Movies', 'TV Shows', 'Watchlist'];
 const App = () => {
     const [movies, setMovies] = useState([]);
     const [shows, setShows] = useState([]);
-    const [trending, setTrending] = useState([]);
+    const [trendingMovies, setTrendingMovies] = useState([]);
     const [trendingTV, setTrendingTV] = useState([]);
     const [favourites, setFavourites] = useState([{poster_path: DefaultFavourite}]);
     const [val, setVal] = useState("");
@@ -39,11 +39,11 @@ const App = () => {
         setMovies(json.results ? json.results : [{poster_path: DefaultPic}]);
     };
 
-    const getTrending = async () => {
+    const getTrendingMovies = async () => {
         const url= "https://api.themoviedb.org/3/movie/popular?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&page=1"
         const response = await fetch(url);
         const json = await response.json();
-        setTrending(json.results)
+        setTrendingMovies(json.results)
     };
 
     const getTrendingTV = async () => {
@@ -54,13 +54,14 @@ const App = () => {
     };
 
     useEffect(() => {
-        getTrending()
+        getTrendingMovies()
         getTrendingTV()
     }, []);
 
     useEffect(() => {
         getMovieRequest(val);
         getShowRequest(val);
+        console.log(activeTab)
     }, [val]);
 
     const handleAddFavourite = (movie, idx) => {
@@ -79,6 +80,26 @@ const App = () => {
             {setFavourites([{poster_path: DefaultPic}])
             setInitFavouritePic(true)};
     };
+
+    function handleMovieList() {
+        if (activeTab === "Movies") {
+        return movies
+        } else if (activeTab === "TV Shows") {
+        return shows
+        } else if (activeTab === "Watchlist") {
+        return favourites
+        }
+    }
+
+    function handleTrendingList() {
+        if (activeTab === "Movies") {
+        return trendingMovies
+        } else if (activeTab === "TV Shows") {
+        return trendingTV
+        } else if (activeTab === "Watchlist") {
+        return favourites
+        }
+    }
 
     return (
 
@@ -103,11 +124,11 @@ const App = () => {
             
 
                 <> 
-                    {val ? 
+                    {val && activeTab !== "Watchlist" ? 
                         <>
                             <div className="row movies flex-nowrap">
                                 <MovieList 
-                                    movies={activeTab === "TV Shows" ? shows : movies} 
+                                    movies={handleMovieList()} 
                                     handleFavourites={handleAddFavourite} 
                                     FavouriteComponent={AddFavourites}
                                     favourites={favourites}
@@ -117,19 +138,20 @@ const App = () => {
                     :
                         <>
                             <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
-                                <MovieHeading heading="Trending"/>
+                                <MovieHeading heading={activeTab !== "Watchlist" ? "Trending" : "Watchlist"}/>
                             </div>
                             <div className="row movies flex-nowrap">
                                 <MovieList 
-                                    movies={activeTab === "Movies" ? trending : trendingTV} 
+                                    movies={handleTrendingList()} 
                                     handleFavourites={handleAddFavourite} 
-                                    FavouriteComponent={AddFavourites}
+                                    FavouriteComponent={activeTab !== "Watchlist" ? AddFavourites : RemoveFavourites}
                                     favourites={favourites}
                                 />
                             </div>
                         </>
                     }
                 </>             
+        <Footer/>
         </div>
     );
 };
