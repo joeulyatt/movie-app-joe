@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, alreadyFavourited} ) => {
+const MovieList = ( {movies, initFavouritePic, defaultImg, FavouriteComponent, handleFavourites, favourites, alreadyFavourited} ) => {
     const [info, setInfo] = useState("");
     const [showInfo, setShowInfo] = useState(false);
     const [movieIdx, setMovieIdx] = useState(); 

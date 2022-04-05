@@ -8,35 +8,25 @@ import AddFavourites from './Components/AddFavourites';
 import RemoveFavourites from './Components/RemoveFavourites';
 import Footer from './Components/Footer';
 
-import DefaultPic from './img/default-search-pic.png';
 import Logo from './img/logo.png';
-
 
 const types = ['Movies', 'TV Shows', 'Watchlist'];
 
 const App = () => {
     const [movies, setMovies] = useState([]);
-    const [shows, setShows] = useState([]);
     const [trendingMovies, setTrendingMovies] = useState([]);
     const [comedyMovies, setComedyMovies] = useState([]);
     const [actionMovies, setActionMovies] = useState([]);
-    const [trendingTV, setTrendingTV] = useState([]);
     const [favourites, setFavourites] = useState([]);
     const [val, setVal] = useState("");
     const [activeTab, setActiveTab] = useState(types[0]);
 
-    const getShowRequest = async (val) => {
-        const url=`https://api.themoviedb.org/3/search/tv?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&page=1&include_adult=false&query=${val}`
-        const response = await fetch(url);
-        const json = await response.json();
-        setShows(json.results ? json.results : [{poster_path: DefaultPic}]);
-    };
 
-    const getMovieRequest = async (val) => {
-        const url=`https://api.themoviedb.org/3/search/movie?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&query=${val}`
+    const getSearch = async (val) => {
+        const url=`https://api.themoviedb.org/3/search/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&query=${val}`
         const response = await fetch(url);
         const json = await response.json();
-        setMovies(json.results ? json.results : [{poster_path: DefaultPic}]);
+        setMovies(json.results ? json.results : []);
     };
 
     const getTrendingMovies = async () => {
@@ -45,6 +35,8 @@ const App = () => {
         const json = await response.json();
         setTrendingMovies(json.results)
     };
+
+
 
     const getComedyMovies = async () => {
         const url = `https://api.themoviedb.org/3/discover/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=35`
@@ -62,24 +54,16 @@ const App = () => {
         setActionMovies(json.results)
     };
 
-    const getTrendingTV = async () => {
-        const url = "https://api.themoviedb.org/3/tv/popular?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&page=1"
-        const response = await fetch(url);
-        const json = await response.json();
-        setTrendingTV(json.results)
-    };
 
     useEffect(() => {
         getTrendingMovies()
-        getTrendingTV()
         getComedyMovies()
         getActionMovies()
     }, [activeTab]);
 
     useEffect(() => {
-        getMovieRequest(val);
-        getShowRequest(val);
-    }, [val]);
+        getSearch(val);
+    }, [val, activeTab]);
 
     const handleAddFavourite = (movie, idx) => {
         if (favourites.includes(movie)) return;
@@ -93,26 +77,6 @@ const App = () => {
         newFavouriteList.splice(idx, 1);
         setFavourites(newFavouriteList);
     };
-
-    function handleMovieList() {
-        if (activeTab === "Movies") {
-        return movies
-        } else if (activeTab === "TV Shows") {
-        return shows
-        } else if (activeTab === "Watchlist") {
-        return favourites
-        }
-    }
-
-    function handleTrendingList() {
-        if (activeTab === "Movies") {
-        return trendingMovies
-        } else if (activeTab === "TV Shows") {
-        return trendingTV
-        } else if (activeTab === "Watchlist") {
-        return favourites
-        }
-    }
 
     return (
 
@@ -138,7 +102,7 @@ const App = () => {
             {val && activeTab !== "Watchlist" ? 
                 <div className="row movies flex-nowrap">
                     <MovieList 
-                        movies={handleMovieList()} 
+                        movies={activeTab === "Movies" || "TV Shows" ? movies : favourites } 
                         handleFavourites={handleAddFavourite} 
                         FavouriteComponent={AddFavourites}
                         favourites={favourites}
@@ -151,7 +115,7 @@ const App = () => {
                     </div>
                     <div className="row movies flex-nowrap">
                         <MovieList 
-                            movies={handleTrendingList()} 
+                            movies={activeTab === "Movies" || "TV Shows" ? trendingMovies : favourites } 
                             handleFavourites={activeTab !== "Watchlist" ? handleAddFavourite : handleRemoveFavourite} 
                             FavouriteComponent={activeTab !== "Watchlist" ? AddFavourites : RemoveFavourites}
                             favourites={favourites}
