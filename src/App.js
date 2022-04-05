@@ -9,7 +9,6 @@ import RemoveFavourites from './Components/RemoveFavourites';
 import Footer from './Components/Footer';
 
 import DefaultPic from './img/default-search-pic.png';
-import DefaultFavourite from './img/default-favourite-pic.png';
 import Logo from './img/logo.png';
 
 
@@ -20,9 +19,8 @@ const App = () => {
     const [shows, setShows] = useState([]);
     const [trendingMovies, setTrendingMovies] = useState([]);
     const [trendingTV, setTrendingTV] = useState([]);
-    const [favourites, setFavourites] = useState([{poster_path: DefaultFavourite}]);
+    const [favourites, setFavourites] = useState([]);
     const [val, setVal] = useState("");
-    const [initFavouritePic, setInitFavouritePic] = useState(true);
     const [activeTab, setActiveTab] = useState(types[0]);
 
     const getShowRequest = async (val) => {
@@ -64,7 +62,6 @@ const App = () => {
     }, [val]);
 
     const handleAddFavourite = (movie, idx) => {
-        setInitFavouritePic(false);
         if (favourites.includes(movie)) return;
         const newFavouriteList = [...favourites, movie];
         if (favourites.some(e => e.poster_path.includes("default"))) {newFavouriteList.splice(0, 1)};
@@ -75,9 +72,6 @@ const App = () => {
         const newFavouriteList =  [...favourites];
         newFavouriteList.splice(idx, 1);
         setFavourites(newFavouriteList);
-        if (newFavouriteList.length === 0) 
-            {setFavourites([{poster_path: DefaultPic}])
-            setInitFavouritePic(true)};
     };
 
     function handleMovieList() {

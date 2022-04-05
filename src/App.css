@@ -3,8 +3,8 @@ body {
   background: #00203FFF;
   color: #ADEFD1FF;
   font-family: 'Oswald', sans-serif;
-  -webkit-animation: fadeIn 0.5s;
-  animation: fadeIn 0.5s
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
 }
 
 .oswald {
@@ -165,8 +165,8 @@ h2 {
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .popup .show {
   visibility: visible;
-  -webkit-animation: fadeIn 2s;
-  animation: fadeIn 2s
+  -webkit-animation: fadeIn 3s;
+  animation: fadeIn 3s
 }
 
 
