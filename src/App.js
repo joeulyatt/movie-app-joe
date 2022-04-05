@@ -14,7 +14,7 @@ const tabs = ['Movies', 'TV Shows', 'Watchlist'];
 const types = ['Trending', 'Comedy', 'Action'];
 
 const App = () => {
-    const [movies, setMovies] = useState([]);
+    const [search, setSearch] = useState([]);
     const [trendingMovies, setTrendingMovies] = useState([]);
     const [comedyMovies, setComedyMovies] = useState([]);
     const [actionMovies, setActionMovies] = useState([]);
@@ -27,7 +27,7 @@ const App = () => {
         const url=`https://api.themoviedb.org/3/search/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&query=${val}`
         const response = await fetch(url);
         const json = await response.json();
-        setMovies(json.results ? json.results : []);
+        setSearch(json.results ? json.results : []);
     };
 
     const getTrendingMovies = async () => {
@@ -115,23 +115,22 @@ const App = () => {
             {val && activeTab !== "Watchlist" ? 
                 <div className="row movies flex-nowrap">
                     <MovieList 
-                        movies={activeTab === "Movies" || "TV Shows" ? movies : favourites } 
+                        movies={activeTab === "Movies" || "TV Shows" ? search : favourites } 
                         handleFavourites={handleAddFavourite} 
                         FavouriteComponent={AddFavourites}
                         favourites={favourites}
                     />
                 </div>
-            :
+            :   
                 <>
-
-                    {types.map((tab) => (
+                    {types.map((types) => (
                         <>
                     <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
-                        <MovieHeading heading={tab}/>
+                        <MovieHeading heading={types}/>
                     </div>
                     <div className="row movies flex-nowrap">
                         <MovieList 
-                                movies={handleType(tab)} 
+                                movies={activeTab !== "Watchlist" ? handleType(types) : favourites} 
                                 handleFavourites={activeTab !== "Watchlist" ? handleAddFavourite : handleRemoveFavourite} 
                                 FavouriteComponent={activeTab !== "Watchlist" ? AddFavourites : RemoveFavourites}
                                 favourites={favourites}
