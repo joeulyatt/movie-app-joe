@@ -13,6 +13,9 @@ import DefaultPic from './img/default-search-pic.png';
 import DefaultFavourite from './img/default-favourite-pic.png';
 import Logo from './img/logo.png';
 
+
+const types = ['Movies', 'TV Shows'];
+
 const App = () => {
     const [movies, setMovies] = useState([]);
     const [shows, setShows] = useState([]);
@@ -21,6 +24,7 @@ const App = () => {
     const [val, setVal] = useState("");
     const [initPic, setInitPic] = useState(true);
     const [initFavouritePic, setInitFavouritePic] = useState(true);
+    const [activeTab, setActiveTab] = useState(types[0]);
 
     const getShowRequest = async (val) => {
         const url=`https://api.themoviedb.org/3/search/tv?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&page=1&include_adult=false&query=${val}`
@@ -45,6 +49,7 @@ const App = () => {
         const json = await response.json();
         setTrending(json.results)
     };
+
 
     useEffect(() => {
         getTrending()
@@ -73,12 +78,29 @@ const App = () => {
     };
 
     return (
+
+
         <div className="container-fluid movie-app">
-            <TabGroup/>
             <div className="col d-flex justify-content-center">
                 <img src={Logo} alt="" srcSet=""></img>
             </div>
             <hr></hr>
+            <div>
+                {types.map(type => (
+                <button
+                    key={type}
+                    active={activeTab === type}
+                    onClick={() => setActiveTab(type)}
+                >
+                    {type}
+                </button>
+                ))}
+            </div>
+
+            {activeTab === 'TV Shows' ? 
+            <>
+
+            
             <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
                 <MovieHeading heading="TV Shows"/>
                 <SearchBox val={val} setVal={setVal}/>
@@ -102,6 +124,10 @@ const App = () => {
                     favourites={favourites}
                 />
             </div>
+            </>
+                        
+            :
+            <>
             <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
                 <MovieHeading heading="Movies"/>
                 <SearchBox val={val} setVal={setVal}/>
@@ -129,6 +155,9 @@ const App = () => {
                 />
             </div>
             <Footer/>
+            </>
+
+        }
         </div>
     );
 };
