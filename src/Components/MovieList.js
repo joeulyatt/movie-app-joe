@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const MovieList = ( {movies, initPic, initFavouritePic, defaultImg, FavouriteComponent, handleFavourites, favourites, alreadyFavourited} ) => {
+const MovieList = ( {movies, initFavouritePic, defaultImg, FavouriteComponent, handleFavourites, favourites, alreadyFavourited} ) => {
     const [info, setInfo] = useState("");
     const [showInfo, setShowInfo] = useState(false);
     const [movieIdx, setMovieIdx] = useState(); 
@@ -39,9 +39,9 @@ const MovieList = ( {movies, initPic, initFavouritePic, defaultImg, FavouriteCom
                             <span className="myPlot show popuptext">{info.Plot}</span>
                         </div>
                     : null}
-                    <img src={ !initPic && !initFavouritePic ?
-                                `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
-                                : defaultImg
+                    <img src={
+                                `https://image.tmdb.org/t/p/w200/${movie.poster_path}`
+                                
                             } alt={movie.Title} srcSet=""></img>
             {/* Bottom section - Hides if initPic is true */}
                     {FavouriteComponent !== null ?
