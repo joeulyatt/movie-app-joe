@@ -61,7 +61,6 @@ const App = () => {
     useEffect(() => {
         getMovieRequest(val);
         getShowRequest(val);
-        console.log(activeTab)
     }, [val]);
 
     const handleAddFavourite = (movie, idx) => {
@@ -143,7 +142,7 @@ const App = () => {
                             <div className="row movies flex-nowrap">
                                 <MovieList 
                                     movies={handleTrendingList()} 
-                                    handleFavourites={handleAddFavourite} 
+                                    handleFavourites={activeTab !== "Watchlist" ? handleAddFavourite : handleRemoveFavourite} 
                                     FavouriteComponent={activeTab !== "Watchlist" ? AddFavourites : RemoveFavourites}
                                     favourites={favourites}
                                 />
