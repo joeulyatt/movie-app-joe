@@ -18,6 +18,8 @@ const App = () => {
     const [movies, setMovies] = useState([]);
     const [shows, setShows] = useState([]);
     const [trendingMovies, setTrendingMovies] = useState([]);
+    const [comedyMovies, setComedyMovies] = useState([]);
+    const [actionMovies, setActionMovies] = useState([]);
     const [trendingTV, setTrendingTV] = useState([]);
     const [favourites, setFavourites] = useState([]);
     const [val, setVal] = useState("");
@@ -38,10 +40,26 @@ const App = () => {
     };
 
     const getTrendingMovies = async () => {
-        const url= "https://api.themoviedb.org/3/movie/popular?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&page=1"
+        const url= `https://api.themoviedb.org/3/${activeTab === "Movies" ? "movie" : "tv"}/popular?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
         const response = await fetch(url);
         const json = await response.json();
         setTrendingMovies(json.results)
+    };
+
+    const getComedyMovies = async () => {
+        const url = `https://api.themoviedb.org/3/discover/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=35`
+        const response = await fetch(url);
+        const json = await response.json();
+        // setComedyMovies(json.results.filter(e => e.genre_ids.includes(35)))
+        setComedyMovies(json.results)
+    };
+
+    const getActionMovies = async () => {
+        const url = `https://api.themoviedb.org/3/discover/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${activeTab === "Movies" ? "28" : "10759"}`
+        const response = await fetch(url);
+        const json = await response.json();
+        // setComedyMovies(json.results.filter(e => e.genre_ids.includes(35)))
+        setActionMovies(json.results)
     };
 
     const getTrendingTV = async () => {
@@ -54,7 +72,9 @@ const App = () => {
     useEffect(() => {
         getTrendingMovies()
         getTrendingTV()
-    }, []);
+        getComedyMovies()
+        getActionMovies()
+    }, [activeTab]);
 
     useEffect(() => {
         getMovieRequest(val);
@@ -114,36 +134,53 @@ const App = () => {
                 </div>
                 <SearchBox val={val} setVal={setVal}/>
             </div>
-            
 
-                <> 
-                    {val && activeTab !== "Watchlist" ? 
-                        <>
-                            <div className="row movies flex-nowrap">
-                                <MovieList 
-                                    movies={handleMovieList()} 
-                                    handleFavourites={handleAddFavourite} 
-                                    FavouriteComponent={AddFavourites}
-                                    favourites={favourites}
-                                />
-                            </div>
-                        </>
-                    :
-                        <>
-                            <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
-                                <MovieHeading heading={activeTab !== "Watchlist" ? "Trending" : "Watchlist"}/>
-                            </div>
-                            <div className="row movies flex-nowrap">
-                                <MovieList 
-                                    movies={handleTrendingList()} 
-                                    handleFavourites={activeTab !== "Watchlist" ? handleAddFavourite : handleRemoveFavourite} 
-                                    FavouriteComponent={activeTab !== "Watchlist" ? AddFavourites : RemoveFavourites}
-                                    favourites={favourites}
-                                />
-                            </div>
-                        </>
-                    }
-                </>             
+            {val && activeTab !== "Watchlist" ? 
+                <div className="row movies flex-nowrap">
+                    <MovieList 
+                        movies={handleMovieList()} 
+                        handleFavourites={handleAddFavourite} 
+                        FavouriteComponent={AddFavourites}
+                        favourites={favourites}
+                    />
+                </div>
+            :
+                <>
+                    <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
+                        <MovieHeading heading={activeTab !== "Watchlist" ? "Trending" : "Watchlist"}/>
+                    </div>
+                    <div className="row movies flex-nowrap">
+                        <MovieList 
+                            movies={handleTrendingList()} 
+                            handleFavourites={activeTab !== "Watchlist" ? handleAddFavourite : handleRemoveFavourite} 
+                            FavouriteComponent={activeTab !== "Watchlist" ? AddFavourites : RemoveFavourites}
+                            favourites={favourites}
+                        />
+                    </div>
+                    <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
+                        <MovieHeading heading={activeTab !== "Watchlist" ? "Comedies" : null}/>
+                    </div>
+                    <div className="row movies flex-nowrap">
+                        <MovieList 
+                            movies={comedyMovies} 
+                            handleFavourites={activeTab !== "Watchlist" ? handleAddFavourite : handleRemoveFavourite} 
+                            FavouriteComponent={activeTab !== "Watchlist" ? AddFavourites : RemoveFavourites}
+                            favourites={favourites}
+                        />
+                    </div>
+                    <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
+                        <MovieHeading heading={activeTab !== "Watchlist" ? "Action" : null}/>
+                    </div>
+                    <div className="row movies flex-nowrap">
+                        <MovieList 
+                            movies={actionMovies} 
+                            handleFavourites={activeTab !== "Watchlist" ? handleAddFavourite : handleRemoveFavourite} 
+                            FavouriteComponent={activeTab !== "Watchlist" ? AddFavourites : RemoveFavourites}
+                            favourites={favourites}
+                        />
+                    </div>
+                </>
+            }
         <Footer/>
         </div>
     );
