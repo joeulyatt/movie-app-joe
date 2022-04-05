@@ -27,6 +27,28 @@ body {
   max-width: fit-content;
 }
 
+/* Header Styling */
+
+.myButton {
+  color: #ADEFD1FF;
+  background: none;
+  border: none;
+  margin-right: 38px;
+}
+
+.myButton:hover {
+  color: rgb(227, 245, 236);
+}
+
+.myButtonActive {
+  color: rgb(255, 255, 255);
+  background: none;
+  border: none;
+  margin-right: 38px;
+  text-decoration: underline;
+}
+
+
 
 /* Movie Card Styling */
 

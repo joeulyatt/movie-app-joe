@@ -14,7 +14,7 @@ import DefaultFavourite from './img/default-favourite-pic.png';
 import Logo from './img/logo.png';
 
 
-const types = ['Movies', 'TV Shows'];
+const types = ['Movies', 'TV Shows', 'Watchlist'];
 
 const App = () => {
     const [movies, setMovies] = useState([]);
@@ -33,7 +33,6 @@ const App = () => {
         setShows(json.results ? json.results : [{poster_path: DefaultPic}]);
         // setInitPic(json.results ? false : true);
     };
-
 
     const getMovieRequest = async (val) => {
         const url=`https://api.themoviedb.org/3/search/movie?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&query=${val}`
@@ -88,13 +87,15 @@ const App = () => {
             <div>
                 {types.map(type => (
                 <button
+                    className={activeTab === type ? "myButtonActive" : "myButton"}
                     key={type}
                     active={activeTab === type}
                     onClick={() => setActiveTab(type)}
                 >
-                    {type}
+                    <h1>{type}</h1>
                 </button>
                 ))}
+                <SearchBox val={val} setVal={setVal}/>
             </div>
 
             {activeTab === 'TV Shows' ? 
@@ -103,7 +104,7 @@ const App = () => {
             
             <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
                 <MovieHeading heading="TV Shows"/>
-                <SearchBox val={val} setVal={setVal}/>
+                
             </div>
             <div className="row movies flex-nowrap">
                 <MovieList 
@@ -127,6 +128,7 @@ const App = () => {
             </>
                         
             :
+            
             <>
             <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
                 <MovieHeading heading="Movies"/>
