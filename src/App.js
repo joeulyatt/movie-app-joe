@@ -10,7 +10,8 @@ import Footer from './Components/Footer';
 
 import Logo from './img/logo.png';
 
-const types = ['Movies', 'TV Shows', 'Watchlist'];
+const tabs = ['Movies', 'TV Shows', 'Watchlist'];
+const types = ['Trending', 'Comedy', 'Action'];
 
 const App = () => {
     const [movies, setMovies] = useState([]);
@@ -19,7 +20,7 @@ const App = () => {
     const [actionMovies, setActionMovies] = useState([]);
     const [favourites, setFavourites] = useState([]);
     const [val, setVal] = useState("");
-    const [activeTab, setActiveTab] = useState(types[0]);
+    const [activeTab, setActiveTab] = useState(tabs[0]);
 
 
     const getSearch = async (val) => {
@@ -78,6 +79,18 @@ const App = () => {
         setFavourites(newFavouriteList);
     };
 
+    const handleType = (type) => {
+        if (type === 'Trending') {
+            return trendingMovies
+        }
+        else if (type === 'Comedy') {
+            return comedyMovies
+        }
+        else if (type === 'Action') {
+            return actionMovies
+        }
+    }
+
     return (
 
 
@@ -85,7 +98,7 @@ const App = () => {
             <div className="d-flex justify-content-between">
                 <div class="mt-2">
                     <img src={Logo} alt="" srcSet="" height="100px" className="me-5"></img>
-                    {types.map(type => (
+                    {tabs.map(type => (
                     <button
                         className={activeTab === type ? "myButtonActive" : "myButton"}
                         key={type}
@@ -110,39 +123,22 @@ const App = () => {
                 </div>
             :
                 <>
+
+                    {types.map((tab) => (
+                        <>
                     <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
-                        <MovieHeading heading={activeTab !== "Watchlist" ? "Trending" : "Watchlist"}/>
+                        <MovieHeading heading={tab}/>
                     </div>
                     <div className="row movies flex-nowrap">
                         <MovieList 
-                            movies={activeTab !== "Watchlist" ? trendingMovies : favourites } 
-                            handleFavourites={activeTab !== "Watchlist" ? handleAddFavourite : handleRemoveFavourite} 
-                            FavouriteComponent={activeTab !== "Watchlist" ? AddFavourites : RemoveFavourites}
-                            favourites={favourites}
-                        />
+                                movies={handleType(tab)} 
+                                handleFavourites={activeTab !== "Watchlist" ? handleAddFavourite : handleRemoveFavourite} 
+                                FavouriteComponent={activeTab !== "Watchlist" ? AddFavourites : RemoveFavourites}
+                                favourites={favourites}
+                            />
                     </div>
-                    <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
-                        <MovieHeading heading={activeTab !== "Watchlist" ? "Comedies" : null}/>
-                    </div>
-                    <div className="row movies flex-nowrap">
-                        <MovieList 
-                            movies={comedyMovies} 
-                            handleFavourites={activeTab !== "Watchlist" ? handleAddFavourite : handleRemoveFavourite} 
-                            FavouriteComponent={activeTab !== "Watchlist" ? AddFavourites : RemoveFavourites}
-                            favourites={favourites}
-                        />
-                    </div>
-                    <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
-                        <MovieHeading heading={activeTab !== "Watchlist" ? "Action" : null}/>
-                    </div>
-                    <div className="row movies flex-nowrap">
-                        <MovieList 
-                            movies={actionMovies} 
-                            handleFavourites={activeTab !== "Watchlist" ? handleAddFavourite : handleRemoveFavourite} 
-                            FavouriteComponent={activeTab !== "Watchlist" ? AddFavourites : RemoveFavourites}
-                            favourites={favourites}
-                        />
-                    </div>
+                    </>
+                    ))}
                 </>
             }
         <Footer/>
