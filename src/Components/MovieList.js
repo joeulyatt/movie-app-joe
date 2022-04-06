@@ -34,13 +34,16 @@ const MovieList = ( {movies, FavouriteComponent, handleAddFavourite, handleRemov
                     : null}
                     <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.Title} srcSet=""></img>
                     {FavouriteComponent !== null ?
+                    <div className="overlay">
                         <FavouriteComponent 
                             alreadyFavourited={alreadyFavourited}
                             handleAddFavourite={handleAddFavourite}
                             handleRemoveFavourite={handleRemoveFavourite}
                             favourites={favourites}
                             movie={movie}
+                            idx={idx}
                         />
+                    </div>
                     : null}
                 </div>
             ))}

@@ -3,8 +3,8 @@ body {
   background: #00203FFF;
   color: #ADEFD1FF;
   font-family: 'Oswald', sans-serif;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s
+  -webkit-animation: fadeIn 2s;
+  animation: fadeIn 2s
 }
 
 .oswald {
@@ -95,19 +95,6 @@ h2 {
   margin-bottom: 30px;
 }
 
-
-.myPlot {
-  bottom: 0;
-  margin-bottom: 85px;
-}
-
-.info-overlay {
-  margin-top: 200px;
-}
-
-.infoList span {
-  color: #ADEFD1FF;
-}
 
 .row>* {
   padding: 0px;
