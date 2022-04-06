@@ -107,7 +107,8 @@ const App = () => {
             <div className="row movies">
                 <MovieList 
                     movies={search} 
-                    handleFavourites={handleAddFavourite} 
+                    handleAddFavourite={handleAddFavourite} 
+                    handleRemoveFavourite={handleRemoveFavourite} 
                     FavouriteComponent={AddFavourites}
                     favourites={favourites}
                 />
@@ -121,7 +122,8 @@ const App = () => {
                         <div className="row movies flex-nowrap">
                             <MovieList 
                                     movies={handleType(types)} 
-                                    handleFavourites={handleAddFavourite} 
+                                    handleAddFavourite={handleAddFavourite} 
+                                    handleRemoveFavourite={handleRemoveFavourite} 
                                     FavouriteComponent={AddFavourites}
                                     favourites={favourites}
                                 />
@@ -135,7 +137,8 @@ const App = () => {
                     <div className="row movies">
                         <MovieList 
                             movies={favourites} 
-                            handleFavourites={handleRemoveFavourite} 
+                            handleAddFavourite={handleAddFavourite} 
+                            handleRemoveFavourite={handleRemoveFavourite} 
                             FavouriteComponent={RemoveFavourites}
                             favourites={favourites}
                         />

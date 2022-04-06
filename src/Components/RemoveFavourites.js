@@ -1,5 +1,5 @@
 import React from 'react'
 
-const RemoveFavourites = () => <span><i className="myIcon bi bi-x-square"></i></span>
+const RemoveFavourites = () => <i className="overlay myIcon bi bi-x-square"></i>
 
 export default RemoveFavourites;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, alreadyFavourited} ) => {
+const MovieList = ( {movies, FavouriteComponent, handleAddFavourite, handleRemoveFavourite, favourites, alreadyFavourited} ) => {
     const [video, setVideo] = useState("");
     const [showInfo, setShowInfo] = useState(false);
     const [movieIdx, setMovieIdx] = useState(); 
@@ -9,9 +9,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, a
         const url = `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
         const response = await fetch(url);
         const json = await response.json();
-        const newResults = json.results.filter(e => e.name === "Official Trailer")
-        const id = newResults.map(e => e.key);
-        const key = id.toString();
+        const key = json.results.filter(e => e.name === "Official Trailer").map(e=>e.key).toString();
         setVideo(key)
         setMovieIdx(idx);
         setShowInfo(!showInfo);
@@ -23,9 +21,9 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, a
     }, [movieIdx])
 
     // Hides info when favourite is removed
-    useEffect(() => {
-        setShowInfo(false)
-    }, [favourites, movies])
+    // useEffect(() => {
+    //     setShowInfo(false)
+    // }, [favourites, movies])
     
     return ( 
         <>
@@ -36,13 +34,13 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, a
                     : null}
                     <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.Title} srcSet=""></img>
                     {FavouriteComponent !== null ?
-                                <div onClick={() => handleFavourites(movie, idx)} className="overlay">
-                                    <FavouriteComponent 
-                                        alreadyFavourited={alreadyFavourited}
-                                        favourites={favourites}
-                                        movie={movie}
-                                    />
-                                </div>
+                        <FavouriteComponent 
+                            alreadyFavourited={alreadyFavourited}
+                            handleAddFavourite={handleAddFavourite}
+                            handleRemoveFavourite={handleRemoveFavourite}
+                            favourites={favourites}
+                            movie={movie}
+                        />
                     : null}
                 </div>
             ))}
