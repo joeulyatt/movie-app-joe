@@ -15,20 +15,15 @@ const MovieList = ( {movies, FavouriteComponent, handleAddFavourite, handleRemov
         setShowInfo(!showInfo);
     };
 
-    // Ensures Info appears on correct movie
+    // Ensures Video appears on correct movie
     useEffect(() => {
         setShowInfo(true)
     }, [movieIdx])
 
-    // Hides info when favourite is removed
-    // useEffect(() => {
-    //     setShowInfo(false)
-    // }, [favourites, movies])
-    
     return ( 
         <>
             {movies.map((movie, idx) => (
-                <div className="image-container d-flex justify-content-start m-3"  onMouseEnter={() => getMovieVideo(movie, idx)}  key={idx}>
+                <div className="movies image-container d-flex justify-content-start m-3"  onMouseEnter={() => getMovieVideo(movie, idx)}  key={idx}>
                     {idx === movieIdx && showInfo ?
                         <iframe src={`https://www.youtube.com/embed/${video}?controls=0`} className="overlay myVideo"></iframe>
                     : null}

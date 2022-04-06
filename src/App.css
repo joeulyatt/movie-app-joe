@@ -3,8 +3,8 @@ body {
   background: #00203FFF;
   color: #ADEFD1FF;
   font-family: 'Oswald', sans-serif;
-  -webkit-animation: fadeIn 2s;
-  animation: fadeIn 2s
+  -webkit-animation: fadeIn 1.8s;
+  animation: fadeIn 1.8s
 }
 
 .oswald {
@@ -36,6 +36,11 @@ h2 {
   max-width: fit-content;
 }
 
+/* .movieFade {
+  -webkit-animation: fadeIn 2s;
+  animation: fadeIn 2s
+} */
+
 /* Header Styling */
 
 .myButton {
@@ -64,6 +69,11 @@ h2 {
 .image-container {
   position: relative;
   transition: transform 0.2s;
+  /* -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s */
+}
+
+#root .movies {
   -webkit-animation: fadeIn 0.5s;
   animation: fadeIn 0.5s
 }
