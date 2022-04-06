@@ -34,25 +34,21 @@ const App = () => {
         const url= `https://api.themoviedb.org/3/${activeTab === "Movies" ? "movie" : "tv"}/popular?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
         const response = await fetch(url);
         const json = await response.json();
-        setTrendingMovies(json.results)
+        setTrendingMovies(json.results);
     };
-
-
 
     const getComedyMovies = async () => {
         const url = `https://api.themoviedb.org/3/discover/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=35`
         const response = await fetch(url);
         const json = await response.json();
-        // setComedyMovies(json.results.filter(e => e.genre_ids.includes(35)))
-        setComedyMovies(json.results)
+        setComedyMovies(json.results);
     };
 
     const getActionMovies = async () => {
         const url = `https://api.themoviedb.org/3/discover/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${activeTab === "Movies" ? "28" : "10759"}`
         const response = await fetch(url);
         const json = await response.json();
-        // setComedyMovies(json.results.filter(e => e.genre_ids.includes(35)))
-        setActionMovies(json.results)
+        setActionMovies(json.results);
     };
 
 
@@ -91,7 +87,7 @@ const App = () => {
     return (
         <div className="container-fluid movie-app">
             <div className="d-flex justify-content-between">
-                <div class="mt-2">
+                <div class="mt-2 mb-2">
                     <img src={Logo} alt="" srcSet="" height="100px" className="me-5"></img>
                     {tabs.map(type => (
                     <button
@@ -107,35 +103,45 @@ const App = () => {
                 <SearchBox val={val} setVal={setVal}/>
             </div>
 
-            {val && activeTab !== "Watchlist" ? 
-                <div className="row movies">
-                    <MovieList 
-                        movies={activeTab !== "Watchlist" ? search : favourites } 
-                        handleFavourites={handleAddFavourite} 
-                        FavouriteComponent={AddFavourites}
-                        favourites={favourites}
-                    />
-                </div>
-            :   
+            <div className="row movies">
+                <MovieList 
+                    movies={search} 
+                    handleFavourites={handleAddFavourite} 
+                    FavouriteComponent={AddFavourites}
+                    favourites={favourites}
+                />
+            </div>
+                
+            {activeTab !== "Watchlist" ?
                 <>
                     {types.map((types) => (
-                        <>
-                    <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
-                        <MovieHeading heading={activeTab !== "Watchlist" ? types : "My Watchlist"}/>
-                    </div>
-                    <div className="row movies flex-nowrap">
-                        <MovieList 
-                                movies={activeTab !== "Watchlist" ? handleType(types) : favourites} 
-                                handleFavourites={activeTab !== "Watchlist" ? handleAddFavourite : handleRemoveFavourite} 
-                                FavouriteComponent={activeTab !== "Watchlist" ? AddFavourites : RemoveFavourites}
-                                favourites={favourites}
-                            />
-                    </div>
+                    <>
+                        <MovieHeading heading={types}/>
+                        <div className="row movies flex-nowrap">
+                            <MovieList 
+                                    movies={handleType(types)} 
+                                    handleFavourites={handleAddFavourite} 
+                                    FavouriteComponent={AddFavourites}
+                                    favourites={favourites}
+                                />
+                        </div>
                     </>
                     ))}
                 </>
-            }
-        <Footer/>
+            :
+                <>
+                    <MovieHeading heading="Watchlist"/>
+                    <div className="row movies">
+                        <MovieList 
+                            movies={favourites === [] ? [] : favourites} 
+                            handleFavourites={handleRemoveFavourite} 
+                            FavouriteComponent={RemoveFavourites}
+                            favourites={favourites}
+                        />
+                    </div>
+                </>
+            }   
+            <Footer/>
         </div>
     );
 };
