@@ -82,18 +82,13 @@ const App = () => {
     const handleType = (type) => {
         if (type === 'Trending') {
             return trendingMovies
-        }
-        else if (type === 'Comedy') {
+        } else if (type === 'Comedy') {
             return comedyMovies
-        }
-        else if (type === 'Action') {
+        } else if (type === 'Action') {
             return actionMovies
-        }
-    }
+    }};
 
     return (
-
-
         <div className="container-fluid movie-app">
             <div className="d-flex justify-content-between">
                 <div class="mt-2">
@@ -113,9 +108,9 @@ const App = () => {
             </div>
 
             {val && activeTab !== "Watchlist" ? 
-                <div className="row movies flex-nowrap">
+                <div className="row movies">
                     <MovieList 
-                        movies={activeTab === "Movies" || "TV Shows" ? search : favourites } 
+                        movies={activeTab !== "Watchlist" ? search : favourites } 
                         handleFavourites={handleAddFavourite} 
                         FavouriteComponent={AddFavourites}
                         favourites={favourites}
@@ -126,7 +121,7 @@ const App = () => {
                     {types.map((types) => (
                         <>
                     <div className="row d-flex align-items-center ps-3 mt-4 mb-4 me-4">
-                        <MovieHeading heading={types}/>
+                        <MovieHeading heading={activeTab !== "Watchlist" ? types : "My Watchlist"}/>
                     </div>
                     <div className="row movies flex-nowrap">
                         <MovieList 
