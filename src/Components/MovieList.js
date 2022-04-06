@@ -6,7 +6,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, a
     const [movieIdx, setMovieIdx] = useState(); 
 
     const getMovieInfo = async (movie, idx) => {
-        const url = `http://www.omdbapi.com/?t=${movie.Title}&apikey=ca4d40cb`;
+        const url = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
         const response = await fetch(url);
         const json = await response.json();
         setInfo(json);
@@ -27,7 +27,7 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, a
     return ( 
         <>
             {movies.map((movie, idx) => (
-                <div className="image-container d-flex justify-content-start m-3" key={idx}>
+                <div className="image-container d-flex justify-content-start m-3" onMouseEnter={() => getMovieInfo(movie, idx)} key={idx}>
                     {idx === movieIdx && showInfo ?
                         <div className="popup text-center" onClick={() => setShowInfo(false)}>
                             <span className="infoList show popuptext">
@@ -36,14 +36,14 @@ const MovieList = ( {movies, FavouriteComponent, handleFavourites, favourites, a
                                 <div><span>Genre: </span>{info.Genre}</div>
                                 <div><span>Actors: </span>{info.Actors}</div>
                             </span>
-                            <span className="myPlot show popuptext">{info.Plot}</span>
+                            <span className="myPlot show popuptext">{info.overview}</span>
                         </div>
                     : null}
                     <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.Title} srcSet=""></img>
                     {FavouriteComponent !== null ?
                         <>
                             <div className="d-flex overlay w-100">
-                                <div onClick={() => getMovieInfo(movie, idx)} className="col">
+                                <div  className="col">
                                     <h2 className="myInfo">Info</h2>
                                 </div>
                                 <div onClick={() => handleFavourites(movie, idx)} className="col">

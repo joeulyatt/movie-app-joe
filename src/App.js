@@ -112,8 +112,8 @@ const App = () => {
                     favourites={favourites}
                 />
             </div>
-                
-            {!val || activeTab !== "Watchlist" ?
+            
+            {activeTab !== "Watchlist" ?
                 <>
                     {types.map((types) => (
                     <>
@@ -141,7 +141,7 @@ const App = () => {
                         />
                     </div>
                 </>
-            }   
+            }
             <Footer/>
         </div>
     );
