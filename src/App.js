@@ -138,6 +138,7 @@ const App = () => {
                     handleAddFavourite={handleAddFavourite} 
                     handleRemoveFavourite={handleRemoveFavourite} 
                     FavouriteComponent={AddFavourites}
+                    activeTab={activeTab}
                     favourites={favourites}
                 />
             </div>
@@ -153,6 +154,7 @@ const App = () => {
                                     handleAddFavourite={handleAddFavourite} 
                                     handleRemoveFavourite={handleRemoveFavourite} 
                                     FavouriteComponent={AddFavourites}
+                                    activeTab={activeTab}
                                     favourites={favourites}
                                 />
                         </div>
@@ -168,6 +170,7 @@ const App = () => {
                             handleAddFavourite={handleAddFavourite} 
                             handleRemoveFavourite={handleRemoveFavourite} 
                             FavouriteComponent={RemoveFavourites}
+                            activeTab={activeTab}
                             favourites={favourites}
                         />
                     </div>
