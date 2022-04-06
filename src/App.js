@@ -113,7 +113,7 @@ const App = () => {
                 />
             </div>
                 
-            {!val && activeTab !== "Watchlist" ?
+            {!val || activeTab !== "Watchlist" ?
                 <>
                     {types.map((types) => (
                     <>
