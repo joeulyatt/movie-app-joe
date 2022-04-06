@@ -10,6 +10,7 @@ import Footer from './Components/Footer';
 
 import Logo from './img/logo.png';
 
+
 const tabs = ['Movies', 'TV Shows', 'Watchlist'];
 const types = ['Trending', 'Comedy', 'Action'];
 
@@ -27,7 +28,7 @@ const App = () => {
         const url=`https://api.themoviedb.org/3/search/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&query=${val}`
         const response = await fetch(url);
         const json = await response.json();
-        setSearch(json.results ? json.results : []);
+        setSearch(json.results ? json.results.filter(e => e.poster_path !== null) : []);
     };
 
     const getTrendingMovies = async () => {
@@ -102,7 +103,7 @@ const App = () => {
                 </div>
                 <SearchBox val={val} setVal={setVal}/>
             </div>
-
+            
             <div className="row movies">
                 <MovieList 
                     movies={search} 
@@ -112,7 +113,7 @@ const App = () => {
                 />
             </div>
                 
-            {activeTab !== "Watchlist" ?
+            {!val && activeTab !== "Watchlist" ?
                 <>
                     {types.map((types) => (
                     <>
@@ -133,7 +134,7 @@ const App = () => {
                     <MovieHeading heading="Watchlist"/>
                     <div className="row movies">
                         <MovieList 
-                            movies={favourites === [] ? [] : favourites} 
+                            movies={favourites} 
                             handleFavourites={handleRemoveFavourite} 
                             FavouriteComponent={RemoveFavourites}
                             favourites={favourites}
