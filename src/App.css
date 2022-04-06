@@ -125,6 +125,7 @@ h2 {
 
 .heart {
   color: red;
+  transition: 0.5s ease;
 }
 
 .bi-suit-heart-fill {

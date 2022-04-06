@@ -12,13 +12,17 @@ import Logo from './img/logo.png';
 
 
 const tabs = ['Movies', 'TV Shows', 'Watchlist'];
-const types = ['Trending', 'Comedy', 'Action'];
+const movieTypes = ['Trending', 'Comedy', 'Horror', 'Action', 'Drama'];
+const TVtypes = ['Trending', 'Soap', 'Comedy', 'Documentary', 'Drama'];
+
 
 const App = () => {
     const [search, setSearch] = useState([]);
     const [trendingMovies, setTrendingMovies] = useState([]);
     const [comedyMovies, setComedyMovies] = useState([]);
     const [actionMovies, setActionMovies] = useState([]);
+    const [dramaMovies, setDramaMovies] = useState([]);
+    const [horrorMovies, setHorrorMovies] = useState([]);
     const [favourites, setFavourites] = useState([]);
     const [val, setVal] = useState("");
     const [activeTab, setActiveTab] = useState(tabs[0]);
@@ -45,18 +49,34 @@ const App = () => {
         setComedyMovies(json.results);
     };
 
+    const getHorrorMovies = async () => {
+        const url = `https://api.themoviedb.org/3/discover/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${activeTab === "Movies" ? "27" : "10766"}`
+        const response = await fetch(url);
+        const json = await response.json();
+        setHorrorMovies(json.results);
+    };
+
     const getActionMovies = async () => {
-        const url = `https://api.themoviedb.org/3/discover/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${activeTab === "Movies" ? "28" : "10759"}`
+        const url = `https://api.themoviedb.org/3/discover/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${activeTab === "Movies" ? "28" : "99"}`
         const response = await fetch(url);
         const json = await response.json();
         setActionMovies(json.results);
+    };
+
+    const getDramaMovies = async () => {
+        const url = `https://api.themoviedb.org/3/discover/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${"18"}`
+        const response = await fetch(url);
+        const json = await response.json();
+        setDramaMovies(json.results);
     };
 
 
     useEffect(() => {
         getTrendingMovies()
         getComedyMovies()
+        getHorrorMovies()
         getActionMovies()
+        getDramaMovies()
     }, [activeTab]);
 
     useEffect(() => {
@@ -81,8 +101,16 @@ const App = () => {
             return trendingMovies
         } else if (type === 'Comedy') {
             return comedyMovies
+        } else if (type === 'Horror') {
+            return horrorMovies
+        } else if (type === 'Soap') {
+            return horrorMovies
         } else if (type === 'Action') {
             return actionMovies
+        } else if (type === 'Documentary') {
+            return actionMovies
+        } else if (type === 'Drama') {
+            return dramaMovies
     }};
 
     return (
@@ -114,9 +142,9 @@ const App = () => {
                 />
             </div>
             
-            {activeTab !== "Watchlist" ?
+            {activeTab !== "Watchlist" && !val ?
                 <>
-                    {types.map((types) => (
+                    {(activeTab === "Movies" ? movieTypes : TVtypes).map((types) => (
                     <>
                         <MovieHeading heading={types}/>
                         <div className="row movies flex-nowrap">
