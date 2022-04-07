@@ -31,10 +31,7 @@ const App = () => {
         return json;
     };
 
-    const getSearch = async (val) => {
-        const e = await getJson(null, "search", val)
-        setSearch(e.results ? e.results.filter(e => e.poster_path !== null) : []);
-    };
+
 
     const getTrendingMovies = async () => {
         const url= `https://api.themoviedb.org/3/${activeTab === "Movies" ? "movie" : "tv"}/popular?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
@@ -69,12 +66,17 @@ const App = () => {
         getHorrorMovies()
         getActionMovies()
         getDramaMovies()
-    }, [activeTab]);
+    }, []);
 
     useEffect(() => {
-        if (val) {getSearch(val)}
+        if (val) {
+            (async () => {
+                const e = await getJson(null, "search", val)
+                setSearch(e.results ? e.results.filter(e => e.poster_path !== null) : []);
+            })()
+        }
         else {setSearch([])}
-    }, [val, activeTab, getSearch]);
+    }, [val, activeTab]);
 
     useEffect(() => {
         const movieFavourites = JSON.parse(
