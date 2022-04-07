@@ -59,7 +59,7 @@ const App = () => {
     };
 
     const getDramaMovies = async () => {
-        const e = await getJson(activeTab === "18", "discover");
+        const e = await getJson("18", "discover");
         setDramaMovies(e.results);
     };
 
