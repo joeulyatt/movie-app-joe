@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import MovieList from './Components/MovieList';
-import MovieHeading from './Components/MovieHeading';
 import SearchBox from './Components/SearchBox';
+import MovieHeading from './Components/MovieHeading';
+import MovieList from './Components/MovieList';
 import AddFavourites from './Components/AddFavourites';
 import RemoveFavourites from './Components/RemoveFavourites';
 import Footer from './Components/Footer';
-
 import Logo from './img/logo.png';
-
 
 const tabs = ['Movies', 'TV Shows', 'Watchlist'];
 const movieTypes = ['Trending', 'Comedy', 'Horror', 'Action', 'Drama'];
 const TVtypes = ['Trending', 'Soap', 'Comedy', 'Documentary', 'Drama'];
-
 
 const App = () => {
     const [search, setSearch] = useState([]);
@@ -44,12 +41,11 @@ const App = () => {
         const response = await fetch(url);
         const json = await response.json();
         setTrendingMovies(json.results);
-        const e = await getJson(activeTab === "Movies" ? "28" : "99", "discover");
     };
 
     const getComedyMovies = async () => {
-        const a = await getJson("35", "discover")
-        setComedyMovies(a.results);
+        const e = await getJson("35", "discover")
+        setComedyMovies(e.results);
     };
 
     const getHorrorMovies = async () => {
@@ -67,7 +63,6 @@ const App = () => {
         setDramaMovies(e.results);
     };
 
-
     useEffect(() => {
         getTrendingMovies()
         getComedyMovies()
@@ -80,11 +75,23 @@ const App = () => {
         getSearch(val);
     }, [val, activeTab]);
 
+    useEffect(() => {
+        const movieFavourites = JSON.parse(
+            localStorage.getItem('react-movie-app-favourites')
+        );
+        setFavourites(movieFavourites)
+    }, []);
+
+    const saveLocalStorage = (items) => {
+        localStorage.setItem('react-movie-app-favourites', JSON.stringify(items))
+    };
+
     const handleAddFavourite = (movie, idx) => {
         if (favourites.includes(movie)) return;
         const newFavouriteList = [...favourites, movie];
         if (favourites.some(e => e.poster_path.includes("default"))) {newFavouriteList.splice(0, 1)};
         setFavourites(newFavouriteList);
+        saveLocalStorage(newFavouriteList);
     };
 
     const handleRemoveFavourite = (movie, idx) => {
