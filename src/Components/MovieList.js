@@ -12,7 +12,8 @@ const MovieList = ( {movies, FavouriteComponent, activeTab, handleAddFavourite, 
         const json = await response.json();
         const key = json.results.filter(e => e.name === "Official Trailer").map(e=>e.key).toString();
         const TVkey = json.results[0].key
-        console.log(json.results[0].key)
+        // const filteredResults = json.results.filter(e => e.name.includes("Trailer")).map(e=>e.key).toString();
+        // console.log(filteredResults)
         setVideo(activeTab === "Movies" ? key : TVkey)
         setMovieIdx(idx);
         setShowInfo(!showInfo);

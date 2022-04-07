@@ -27,12 +27,16 @@ const App = () => {
     const [val, setVal] = useState("");
     const [activeTab, setActiveTab] = useState(tabs[0]);
 
-
-    const getSearch = async (val) => {
-        const url=`https://api.themoviedb.org/3/search/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&query=${val}`
+    const getJson = async (genre, type, val) => {
+        const url = `https://api.themoviedb.org/3/${type}/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${genre}&query=${val}`
         const response = await fetch(url);
         const json = await response.json();
-        setSearch(json.results ? json.results.filter(e => e.poster_path !== null) : []);
+        return json;
+    };
+
+    const getSearch = async (val) => {
+        const e = await getJson(null, "search", val)
+        setSearch(e.results ? e.results.filter(e => e.poster_path !== null) : []);
     };
 
     const getTrendingMovies = async () => {
@@ -40,34 +44,27 @@ const App = () => {
         const response = await fetch(url);
         const json = await response.json();
         setTrendingMovies(json.results);
+        const e = await getJson(activeTab === "Movies" ? "28" : "99", "discover");
     };
 
     const getComedyMovies = async () => {
-        const url = `https://api.themoviedb.org/3/discover/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=35`
-        const response = await fetch(url);
-        const json = await response.json();
-        setComedyMovies(json.results);
+        const a = await getJson("35", "discover")
+        setComedyMovies(a.results);
     };
 
     const getHorrorMovies = async () => {
-        const url = `https://api.themoviedb.org/3/discover/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${activeTab === "Movies" ? "27" : "10766"}`
-        const response = await fetch(url);
-        const json = await response.json();
-        setHorrorMovies(json.results);
+        const e = await getJson(activeTab === "Movies" ? "27" : "10766", "discover");
+        setHorrorMovies(e.results);
     };
 
     const getActionMovies = async () => {
-        const url = `https://api.themoviedb.org/3/discover/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${activeTab === "Movies" ? "28" : "99"}`
-        const response = await fetch(url);
-        const json = await response.json();
-        setActionMovies(json.results);
+        const e = await getJson(activeTab === "Movies" ? "28" : "99", "discover");
+        setActionMovies(e.results);
     };
 
     const getDramaMovies = async () => {
-        const url = `https://api.themoviedb.org/3/discover/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${"18"}`
-        const response = await fetch(url);
-        const json = await response.json();
-        setDramaMovies(json.results);
+        const e = await getJson(activeTab === "18", "discover");
+        setDramaMovies(e.results);
     };
 
 
@@ -96,22 +93,16 @@ const App = () => {
         setFavourites(newFavouriteList);
     };
 
-    const handleType = (type) => {
-        if (type === 'Trending') {
-            return trendingMovies
-        } else if (type === 'Comedy') {
-            return comedyMovies
-        } else if (type === 'Horror') {
-            return horrorMovies
-        } else if (type === 'Soap') {
-            return horrorMovies
-        } else if (type === 'Action') {
-            return actionMovies
-        } else if (type === 'Documentary') {
-            return actionMovies
-        } else if (type === 'Drama') {
-            return dramaMovies
-    }};
+    const handleType = (type) => {switch (type) {
+        case 'Trending': return trendingMovies;
+        case 'Comedy': return comedyMovies;
+        case 'Horror': 
+        case 'Soap': return horrorMovies;
+        case 'Action':
+        case 'Documentary': return actionMovies;
+        case 'Drama': return dramaMovies;
+        default: return trendingMovies;
+    }}
 
     return (
         <div className="container-fluid movie-app">
