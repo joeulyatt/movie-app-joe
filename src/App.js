@@ -133,11 +133,11 @@ const App = () => {
             <div className="row movies">
                 <MovieList 
                     movies={search} 
+                    favourites={favourites}
                     handleAddFavourite={handleAddFavourite} 
                     handleRemoveFavourite={handleRemoveFavourite} 
                     FavouriteComponent={AddFavourites}
                     activeTab={activeTab}
-                    favourites={favourites}
                 />
             </div>
             
@@ -149,11 +149,11 @@ const App = () => {
                         <div className="row movies flex-nowrap">
                             <MovieList 
                                     movies={handleType(types)} 
+                                    favourites={favourites}
                                     handleAddFavourite={handleAddFavourite} 
                                     handleRemoveFavourite={handleRemoveFavourite} 
                                     FavouriteComponent={AddFavourites}
                                     activeTab={activeTab}
-                                    favourites={favourites}
                                 />
                         </div>
                     </>
@@ -165,11 +165,11 @@ const App = () => {
                     <div className="row movies">
                         <MovieList 
                             movies={favourites} 
+                            favourites={favourites}
                             handleAddFavourite={handleAddFavourite} 
                             handleRemoveFavourite={handleRemoveFavourite} 
                             FavouriteComponent={RemoveFavourites}
                             activeTab={activeTab}
-                            favourites={favourites}
                         />
                     </div>
                 </>

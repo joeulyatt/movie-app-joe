@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const MovieList = ( {movies, favourites, FavouriteComponent, activeTab, handleAddFavourite, handleRemoveFavourite} ) => {
+const MovieList = ( {movies, favourites, handleAddFavourite, handleRemoveFavourite, FavouriteComponent, activeTab} ) => {
     const [video, setVideo] = useState("");
     const [showInfo, setShowInfo] = useState(false);
     const [movieIdx, setMovieIdx] = useState(); 
@@ -33,11 +33,11 @@ const MovieList = ( {movies, favourites, FavouriteComponent, activeTab, handleAd
                     <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.Title} srcSet=""></img>
                     <div className="overlay">
                         <FavouriteComponent 
-                            handleAddFavourite={handleAddFavourite}
-                            handleRemoveFavourite={handleRemoveFavourite}
-                            favourites={favourites}
                             movie={movie}
                             idx={idx}
+                            favourites={favourites}
+                            handleAddFavourite={handleAddFavourite}
+                            handleRemoveFavourite={handleRemoveFavourite}
                         />
                     </div>
                 </div>
