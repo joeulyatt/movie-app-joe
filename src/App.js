@@ -98,6 +98,7 @@ const App = () => {
         const newFavouriteList =  [...favourites];
         newFavouriteList.splice(idx, 1);
         setFavourites(newFavouriteList);
+        saveLocalStorage(newFavouriteList);
     };
 
     const handleType = (type) => {switch (type) {
