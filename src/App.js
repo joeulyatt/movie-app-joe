@@ -72,8 +72,9 @@ const App = () => {
     }, [activeTab]);
 
     useEffect(() => {
-        getSearch(val);
-    }, [val, activeTab]);
+        if (val) {getSearch(val)}
+        else {setSearch([])}
+    }, [val, activeTab, getSearch]);
 
     useEffect(() => {
         const movieFavourites = JSON.parse(
@@ -114,13 +115,12 @@ const App = () => {
     return (
         <div className="container-fluid movie-app">
             <div className="d-flex justify-content-between">
-                <div class="mt-2 mb-2">
+                <div className="mt-2 mb-2">
                     <img src={Logo} alt="" srcSet="" height="100px" className="me-5"></img>
                     {tabs.map(type => (
                     <button
                         className={activeTab === type ? "myButtonActive" : "myButton"}
                         key={type}
-                        active={activeTab === type}
                         onClick={() => setActiveTab(type)}
                     >
                         <h1>{type}</h1>
@@ -144,7 +144,7 @@ const App = () => {
             {activeTab !== "Watchlist" && !val ?
                 <>
                     {(activeTab === "Movies" ? movieTypes : TVtypes).map((types) => (
-                    <>
+                    <React.Fragment key={types}>
                         <MovieHeading heading={types}/>
                         <div className="row movies flex-nowrap">
                             <MovieList 
@@ -156,7 +156,7 @@ const App = () => {
                                     activeTab={activeTab}
                                 />
                         </div>
-                    </>
+                    </React.Fragment>
                     ))}
                 </>
             :
