@@ -9,11 +9,8 @@ const MovieList = ( {movies, favourites, handleAddFavourite, handleRemoveFavouri
         const url = `https://api.themoviedb.org/3/${activeTab === "Movies" ? "movie" : "tv"}/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
         const response = await fetch(url);
         const json = await response.json();
-        const key = json.results.find(e => e.name === "Official Trailer").key
-        const TVkey = json.results[0].key
-        // const filteredResults = json.results.filter(e => e.name.includes("Trailer")).map(e=>e.key).toString();
-        // console.log(filteredResults)
-        setVideo(activeTab === "Movies" ? key : TVkey)
+        const key = json.results.find(e => e.name.includes("Trailer")).key
+        setVideo(key)
         setMovieIdx(idx);
         setShowInfo(!showInfo);
     };
