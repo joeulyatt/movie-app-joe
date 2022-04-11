@@ -10,8 +10,8 @@ import Footer from './Components/Footer';
 import Logo from './img/logo.png';
 
 const tabs = ['Movies', 'TV Shows', 'Watchlist'];
-const movieTypes = ['Trending', 'Comedy', 'Horror', 'Action', 'Drama'];
-const TVtypes = ['Trending', 'Soap', 'Comedy', 'Documentary', 'Drama'];
+const movieTypes = ['Trending Today', 'Comedy', 'Horror', 'Action', 'Drama'];
+const TVtypes = ['Trending Today', 'Soap', 'Comedy', 'Documentary', 'Drama'];
 
 const App = () => {
     const [search, setSearch] = useState([]);
@@ -32,7 +32,7 @@ const App = () => {
     };
 
     const getTrending = async () => {
-        const url= `https://api.themoviedb.org/3/${activeTab === "Movies" ? "movie" : "tv"}/popular?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
+        const url= `https://api.themoviedb.org/3/trending/${activeTab === "Movies" ? "movie" : "tv"}/day?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
         const response = await fetch(url);
         const json = await response.json();
         setTrending(json.results);
@@ -102,7 +102,7 @@ const App = () => {
     };
 
     const handleType = (type) => {switch (type) {
-        case 'Trending': return trending;
+        case 'Trending Today': return trending;
         case 'Comedy': return comedy;
         case 'Horror': 
         case 'Soap': return horrorSoap;
