@@ -9,6 +9,8 @@ import RemoveFavourites from './Components/RemoveFavourites';
 import Footer from './Components/Footer';
 import Logo from './img/logo.png';
 
+import { useSelector } from 'react-redux';
+
 const tabs = ['Movies', 'TV Shows', 'Watchlist'];
 const movieTypes = ['Trending Today', 'Comedy', 'Horror', 'Action', 'Drama'];
 const TVtypes = ['Trending Today', 'Soap', 'Comedy', 'Documentary', 'Drama'];
@@ -23,6 +25,9 @@ const App = () => {
     const [favourites, setFavourites] = useState([]);
     const [val, setVal] = useState("");
     const [activeTab, setActiveTab] = useState(tabs[0]);
+
+    const watchList = useSelector(state => state.watchlist) 
+    console.log(watchList)
 
     const getJson = async (genre, type, val) => {
         const url = `https://api.themoviedb.org/3/${type}/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${genre}&query=${val}`
