@@ -1,14 +1,7 @@
-const initialUserState = {
-    arr:[]
-}
-
-const favouriteReducer = (state = initialUserState, action) => {
+const favouriteReducer = (state = [], action) => {
     switch (action.type) {
         case 'ADD FAVOURITE':
-        return {
-            ...state,
-            arr: [...state.arr, action.payload]
-        }
+        return  [...state, action.payload]
         case 'REMOVE FAVOURITE':
         return state - action.payload;
         default:
