@@ -15,11 +15,11 @@ const TVtypes = ['Trending', 'Soap', 'Comedy', 'Documentary', 'Drama'];
 
 const App = () => {
     const [search, setSearch] = useState([]);
-    const [trendingMovies, setTrendingMovies] = useState([]);
-    const [comedyMovies, setComedyMovies] = useState([]);
-    const [actionMovies, setActionMovies] = useState([]);
-    const [dramaMovies, setDramaMovies] = useState([]);
-    const [horrorMovies, setHorrorMovies] = useState([]);
+    const [trending, setTrending] = useState([]);
+    const [comedy, setComedy] = useState([]);
+    const [actionDocumentary, setActionDocumentary] = useState([]);
+    const [drama, setDrama] = useState([]);
+    const [horrorSoap, setHorrorSoap] = useState([]);
     const [favourites, setFavourites] = useState([]);
     const [val, setVal] = useState("");
     const [activeTab, setActiveTab] = useState(tabs[0]);
@@ -31,42 +31,40 @@ const App = () => {
         return json;
     };
 
-
-
-    const getTrendingMovies = async () => {
+    const getTrending = async () => {
         const url= `https://api.themoviedb.org/3/${activeTab === "Movies" ? "movie" : "tv"}/popular?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
         const response = await fetch(url);
         const json = await response.json();
-        setTrendingMovies(json.results);
+        setTrending(json.results);
     };
 
-    const getComedyMovies = async () => {
+    const getComedy = async () => {
         const e = await getJson("35", "discover")
-        setComedyMovies(e.results);
+        setComedy(e.results);
     };
 
-    const getHorrorMovies = async () => {
+    const getHorrorSoap = async () => {
         const e = await getJson(activeTab === "Movies" ? "27" : "10766", "discover");
-        setHorrorMovies(e.results);
+        setHorrorSoap(e.results);
     };
 
-    const getActionMovies = async () => {
+    const getActionDocumentary = async () => {
         const e = await getJson(activeTab === "Movies" ? "28" : "99", "discover");
-        setActionMovies(e.results);
+        setActionDocumentary(e.results);
     };
 
-    const getDramaMovies = async () => {
+    const getDrama = async () => {
         const e = await getJson("18", "discover");
-        setDramaMovies(e.results);
+        setDrama(e.results);
     };
 
     useEffect(() => {
-        getTrendingMovies()
-        getComedyMovies()
-        getHorrorMovies()
-        getActionMovies()
-        getDramaMovies()
-    }, []);
+        getTrending()
+        getComedy()
+        getHorrorSoap()
+        getActionDocumentary()
+        getDrama()
+    }, [activeTab]);
 
     useEffect(() => {
         if (val) {
@@ -104,15 +102,15 @@ const App = () => {
     };
 
     const handleType = (type) => {switch (type) {
-        case 'Trending': return trendingMovies;
-        case 'Comedy': return comedyMovies;
+        case 'Trending': return trending;
+        case 'Comedy': return comedy;
         case 'Horror': 
-        case 'Soap': return horrorMovies;
+        case 'Soap': return horrorSoap;
         case 'Action':
-        case 'Documentary': return actionMovies;
-        case 'Drama': return dramaMovies;
-        default: return trendingMovies;
-    }}
+        case 'Documentary': return actionDocumentary;
+        case 'Drama': return drama;
+        default: return;
+    }};
 
     return (
         <div className="container-fluid movie-app">

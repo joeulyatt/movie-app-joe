@@ -28,7 +28,7 @@ const MovieList = ( {movies, favourites, handleAddFavourite, handleRemoveFavouri
             {movies.map((movie, idx) => (
                 <div className="movies image-container d-flex justify-content-start m-3"  onMouseEnter={() => getMovieVideo(movie, idx)}  key={movie.id}>
                     {idx === movieIdx ?
-                        <iframe src={`https://www.youtube.com/embed/${video}?controls=0`} title={movie} className="overlay myVideo"></iframe>
+                        <iframe src={`https://www.youtube.com/embed/${video}?controls=0`} title={movie.title} className="overlay myVideo"></iframe>
                     : null}
                     <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.Title} srcSet=""></img>
                     <div className="overlay">
