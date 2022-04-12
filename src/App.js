@@ -122,12 +122,12 @@ const App = () => {
             <Router>    
                 <NavBar/>
                     <Routes>
-                        <Route path="./Pages/Movies.js" element={<Movies/>}/>
-                        <Route path="./Pages/TVShows" element={<TVShows/>}/>
-                        <Route path="./Pages/Watchlist" element={<Watchlist/>}/>
+                        <Route path="/Movies" element={<Movies/>}/>
+                        <Route path="/TVShows" element={<TVShows/>}/>
+                        <Route path="/Watchlist" element={<Watchlist/>}/>
                     </Routes>
             </Router>
-            
+{/*             
             <div className="row movies">
                 <MovieList 
                     movies={search} 
@@ -172,7 +172,7 @@ const App = () => {
                     </div>
                 </>
             }
-            <Footer/>
+            <Footer/> */}
         </div>
     );
 };

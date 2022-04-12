@@ -4,7 +4,7 @@ import '../App.css'
 const Movies = () => {
     return ( 
         <div>
-            <h1>hey</h1>
+            <h1>Movies</h1>
         </div>
     );
 }
