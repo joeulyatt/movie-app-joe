@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import SearchBox from './Components/SearchBox';
 import MovieHeading from './Components/MovieHeading';
 import MovieList from './Components/MovieList';
 import AddFavourites from './Components/AddFavourites';
 import RemoveFavourites from './Components/RemoveFavourites';
 import Footer from './Components/Footer';
-import Logo from './img/logo.png';
 
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import NavBar from './Pages/NavBar';
+import Movies from './Pages/Movies';
+import TVShows from './Pages/TVShows';
+import Watchlist from './Pages/Watchlist';
 
 
 const tabs = ['Movies', 'TV Shows', 'Watchlist'];
@@ -121,10 +122,9 @@ const App = () => {
             <Router>    
                 <NavBar/>
                     <Routes>
-                        <Route path="/"></Route>
-                        <Route path="/"></Route>
-                        <Route path="/"></Route>
-                        <Route path="/"></Route>
+                        <Route path="./Pages/Movies.js" element={<Movies/>}/>
+                        <Route path="./Pages/TVShows" element={<TVShows/>}/>
+                        <Route path="./Pages/Watchlist" element={<Watchlist/>}/>
                     </Routes>
             </Router>
             
