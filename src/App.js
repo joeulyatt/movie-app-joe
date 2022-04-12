@@ -9,6 +9,8 @@ import RemoveFavourites from './Components/RemoveFavourites';
 import Footer from './Components/Footer';
 import Logo from './img/logo.png';
 
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import NavBar from './Pages/NavBar';
 
 
 const tabs = ['Movies', 'TV Shows', 'Watchlist'];
@@ -116,21 +118,15 @@ const App = () => {
 
     return (
         <div className="container-fluid movie-app">
-            <div className="d-flex justify-content-between">
-                <div className="mt-2 mb-2">
-                    <img src={Logo} alt="" srcSet="" height="100px" className="me-5"></img>
-                    {tabs.map(type => (
-                    <button
-                        className={activeTab === type ? "myButtonActive" : "myButton"}
-                        key={type}
-                        onClick={() => setActiveTab(type)}
-                    >
-                        <h1>{type}</h1>
-                    </button>
-                    ))}
-                </div>
-                <SearchBox val={val} setVal={setVal}/>
-            </div>
+            <Router>    
+                <NavBar/>
+                    <Routes>
+                        <Route path="/"></Route>
+                        <Route path="/"></Route>
+                        <Route path="/"></Route>
+                        <Route path="/"></Route>
+                    </Routes>
+            </Router>
             
             <div className="row movies">
                 <MovieList 

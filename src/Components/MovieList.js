@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 
 const MovieList = ( {movies, favourites, handleAddFavourite, handleRemoveFavourite, FavouriteComponent, activeTab} ) => {
@@ -7,8 +6,6 @@ const MovieList = ( {movies, favourites, handleAddFavourite, handleRemoveFavouri
     const [showInfo, setShowInfo] = useState(false);
     const [movieIdx, setMovieIdx] = useState(); 
 
-    const watchList = useSelector(state => state.watchlist) 
-    console.log(watchList)
 
     const getMovieVideo = async (movie, idx) => {
         const url = `https://api.themoviedb.org/3/${activeTab === "Movies" ? "movie" : "tv"}/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
