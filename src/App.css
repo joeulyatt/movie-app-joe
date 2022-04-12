@@ -24,6 +24,32 @@ h2 {
   margin: 15px 12px 15px 10px;
 }
 
+/* Nav Styling */
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  /* align-items: center; */
+  min-height: 10vh;
+}
+
+.nav-links {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 6rem;
+  font-size: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+}
+
+.nav-links a:visited {
+  color: inherit;
+}
+
 /* App Styling */
 
 .movie-app .row {
