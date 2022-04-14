@@ -9,8 +9,6 @@ import RemoveFavourites from './Components/RemoveFavourites';
 import Footer from './Components/Footer';
 import Logo from './img/logo.png';
 
-
-
 const tabs = ['Movies', 'TV Shows', 'Watchlist'];
 const movieTypes = ['Trending Today', 'Comedy', 'Horror', 'Action', 'Drama'];
 const TVtypes = ['Trending Today', 'Soap', 'Comedy', 'Documentary', 'Drama'];
