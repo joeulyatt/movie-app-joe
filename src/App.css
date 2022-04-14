@@ -29,7 +29,6 @@ h2 {
 nav {
   display: flex;
   justify-content: space-around;
-  /* align-items: center; */
   min-height: 10vh;
 }
 
@@ -132,8 +131,9 @@ nav {
 }
 
 
-.row>* {
+.movies-list .row>* {
   padding: 0px;
+  width: auto;
 }
 
 #root hr {

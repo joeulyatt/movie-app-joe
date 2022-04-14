@@ -19,7 +19,7 @@ const MoviesList = () => {
         <>
         
         {movieTypes.map((types) => (
-            <div className="">
+            <div className="movies-list">
                 <h2>{types}</h2>
                 <div className="row movies flex-nowrap">
                 {movies.map((e) => (
