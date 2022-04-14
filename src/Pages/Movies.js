@@ -7,7 +7,7 @@ import MovieHeading from '../Components/MovieHeading';
 
 const movieTypes = ['Trending Today', 'Comedy', 'Horror', 'Action', 'Drama'];
 
-const Movies = () => {
+const MoviesList = () => {
     const movies = useSelector(state => state.movies);
     const dispatch = useDispatch();
 
@@ -17,34 +17,21 @@ const Movies = () => {
 
     return ( 
         <>
+        
         {movieTypes.map((types) => (
-            <div>
-                <MovieHeading heading={types}/>
+            <div className="">
+                <h2>{types}</h2>
+                <div className="row movies flex-nowrap">
                 {movies.map((e) => (
-                    <img src ={`https://image.tmdb.org/t/p/w200/${e.poster_path}`}></img>
+                    <div className="">
+                        <img src ={`https://image.tmdb.org/t/p/w200/${e.poster_path}`}></img>
+                    </div>
                 ))}    
+                </div>
             </div>
         ))}
-
-            {/* <MovieHeading heading={}/> */}
-            <div className="row movies flex-nowrap">
-                {/* <MovieList 
-                        movies={handleType(types)} 
-                        favourites={favourites}
-                        handleAddFavourite={handleAddFavourite} 
-                        handleRemoveFavourite={handleRemoveFavourite} 
-                        FavouriteComponent={AddFavourites}
-                        activeTab={activeTab}
-                    /> */}
-            </div>
-            <div>
-                <h1>Movies</h1>
-                {movies.map((e) => (
-                    <img src ={`https://image.tmdb.org/t/p/w200/${e.poster_path}`}></img>
-                ))}    
-            </div>
         </>
     );
 };
 
-export default Movies;
+export default MoviesList;

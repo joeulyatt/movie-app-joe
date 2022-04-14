@@ -9,7 +9,7 @@ import Footer from './Components/Footer';
 
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import NavBar from './Pages/NavBar';
-import Movies from './Pages/Movies';
+import MoviesList from './Pages/Movies';
 import TVShows from './Pages/TVShows';
 import Watchlist from './Pages/Watchlist';
 
@@ -122,7 +122,7 @@ const App = () => {
             <Router>    
                 <NavBar/>
                     <Routes>
-                        <Route path="/Movies" element={<Movies/>}/>
+                        <Route path="/Movies" element={<MoviesList/>}/>
                         <Route path="/TVShows" element={<TVShows/>}/>
                         <Route path="/Watchlist" element={<Watchlist/>}/>
                     </Routes>
