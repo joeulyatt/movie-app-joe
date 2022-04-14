@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../App.css'
-import { useSelector, useDisptach } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getMoviesAsync } from '../Redux/moviesSlice';
 
 const Movies = () => {
+    const movies = useSelector(state => state.movies);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getMoviesAsync());
+    }, [dispatch]);
+
     return ( 
         <div>
-            <h1>Movies</h1>
+        {movies.map((e) => e.title)}
+            {movies.map((e) => (
+                <img src ={e.poster_path}></img>
+            ))}
+            
         </div>
     );
 }
