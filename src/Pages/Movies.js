@@ -8,15 +8,17 @@ const Movies = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(getMoviesAsync(35));
+        dispatch(getMoviesAsync(27));
+        dispatch(getMoviesAsync(28));
         dispatch(getMoviesAsync());
     }, [dispatch]);
 
     return ( 
         <div>
-        {movies.map((e) => e.title)}
-            {movies.map((e) => (
-                <img src ={e.poster_path}></img>
-            ))}
+        {movies.map((e) => (
+            <img src ={`https://image.tmdb.org/t/p/w200/${e.poster_path}`}></img>
+        ))}
             
         </div>
     );
