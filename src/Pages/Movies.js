@@ -9,19 +9,16 @@ const Movies = () => {
 
     useEffect(() => {
         dispatch(getMoviesAsync(35));
-        dispatch(getMoviesAsync(27));
-        dispatch(getMoviesAsync(28));
-        dispatch(getMoviesAsync());
     }, [dispatch]);
 
     return ( 
         <div>
-        {movies.map((e) => (
-            <img src ={`https://image.tmdb.org/t/p/w200/${e.poster_path}`}></img>
-        ))}
-            
+            <h1>Movies</h1>
+            {movies.map((e) => (
+                <img src ={`https://image.tmdb.org/t/p/w200/${e.poster_path}`}></img>
+            ))}    
         </div>
     );
-}
+};
 
 export default Movies;
