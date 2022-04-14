@@ -78,29 +78,29 @@ const App = () => {
         else {setSearch([])}
     }, [val, activeTab]);
 
-    useEffect(() => {
-        const movieFavourites = JSON.parse(
-            localStorage.getItem('react-movie-app-favourites'));
-        setFavourites(movieFavourites)
-    }, []);
+    // useEffect(() => {
+    //     const movieFavourites = JSON.parse(
+    //         localStorage.getItem('react-movie-app-favourites'));
+    //     setFavourites(movieFavourites)
+    // }, []);
 
-    const saveLocalStorage = (items) => {
-        localStorage.setItem('react-movie-app-favourites', JSON.stringify(items))
-    };
+    // const saveLocalStorage = (items) => {
+    //     localStorage.setItem('react-movie-app-favourites', JSON.stringify(items))
+    // };
 
     const handleAddFavourite = (movie, idx) => {
         if (favourites.includes(movie)) return;
         const newFavouriteList = [...favourites, movie];
         if (favourites.some(e => e.poster_path.includes("default"))) {newFavouriteList.splice(0, 1)};
         setFavourites(newFavouriteList);
-        saveLocalStorage(newFavouriteList);
+        // saveLocalStorage(newFavouriteList);
     };
 
     const handleRemoveFavourite = (movie, idx) => {
         const newFavouriteList =  [...favourites];
         newFavouriteList.splice(idx, 1);
         setFavourites(newFavouriteList);
-        saveLocalStorage(newFavouriteList);
+        // saveLocalStorage(newFavouriteList);
     };
 
     const handleType = (type) => {switch (type) {
