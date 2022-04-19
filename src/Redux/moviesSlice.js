@@ -12,19 +12,14 @@ export const getMoviesAsync = createAsyncThunk(
 
 const moviesSlice = createSlice({
     name: "movies",
-    initialState: [{}],
-    extraReducers: {
-        [getMoviesAsync.pending]: (state, action) => {
-            console.log('waiting for movies')
-        },        
+    initialState: [],
+    extraReducers: {  
         [getMoviesAsync.fulfilled]: (state, action) => {
-            console.log('got movies')
-            console.log(action.payload)
-            return action.payload
+            state.push(action.payload)
         },        
     },
 });
 
-export const {} = moviesSlice.actions;
+// export const {} = moviesSlice.actions;
 
 export default moviesSlice.reducer;

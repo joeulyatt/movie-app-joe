@@ -130,6 +130,9 @@ nav {
   margin-bottom: 30px;
 }
 
+.movies-list {
+  padding-left: 20px;
+}
 
 .movies-list .row>* {
   padding: 0px;

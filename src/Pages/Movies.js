@@ -13,16 +13,16 @@ const MoviesList = () => {
 
     useEffect(() => {
         dispatch(getMoviesAsync(35));
+        dispatch(getMoviesAsync(27));
     }, [dispatch]);
 
     return ( 
         <>
-        
-        {movieTypes.map((types) => (
+        {movieTypes.map((types, index) => (
             <div className="movies-list">
                 <h2>{types}</h2>
                 <div className="row movies flex-nowrap">
-                {movies.map((e) => (
+                {movies[index].map((e) => (
                     <div className="">
                         <img src ={`https://image.tmdb.org/t/p/w200/${e.poster_path}`}></img>
                     </div>
