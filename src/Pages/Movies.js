@@ -4,6 +4,7 @@ import '../App.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getMoviesAsync } from '../Redux/moviesSlice';
 import MovieHeading from '../Components/MovieHeading';
+import MovieCard from '../Components/MovieCard';
 
 const movieTypes = ['Trending Today', 'Comedy', 'Horror', 'Action', 'Drama'];
 
@@ -22,11 +23,15 @@ const MoviesList = () => {
             <div className="movies-list">
                 <h2>{types}</h2>
                 <div className="row movies flex-nowrap">
-                {movies[index].map((e) => (
+                <MovieCard
+                    index={index}
+                    movives={movies}
+                />
+                {/* {movies.map((m) => (
                     <div className="">
-                        <img src ={`https://image.tmdb.org/t/p/w200/${e.poster_path}`}></img>
+                        <img src ={`https://image.tmdb.org/t/p/w200/${m.poster_path}`}></img>
                     </div>
-                ))}    
+                ))}     */}
                 </div>
             </div>
         ))}
