@@ -11,14 +11,21 @@ export const getMoviesAsync = createAsyncThunk(
     }
 );
 
+const initialState = [];
+
 const moviesSlice = createSlice({
     name: "movies",
-    initialState: [],
+    initialState,
+    reducers: {
+        reset: () => initialState
+    },
     extraReducers: {  
         [getMoviesAsync.fulfilled]: (state, action) => {
             state.push(action.payload)
         },        
     },
 });
+
+export const { reset } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

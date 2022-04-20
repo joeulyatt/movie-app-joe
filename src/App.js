@@ -9,7 +9,7 @@ import Footer from './Components/Footer';
 
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import NavBar from './Pages/NavBar';
-import Movies from './Pages/MoviesPage';
+import Movies from './Pages/Movies';
 import TVShows from './Pages/TVShows';
 import Watchlist from './Pages/Watchlist';
 
