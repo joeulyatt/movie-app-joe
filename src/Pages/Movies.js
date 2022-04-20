@@ -4,6 +4,7 @@ import '../App.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getMoviesTvAsync, reset } from '../Redux/moviesSlice';
 import { movieTypes } from '../data/movieTypes';
+import MovieCard from '../Components/MovieCard';
 
 const MoviesPage = () => {
     const movies = useSelector(state => state.moviesTv);
@@ -23,11 +24,12 @@ const MoviesPage = () => {
                     <h2>{types.genre}</h2>
                     <div className="row movies flex-nowrap">
                         {movies.length < movieTypes.length ? null : 
-                            movies[index].map((m) => (
-                                <div className="">
-                                    <img src ={`https://image.tmdb.org/t/p/w200/${m.poster_path}`} alt={m.title}></img>
-                                </div>
-                            )) 
+
+                            <MovieCard
+                                movies={movies}
+                                index={index}
+                                
+                            />
                         }
                     </div>
                 </div>

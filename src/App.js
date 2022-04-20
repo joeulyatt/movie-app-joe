@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import MovieHeading from './Components/MovieHeading';
 import MovieList from './Components/MovieList';
 import AddFavourites from './Components/AddFavourites';
 import RemoveFavourites from './Components/RemoveFavourites';
