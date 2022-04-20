@@ -1,74 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import MovieList from './Components/MovieList';
-import AddFavourites from './Components/AddFavourites';
-import RemoveFavourites from './Components/RemoveFavourites';
-import Footer from './Components/Footer';
 
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import NavBar from './Pages/NavBar';
 import Movies from './Pages/Movies';
 import TVShows from './Pages/TVShows';
 import Watchlist from './Pages/Watchlist';
-
-
-const tabs = ['Movies', 'TV Shows', 'Watchlist'];
-const movieTypes = ['Trending Today', 'Comedy', 'Horror', 'Action', 'Drama'];
-const TVtypes = ['Trending Today', 'Soap', 'Comedy', 'Documentary', 'Drama'];
+import Footer from './Components/Footer';
 
 const App = () => {
     const [search, setSearch] = useState([]);
-    const [trending, setTrending] = useState([]);
-    const [comedy, setComedy] = useState([]);
-    const [actionDocumentary, setActionDocumentary] = useState([]);
-    const [drama, setDrama] = useState([]);
-    const [horrorSoap, setHorrorSoap] = useState([]);
     const [favourites, setFavourites] = useState([]);
     const [val, setVal] = useState("");
-    const [activeTab, setActiveTab] = useState(tabs[0]);
 
     const getJson = async (genre, type, val) => {
-        const url = `https://api.themoviedb.org/3/${type}/${activeTab === "Movies" ? "movie" : "tv"}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${genre}&query=${val}`
+        const url = `https://api.themoviedb.org/3/${type}/movie?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${genre}&query=${val}`
         const response = await fetch(url);
         const json = await response.json();
         return json;
     };
-
-    const getTrending = async () => {
-        const url= `https://api.themoviedb.org/3/trending/${activeTab === "Movies" ? "movie" : "tv"}/day?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
-        const response = await fetch(url);
-        const json = await response.json();
-        setTrending(json.results);
-    };
-
-    const getComedy = async () => {
-        const e = await getJson("35", "discover")
-        setComedy(e.results);
-    };
-
-    const getHorrorSoap = async () => {
-        const e = await getJson(activeTab === "Movies" ? "27" : "10766", "discover");
-        setHorrorSoap(e.results);
-    };
-
-    const getActionDocumentary = async () => {
-        const e = await getJson(activeTab === "Movies" ? "28" : "99", "discover");
-        setActionDocumentary(e.results);
-    };
-
-    const getDrama = async () => {
-        const e = await getJson("18", "discover");
-        setDrama(e.results);
-    };
-
-    useEffect(() => {
-        getTrending()
-        getComedy()
-        getHorrorSoap()
-        getActionDocumentary()
-        getDrama()
-    }, [activeTab]);
 
     useEffect(() => {
         if (val) {
@@ -78,7 +29,7 @@ const App = () => {
             })()
         }
         else {setSearch([])}
-    }, [val, activeTab]);
+    }, [val]);
 
     useEffect(() => {
         const movieFavourites = JSON.parse(
@@ -105,16 +56,6 @@ const App = () => {
         saveLocalStorage(newFavouriteList);
     };
 
-    const handleType = (type) => {switch (type) {
-        case 'Trending Today': return trending;
-        case 'Comedy': return comedy;
-        case 'Horror': 
-        case 'Soap': return horrorSoap;
-        case 'Action':
-        case 'Documentary': return actionDocumentary;
-        case 'Drama': return drama;
-        default: return;
-    }};
 
     return (
         <div className="container-fluid movie-app">
@@ -126,6 +67,7 @@ const App = () => {
                         <Route path="/Watchlist" element={<Watchlist/>}/>
                     </Routes>
             </Router>
+            <Footer/>
 {/*             
             <div className="row movies">
                 <MovieList 

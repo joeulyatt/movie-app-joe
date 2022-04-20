@@ -5,6 +5,7 @@ import SearchBox from '../Components/SearchBox'
 import Logo from '../img/logo.png';
 
 const NavBar = () => {
+    const [search, setSearch] = useState([]);
     const [val, setVal] = useState("");
 
     return ( 

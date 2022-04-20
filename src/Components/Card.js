@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-
-const MovieCard = ( {movies, index, favourites, handleAddFavourite, handleRemoveFavourite, FavouriteComponent, activeTab} ) => {
+const Card = ( {movies, index, handleAddFavourite, handleRemoveFavourite, FavouriteComponent, activeTab} ) => {
     const [video, setVideo] = useState("");
     const [movieIdx, setMovieIdx] = useState(); 
 
@@ -25,9 +24,6 @@ const MovieCard = ( {movies, index, favourites, handleAddFavourite, handleRemove
                     <div className="overlay">
                         {/* <FavouriteComponent 
                             movie={movie}
-                            favourites={favourites}
-                            handleAddFavourite={handleAddFavourite}
-                            handleRemoveFavourite={handleRemoveFavourite}
                         /> */}
                     </div>
                 </div>
@@ -36,4 +32,4 @@ const MovieCard = ( {movies, index, favourites, handleAddFavourite, handleRemove
     );
 };
 
-export default MovieCard;
+export default Card;
