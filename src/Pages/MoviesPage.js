@@ -9,16 +9,10 @@ const movieTypes = ['Trending Today', 'Comedy', 'Horror', 'Action', 'Drama'];
 const genres = [35, 27];
 
 const movieTypes2 = [
-    // {
-    //     genre: "Trending Today",
-    //     type: "trending",
-    //     format: "movie/day",
-    //     code: "",
-    // },
     {
-        genre: "test",
-        type: "discover",
-        format: "movie",
+        genre: "Trending Today",
+        type: "trending",
+        format: "movie/day",
         code: "",
     },
     {
@@ -62,8 +56,6 @@ const MoviesPage = () => {
 
     return ( 
         <>
-        
-
         {movieTypes.map((types, index) => (
             <div className="movies-list">
                 <h2>{types}</h2>
