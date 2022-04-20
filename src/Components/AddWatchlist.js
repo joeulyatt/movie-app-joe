@@ -17,7 +17,11 @@ const AddWatchlist = ( {favourites, movie} ) => {
 // !favourites.includes(movie) ? 
 return (
     <>
-        <i className="myIcon heart bi bi-suit-heart" onClick={() => dispatch(handleAddWatchlist(movie))}></i>
+    {watchlist.includes(movie) ? 
+        <i className="myIcon heart bi bi-suit-heart-fill" onClick={() => handleAddWatchlist(movie)}></i>
+        :   
+        <i className="myIcon heart bi bi-suit-heart" onClick={() => handleAddWatchlist(movie)}></i>
+    }
     </>
 )
     // :
