@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 
 const MovieCard = ( {movies, index, favourites, handleAddFavourite, handleRemoveFavourite, FavouriteComponent, activeTab} ) => {
     const [video, setVideo] = useState("");
-    const [showInfo, setShowInfo] = useState(false);
     const [movieIdx, setMovieIdx] = useState(); 
 
     const getMovieVideo = async (movie, idx) => {
@@ -13,23 +12,15 @@ const MovieCard = ( {movies, index, favourites, handleAddFavourite, handleRemove
         const key = json.results.find(e => e.name.includes("Trailer")).key
         setVideo(key)
         setMovieIdx(idx);
-        setShowInfo(!showInfo);
-        console.log(video)
     };
-    // onMouseEnter={() => getMovieVideo(movie)}
-
-    // Ensures Video appears on correct movie
-    useEffect(() => {
-        setShowInfo(true)
-    }, [movieIdx])
 
     return ( 
         <>
-            {movies[index].map((movie) => (
-                <div className="movies image-container d-flex justify-content-start m-3"  key={movie.id}>
-
+            {movies[index].map((movie, idx) => (
+                <div className="movies image-container d-flex justify-content-start m-3" onMouseEnter={() => getMovieVideo(movie, idx)} key={movie.id}>
+                {idx === movieIdx ?
                         <iframe src={`https://www.youtube.com/embed/${video}?controls=0`} title={movie.title} className="overlay myVideo"></iframe>
-
+                    : null}
                     <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.Title} srcSet=""></img>
                     <div className="overlay">
                         {/* <FavouriteComponent 
