@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const getMoviesAsync = createAsyncThunk(
-    'getMoviesAsync',
+export const getMoviesTvAsync = createAsyncThunk(
+    'getMoviesTvAsync',
     async (data) => {
         const { type, format, code } = data
         const url = `https://api.themoviedb.org/3/${type}/${format}?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${code}`
@@ -13,19 +13,19 @@ export const getMoviesAsync = createAsyncThunk(
 
 const initialState = [];
 
-const moviesSlice = createSlice({
-    name: "movies",
+const moviesTvSlice = createSlice({
+    name: "moviesTv",
     initialState,
     reducers: {
         reset: () => initialState
     },
     extraReducers: {  
-        [getMoviesAsync.fulfilled]: (state, action) => {
+        [getMoviesTvAsync.fulfilled]: (state, action) => {
             state.push(action.payload)
         },        
     },
 });
 
-export const { reset } = moviesSlice.actions;
+export const { reset } = moviesTvSlice.actions;
 
-export default moviesSlice.reducer;
+export default moviesTvSlice.reducer;

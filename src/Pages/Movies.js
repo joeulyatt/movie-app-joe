@@ -2,17 +2,17 @@ import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { getMoviesAsync, reset } from '../Redux/moviesSlice';
+import { getMoviesTvAsync, reset } from '../Redux/moviesSlice';
 import { movieTypes } from '../data/movieTypes';
 
 const MoviesPage = () => {
-    const movies = useSelector(state => state.movies);
+    const movies = useSelector(state => state.moviesTv);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(reset())
         movieTypes.forEach(e => {       
-            dispatch(getMoviesAsync(e));     
+            dispatch(getMoviesTvAsync(e));     
         });
     }, [dispatch]);
 
