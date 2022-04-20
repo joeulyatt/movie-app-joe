@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getMoviesAsync } from '../Redux/moviesSlice';
 
-
-const MovieList = ( {movies, favourites, handleAddFavourite, handleRemoveFavourite, FavouriteComponent, activeTab} ) => {
+const MovieList = ( {genres}) => {
+    
     const [video, setVideo] = useState("");
     const [showInfo, setShowInfo] = useState(false);
     const [movieIdx, setMovieIdx] = useState(); 
 
+    const movies = useSelector(state => state.movies);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // dispatch(getMoviesAsync(index));
+        // dispatch(getMoviesAsync(27));
+    }, [dispatch]);
+
+    // for (let item of movies) {
+    //     await dispatch(getMoviesAsync(35))
+    // }
 
     const getMovieVideo = async (movie, idx) => {
-        const url = `https://api.themoviedb.org/3/${activeTab === "Movies" ? "movie" : "tv"}/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
+        const url = `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
         const response = await fetch(url);
         const json = await response.json();
         const key = json.results.find(e => e.name.includes("Trailer")).key
@@ -31,13 +44,13 @@ const MovieList = ( {movies, favourites, handleAddFavourite, handleRemoveFavouri
                     : null}
                     <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.Title} srcSet=""></img>
                     <div className="overlay">
-                        <FavouriteComponent 
+                        {/* <FavouriteComponent 
                             movie={movie}
                             idx={idx}
                             favourites={favourites}
                             handleAddFavourite={handleAddFavourite}
                             handleRemoveFavourite={handleRemoveFavourite}
-                        />
+                        /> */}
                     </div>
                 </div>
             ))}
