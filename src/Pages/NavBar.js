@@ -9,7 +9,7 @@ const NavBar = () => {
 
     return ( 
         <nav>
-            <img src={Logo} alt="" srcSet="" height="100px"/>     
+            <img src={Logo} alt="Logo" srcSet="" height="100px"/>     
             <ul className="nav-links">
                 <Link to="/Movies">
                     <li>Movies</li>

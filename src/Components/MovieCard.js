@@ -6,7 +6,6 @@ const MovieCard = ( {movies, favourites, handleAddFavourite, handleRemoveFavouri
     const [showInfo, setShowInfo] = useState(false);
     const [movieIdx, setMovieIdx] = useState(); 
 
-
     const getMovieVideo = async (movie, idx) => {
         const url = `https://api.themoviedb.org/3/${activeTab === "Movies" ? "movie" : "tv"}/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
         const response = await fetch(url);
