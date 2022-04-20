@@ -15,7 +15,6 @@ const MoviesPage = () => {
         movieTypes.forEach(e => {       
             dispatch(getMoviesTvAsync(e));     
         });
-        console.log(movies)
     }, [dispatch]);
 
     return ( 

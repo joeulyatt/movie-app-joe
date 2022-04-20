@@ -8,6 +8,7 @@ const Card = ( {results, index, page} ) => {
     const newResults = (page === "watchlist" ? results : results[index])
 
     const getTrailer = async (movie, idx) => {
+        console.log(movie)
         const url = `https://api.themoviedb.org/3/${movie.media_type}/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
         const response = await fetch(url);
         const json = await response.json();
