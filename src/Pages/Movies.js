@@ -4,7 +4,6 @@ import '../App.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getMoviesTvAsync, reset } from '../Redux/moviesSlice';
 import { movieTypes } from '../data/movieTypes';
-import Card from '../Components/Card';
 import Lists from '../Components/Lists';
 
 const MoviesPage = () => {
@@ -22,6 +21,7 @@ const MoviesPage = () => {
         <Lists
             data={movieTypes}
             results={movies}
+            page="movie"
         />
     );
 };

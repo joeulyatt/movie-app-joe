@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from './Card';
 
-const Lists = ( {data, results} ) => {
+const Lists = ( {data, results, page} ) => {
     return ( 
         data.map((type, index) => (
             <div className="movies-list">
@@ -9,9 +9,9 @@ const Lists = ( {data, results} ) => {
                 <div className="row movies flex-nowrap">
                     {results.length < data.length ? null : 
                         <Card
-                            movies={results}
+                            results={results}
                             index={index}
-                            
+                            page={page}
                         />
                     }
                 </div>

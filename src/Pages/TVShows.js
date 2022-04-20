@@ -21,6 +21,7 @@ const TVShowsPage = () => {
         <Lists
             data={tvTypes}
             results={tv}
+            page="tv"
         />
     );
 };

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-const Card = ( {movies, index, handleAddFavourite, handleRemoveFavourite, FavouriteComponent, activeTab} ) => {
+const Card = ( {results, index, page, handleAddFavourite, handleRemoveFavourite, FavouriteComponent, activeTab} ) => {
     const [video, setVideo] = useState("");
     const [movieIdx, setMovieIdx] = useState(); 
 
-    const getMovieVideo = async (movie, idx) => {
-        const url = `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
+    const getTrailer = async (movie, idx) => {
+        const url = `https://api.themoviedb.org/3/${page}/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
         const response = await fetch(url);
         const json = await response.json();
         const key = json.results.find(e => e.name.includes("Trailer")).key
@@ -15,8 +15,8 @@ const Card = ( {movies, index, handleAddFavourite, handleRemoveFavourite, Favour
 
     return ( 
         <>
-            {movies[index].map((movie, idx) => (
-                <div className="movies image-container d-flex justify-content-start m-3" onMouseEnter={() => getMovieVideo(movie, idx)} key={movie.id}>
+            {results[index].map((movie, idx) => (
+                <div className="movies image-container d-flex justify-content-start m-3" onMouseEnter={() => getTrailer(movie, idx)} key={movie.id}>
                 {idx === movieIdx ?
                         <iframe src={`https://www.youtube.com/embed/${video}?controls=0`} title={movie.title} className="overlay myVideo"></iframe>
                     : null}
