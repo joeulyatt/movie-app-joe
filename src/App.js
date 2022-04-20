@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import NavBar from './Pages/NavBar';
 import Movies from './Pages/Movies';
 import TVShows from './Pages/TVShows';
@@ -11,7 +10,6 @@ import Footer from './Components/Footer';
 
 const App = () => {
     const [search, setSearch] = useState([]);
-    const [favourites, setFavourites] = useState([]);
     const [val, setVal] = useState("");
 
     const getJson = async (genre, type, val) => {
@@ -31,32 +29,6 @@ const App = () => {
         else {setSearch([])}
     }, [val]);
 
-    useEffect(() => {
-        const movieFavourites = JSON.parse(
-            localStorage.getItem('react-movie-app-favourites'));
-        setFavourites(movieFavourites)
-    }, []);
-
-    const saveLocalStorage = (items) => {
-        localStorage.setItem('react-movie-app-favourites', JSON.stringify(items))
-    };
-
-    const handleAddFavourite = (movie, idx) => {
-        if (favourites.includes(movie)) return;
-        const newFavouriteList = [...favourites, movie];
-        if (favourites.some(e => e.poster_path.includes("default"))) {newFavouriteList.splice(0, 1)};
-        setFavourites(newFavouriteList);
-        saveLocalStorage(newFavouriteList);
-    };
-
-    const handleRemoveFavourite = (movie, idx) => {
-        const newFavouriteList =  [...favourites];
-        newFavouriteList.splice(idx, 1);
-        setFavourites(newFavouriteList);
-        saveLocalStorage(newFavouriteList);
-    };
-
-
     return (
         <div className="container-fluid movie-app">
             <Router>    
@@ -68,52 +40,6 @@ const App = () => {
                     </Routes>
             </Router>
             <Footer/>
-{/*             
-            <div className="row movies">
-                <MovieList 
-                    movies={search} 
-                    favourites={favourites}
-                    handleAddFavourite={handleAddFavourite} 
-                    handleRemoveFavourite={handleRemoveFavourite} 
-                    FavouriteComponent={AddFavourites}
-                    activeTab={activeTab}
-                />
-            </div>
-            
-            {activeTab !== "Watchlist" && !val ?
-                <>
-                    {(activeTab === "Movies" ? movieTypes : TVtypes).map((types) => (
-                    <React.Fragment key={types}>
-                        <MovieHeading heading={types}/>
-                        <div className="row movies flex-nowrap">
-                            <MovieList 
-                                    movies={handleType(types)} 
-                                    favourites={favourites}
-                                    handleAddFavourite={handleAddFavourite} 
-                                    handleRemoveFavourite={handleRemoveFavourite} 
-                                    FavouriteComponent={AddFavourites}
-                                    activeTab={activeTab}
-                                />
-                        </div>
-                    </React.Fragment>
-                    ))}
-                </>
-            :
-                <>
-                    <MovieHeading heading="Watchlist"/>
-                    <div className="row movies">
-                        <MovieList 
-                            movies={favourites} 
-                            favourites={favourites}
-                            handleAddFavourite={handleAddFavourite} 
-                            handleRemoveFavourite={handleRemoveFavourite} 
-                            FavouriteComponent={RemoveFavourites}
-                            activeTab={activeTab}
-                        />
-                    </div>
-                </>
-            }
-            <Footer/> */}
         </div>
     );
 };
