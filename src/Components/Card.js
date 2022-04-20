@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Card = ( {results, index, page, handleAddFavourite, handleRemoveFavourite, FavouriteComponent, activeTab} ) => {
+const Card = ( {results, index, page, FavouriteComponent, activeTab} ) => {
     const [video, setVideo] = useState("");
     const [movieIdx, setMovieIdx] = useState(); 
 
