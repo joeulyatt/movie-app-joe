@@ -1,15 +1,15 @@
 import React from 'react'
 import Card from './Card';
 
-const Lists = ( {data, movieTv} ) => {
+const Lists = ( {data, results} ) => {
     return ( 
-        data.map((types, index) => (
+        data.map((type, index) => (
             <div className="movies-list">
-                <h2>{types.genre}</h2>
+                <h2>{type.genre}</h2>
                 <div className="row movies flex-nowrap">
-                    {movieTv.length < data.length ? null : 
+                    {results.length < data.length ? null : 
                         <Card
-                            movies={movieTv}
+                            movies={results}
                             index={index}
                             
                         />

@@ -4,6 +4,7 @@ import '../App.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getMoviesTvAsync, reset } from '../Redux/moviesSlice';
 import { tvTypes } from '../data/tvTypes';
+import Lists from '../Components/Lists';
 
 const TVShowsPage = () => {
     const tv = useSelector(state => state.moviesTv);
@@ -17,22 +18,10 @@ const TVShowsPage = () => {
     }, [dispatch]);
 
     return ( 
-        <>
-            {tvTypes.map((types, index) => (
-                <div className="movies-list">
-                    <h2>{types.genre}</h2>
-                    <div className="row movies flex-nowrap">
-                        {tv.length < tvTypes.length ? null : 
-                            tv[index].map((m) => (
-                                <div className="">
-                                    <img src ={`https://image.tmdb.org/t/p/w200/${m.poster_path}`} alt={m.title}></img>
-                                </div>
-                            )) 
-                        }
-                    </div>
-                </div>
-            ))}
-        </>
+        <Lists
+            data={tvTypes}
+            results={tv}
+        />
     );
 };
 

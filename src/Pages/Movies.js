@@ -19,12 +19,10 @@ const MoviesPage = () => {
     }, [dispatch]);
 
     return ( 
-        <>
-            <Lists
-                data={movieTypes}
-                movieTv={movies}
-            />
-        </>
+        <Lists
+            data={movieTypes}
+            results={movies}
+        />
     );
 };
 
