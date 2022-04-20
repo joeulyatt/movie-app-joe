@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import AddFavourites from './AddWatchlist';
+import RemoveFavourites from './RemoveFavourites';
 
-const Card = ( {results, index, page, FavouriteComponent, activeTab} ) => {
+const Card = ( {results, index, page} ) => {
     const [video, setVideo] = useState("");
     const [cardIdx, setCardIdx] = useState(); 
     const newResults = (page === "watchlist" ? results : results[index])
@@ -12,21 +14,32 @@ const Card = ( {results, index, page, FavouriteComponent, activeTab} ) => {
         const key = json.results.find(e => e.name.includes("Trailer")).key
         setVideo(key)
         setCardIdx(idx);
-        console.log(movie)
     };
 
     return ( 
         <>
             {newResults.map((movie, idx) => (
-                <div className="movies image-container d-flex justify-content-start m-3" onMouseEnter={() => getTrailer(movie, idx)} key={movie.id}>
+                <div 
+                    className="movies image-container d-flex justify-content-start m-3" 
+                    onMouseEnter={() => getTrailer(movie, idx)} 
+                    key={movie.id}
+                >
                     {idx === cardIdx ?
-                        <iframe src={`https://www.youtube.com/embed/${video}?controls=0`} title={movie.title} className="overlay myVideo"/>
+                        <iframe 
+                            src={`https://www.youtube.com/embed/${video}?controls=0`} 
+                            title={movie.title} 
+                            className="overlay myVideo"
+                        />
                     : null}
-                    <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.Title} srcSet=""></img>
+                    <img 
+                        src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} 
+                        alt={movie.Title} 
+                        cSet=""
+                    />
                     <div className="overlay">
-                        {/* <FavouriteComponent 
-                            movie={movie}
-                        /> */}
+                        {page === "watchlist" ? 
+                            <RemoveFavourites movie={movie}/> : 
+                            <AddFavourites movie={movie}/>}
                     </div>
                 </div>
             ))}
