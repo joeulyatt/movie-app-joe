@@ -1,18 +1,20 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addToWatchlist } from '../Redux/watchlistSlice';
+import { addWatchlist, removeWatchlist } from '../Redux/watchlistSlice';
 
 const AddWatchlist = ( {favourites, movie} ) => {
     const watchlist = useSelector(state => state.watchlist)
     const dispatch = useDispatch();
 
     const handleAddWatchlist = (movie, idx) => {
-        if (watchlist.includes(movie)) return;
-        dispatch(addToWatchlist(movie));
+        if (!watchlist.includes(movie)) {
+            dispatch(addWatchlist(movie));
+        } else {
+            dispatch(removeWatchlist(movie));
+        }
         // if (favourites.some(e => e.poster_path.includes("default"))) {newFavouriteList.splice(0, 1)};
         // setFavourites(newFavouriteList);
         // saveLocalStorage(newFavouriteList);
-        console.log(watchlist)
     };
 // !favourites.includes(movie) ? 
 return (

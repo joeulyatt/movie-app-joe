@@ -7,13 +7,16 @@ const watchlistSlice = createSlice({
     name: "watchlist",
     initialState,
     reducers: {
-        addToWatchlist: (state, action) => {
-            console.log(action.payload)
+        addWatchlist: (state, action) => {
 			state.push(action.payload);
+            console.log(action.payload)
+		},
+        removeWatchlist: (state, action) => {
+			return state.filter((e => e.id !== action.payload.id))
 		},
     },
 });
 
-export const { addToWatchlist } = watchlistSlice.actions;
+export const { addWatchlist, removeWatchlist } = watchlistSlice.actions;
 
 export default watchlistSlice.reducer;
