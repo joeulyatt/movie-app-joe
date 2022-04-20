@@ -8,31 +8,43 @@ import MovieList from '../Components/MovieList';
 const movieTypes = ['Trending Today', 'Comedy', 'Horror', 'Action', 'Drama'];
 const genres = [35, 27];
 
-const movieTypes2 = [{
-    genre: "Trending Today",
-    type: "trending",
-    code: "",
-},
-{
-    genre: "Comedy",
-    type: "discover",
-    code: 35,
-},
-{
-    genre: "Horror",
-    type: "discover",
-    code: 27,
-},
-{
-    genre: "Action",
-    type: "discover",
-    code: 28,
-},
-{
-    genre: "Drama",
-    type: "discover",
-    code: 18,
-}
+const movieTypes2 = [
+    // {
+    //     genre: "Trending Today",
+    //     type: "trending",
+    //     format: "movie/day",
+    //     code: "",
+    // },
+    {
+        genre: "test",
+        type: "discover",
+        format: "movie",
+        code: "",
+    },
+    {
+        genre: "Comedy",
+        type: "discover",
+        format: "movie",
+        code: 35,
+    },
+    {
+        genre: "Horror",
+        type: "discover",
+        format: "movie",
+        code: 27,
+    },
+    {
+        genre: "Action",
+        type: "discover",
+        format: "movie",
+        code: 28,
+    },
+    {
+        genre: "Drama",
+        type: "discover",
+        format: "movie",
+        code: 18,
+    }
 ]
 
 
@@ -41,15 +53,9 @@ const MoviesPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        movieTypes2.forEach(e => {
-            
-            dispatch(getMoviesAsync(e.code));
+        movieTypes2.forEach(e => {       
+            dispatch(getMoviesAsync(e));     
         });
-        // dispatch(getMoviesAsync(35));
-        // dispatch(getMoviesAsync(35));
-        // dispatch(getMoviesAsync(27));
-        // dispatch(getMoviesAsync(28));
-        // dispatch(getMoviesAsync(18));
     }, [dispatch]);
 
 
