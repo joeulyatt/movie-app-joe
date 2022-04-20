@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import moviesReducer from './moviesSlice';
+import moviesSlice from './moviesTvSlice';
+import watchlistSlice from './watchlistSlice';
 
 export default configureStore({
     reducer: {
-        moviesTv: moviesReducer,
+        moviesTv: moviesSlice,
+        watchlist: watchlistSlice
     }
 });

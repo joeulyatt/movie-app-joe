@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMoviesAsync } from '../Redux/moviesSlice';
+import { getMoviesAsync } from '../Redux/moviesTvSlice';
 
 const MovieList = ( {genres}) => {
     
