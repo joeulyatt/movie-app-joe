@@ -1,13 +1,17 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getSearchAsync, reset } from '../Redux/searchSlice';
 
 const SearchBox = () => {
     const dispatch = useDispatch();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
 
     const getSearch = (e) => {
-        dispatch(reset())
-        dispatch(getSearchAsync(e))
+        dispatch(reset());
+        dispatch(getSearchAsync(e));
+        navigate("../Search", { replace: true })
     };
 
     return (
