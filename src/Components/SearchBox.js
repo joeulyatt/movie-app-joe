@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { getSearchAsync } from '../Redux/moviesTvSlice';
+import { getSearchAsync } from '../Redux/searchSlice';
 
 const SearchBox = () => {
-    const [val, setVal] = useState("");
     const dispatch = useDispatch();
 
     const getSearch = (e) => {
-        console.log(e)
-    }
+        dispatch(getSearchAsync(e))
+    };
 
     return (
         <div className="col col-sm-4 me-4 align-self-center">
