@@ -50,7 +50,7 @@ nav {
   color: rgb(216, 236, 227);
 }
 
-.myActiveLink {
+#root .active {
   color: white;
 }
 
