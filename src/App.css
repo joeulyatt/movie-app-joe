@@ -43,11 +43,24 @@ nav {
 
 .nav-links a {
   text-decoration: none;
-}
-
-.nav-links a:visited {
   color: inherit;
 }
+
+.nav-links a:hover {
+  color: rgb(216, 236, 227);
+}
+
+.myActiveLink {
+  color: white;
+}
+
+/* .nav-links a:active {
+  color: white;
+} */
+/* 
+.nav-links a:visited {
+  color: inherit;
+} */
 
 /* App Styling */
 
