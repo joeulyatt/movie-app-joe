@@ -6,6 +6,7 @@ import NavBar from './Pages/NavBar';
 import Movies from './Pages/Movies';
 import TVShows from './Pages/TVShows';
 import Watchlist from './Pages/Watchlist';
+import Search from './Pages/Search';
 import Footer from './Components/Footer';
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
                         <Route path="/Movies" element={<Movies/>}/>
                         <Route path="/TVShows" element={<TVShows/>}/>
                         <Route path="/Watchlist" element={<Watchlist/>}/>
+                        <Route path="/Search" element={<Search/>}/>
                     </Routes>
             </Router>
             <Footer/>
