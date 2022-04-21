@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addWatchlist, removeWatchlist } from '../Redux/watchlistSlice';
 
 const AddWatchlist = ( { movie } ) => {
-    const watchlist = useSelector(state => state.watchlist)
+    const watchlist = useSelector(state => state.watchlist);
     const dispatch = useDispatch();
 
     return (
