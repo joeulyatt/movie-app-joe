@@ -7,14 +7,17 @@ const Watchlist = () => {
     const watchlist = useSelector(state => state.watchlist);
 
     return ( 
+        watchlist.length !== 0 ? 
         <div className="movies-list">
-            <div className="row movies flex-nowrap">
+            <div className="row movies">
                 <Card
                     results={watchlist}
                     page="watchlist"
                 />
             </div>
         </div>
+        :
+        <h2 className="watchlist-empty">Watchlist empty</h2>
     );
 }
 
