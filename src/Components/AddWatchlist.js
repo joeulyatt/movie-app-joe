@@ -8,12 +8,12 @@ const AddWatchlist = ( { movie } ) => {
 
     return (
         <>
-            {!watchlist.includes(movie) ? 
+            {!watchlist.find(m => m.id === movie.id) ? 
                 <i className="myIcon heart bi bi-suit-heart" onClick={() => dispatch(addWatchlist(movie))}></i>
                 :   
                 <i className="myIcon heart bi bi-suit-heart-fill" onClick={() => dispatch(removeWatchlist(movie))}></i>
             }
         </>
-)
+    );
 }
 export default AddWatchlist;

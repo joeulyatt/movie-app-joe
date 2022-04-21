@@ -12,8 +12,8 @@ const TVShowsPage = () => {
 
     useEffect(() => {
         dispatch(reset())
-        tvTypes.forEach(e => {       
-            dispatch(getMoviesTvAsync(e));     
+        tvTypes.forEach(t => {       
+            dispatch(getMoviesTvAsync(t));     
         });
     }, [dispatch]);
 

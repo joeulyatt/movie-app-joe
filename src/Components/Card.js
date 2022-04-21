@@ -5,15 +5,14 @@ import RemoveFavourites from './RemoveFavourites';
 const Card = ( {results, index, page} ) => {
     const [video, setVideo] = useState("");
     const [cardIdx, setCardIdx] = useState(); 
-    const newResults = (page === "watchlist" ? results : results[index])
+    const newResults = (page === "watchlist" ? results : results[index]);
 
     const getTrailer = async (movie, idx) => {
-        console.log(movie.id)
-        const url = `https://api.themoviedb.org/3/${movie.media_type}/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
+        const url = `https://api.themoviedb.org/3/${page}/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
         const response = await fetch(url);
         const json = await response.json();
-        const key = json.results.find(e => e.name.includes("Trailer")).key
-        setVideo(key)
+        const trailerKey = json.results.find(e => e.name.includes("Trailer"))
+        setVideo(trailerKey ? trailerKey.key : json.results[0].key)
         setCardIdx(idx);
     };
 
@@ -38,9 +37,10 @@ const Card = ( {results, index, page} ) => {
                         cSet=""
                     />
                     <div className="overlay">
-                        {page === "watchlist" ? 
-                            <RemoveFavourites movie={movie}/> : 
-                            <AddFavourites movie={movie}/>}
+                        {page !== "watchlist" ? 
+                            <AddFavourites movie={movie}/> :
+                            <RemoveFavourites movie={movie}/>
+                        }  
                     </div>
                 </div>
             ))}

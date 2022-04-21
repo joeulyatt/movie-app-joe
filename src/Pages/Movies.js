@@ -11,9 +11,9 @@ const MoviesPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(reset())
-        movieTypes.forEach(e => {       
-            dispatch(getMoviesTvAsync(e));     
+        dispatch(reset());
+        movieTypes.forEach(m => {       
+            dispatch(getMoviesTvAsync(m));     
         });
     }, [dispatch]);
 
