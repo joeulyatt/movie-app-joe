@@ -1,11 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { getSearchAsync } from '../Redux/searchSlice';
+import { getSearchAsync, reset } from '../Redux/searchSlice';
 
 const SearchBox = () => {
     const dispatch = useDispatch();
 
     const getSearch = (e) => {
+        dispatch(reset())
         dispatch(getSearchAsync(e))
     };
 

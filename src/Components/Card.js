@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AddFavourites from './WatchlistComponent';
+import WatchlistComponent from './WatchlistComponent';
 
 const Card = ( {results, index, page} ) => {
     const [video, setVideo] = useState("");
@@ -36,10 +36,7 @@ const Card = ( {results, index, page} ) => {
                         cSet=""
                     />
                     <div className="overlay">
-                        {/* {page !== "watchlist" ?  */}
-                            <AddFavourites movie={movie} page={page}/> 
-                            {/* <RemoveFavourites movie={movie}/> */}
-                        {/* }   */}
+                        <WatchlistComponent movie={movie} page={page}/> 
                     </div>
                 </div>
             ))}

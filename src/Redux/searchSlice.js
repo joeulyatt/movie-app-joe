@@ -20,7 +20,7 @@ const searchSlice = createSlice({
     },
     extraReducers: {  
         [getSearchAsync.fulfilled]: (state, action) => {
-            state.push(action.payload)
+            state.push(...action.payload)
         },        
     },
 });

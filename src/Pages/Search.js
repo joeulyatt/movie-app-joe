@@ -1,19 +1,15 @@
 import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Card from '../Components/Card';
 
 const SearchPage = () => {
     const searchResults = useSelector(state => state.search);
-    const dispatch = useDispatch();
 
     useEffect(() => {
-        // dispatch(reset());
-        // movieTypes.forEach(m => {       
-        //     dispatch(getMoviesTvAsync(m));     
-        // });
-    }, [dispatch]);
+        console.log(searchResults)
+    }, [searchResults]);
 
     return ( 
         <div className="movies-list">
