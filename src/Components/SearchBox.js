@@ -10,7 +10,7 @@ const SearchBox = () => {
     const navigate = useNavigate();
     
     useEffect(() => {
-        isSearching ? navigate("../Search", { replace: true }) : navigate(-1);
+        isSearching ? navigate("../Search", { replace: true }) : navigate("../Movies")
     }, [isSearching])
 
     const getSearch = (e) => {
