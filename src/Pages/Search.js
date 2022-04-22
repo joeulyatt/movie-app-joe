@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css'
-import Card from '../Components/Cards';
+import Card from '../Components/Card';
 
 const SearchPage = () => {
     const searchResults = useSelector(state => state.search);

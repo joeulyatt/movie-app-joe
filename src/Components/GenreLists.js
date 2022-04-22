@@ -1,14 +1,14 @@
 import React from 'react';
-import Card from './Cards';
+import Cards from './Card';
 
-const Lists = ( {dataFile, results, page} ) => {
+const GenreLists = ( {dataFile, results, page} ) => {
     return ( 
         dataFile.map((type, index) => (
-            <div className="movies-list">
+            <div className="movies-list" key={index}>
                 <h2>{type.genre}</h2>
                 <div className="row movies flex-nowrap">
                     {results.length < dataFile.length ? null : 
-                        <Card
+                        <Cards
                             results={results}
                             index={index}
                             key={index}
@@ -21,4 +21,4 @@ const Lists = ( {dataFile, results, page} ) => {
     );
 };
 
-export default Lists;
+export default GenreLists;

@@ -4,7 +4,7 @@ import '../App.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMoviesTvAsync, resetMovieTvSlice } from '../Redux/moviesTvSlice';
 import { tvTypes } from '../data/tvTypes';
-import Lists from '../Components/GenreLists';
+import GenreLists from '../Components/GenreLists';
 
 const TVShowsPage = () => {
     const tv = useSelector(state => state.moviesTv);
@@ -16,7 +16,7 @@ const TVShowsPage = () => {
     }, [dispatch]);
 
     return ( 
-        <Lists
+        <GenreLists
             dataFile={tvTypes}
             results={tv}
             page="tv"

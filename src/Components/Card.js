@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import WatchlistComponent from './WatchlistComponent';
 
-const Card = ( {results, index, page} ) => {
+const Cards = ( {results, index, page} ) => {
     const [video, setVideo] = useState("");
     const [cardIdx, setCardIdx] = useState(); 
     const newResults = (page === "watchlist" ? results : results[index]);
@@ -49,4 +49,4 @@ const Card = ( {results, index, page} ) => {
     );
 };
 
-export default Card;
+export default Cards;
