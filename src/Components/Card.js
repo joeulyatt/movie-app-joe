@@ -11,8 +11,12 @@ const Card = ( {results, index, page} ) => {
         const response = await fetch(url);
         const json = await response.json();
         const trailerKey = json.results.find(e => e.name.includes("Trailer"));
-        setVideo(trailerKey ? trailerKey.key : json.results[0].key);
-        setCardIdx(idx);
+        if (trailerKey == null) {
+            return  
+        } else {
+            setVideo(trailerKey ? trailerKey.key : json.results[0].key);
+            setCardIdx(idx);
+        };
     };
 
     return ( 
