@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getSearchAsync, resetSearch } from '../Redux/searchSlice';
 
 const SearchBox = () => {
-    // const [searchParams, setSearchParams] = useSearchParams();
-    // const [isSearching, setIsSearching] = useState(false)
     const [val, setVal] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
-    // useEffect(() => {
-    //     isSearching ?  : 
-    // }, [isSearching])
+    const location = useLocation()
+
+    // Clears input on page change
+    useEffect(() => {
+        if (location.pathname !== "/Search") 
+            setVal("")
+    }, [location]);
 
     useEffect(() => {
-        if (val) {
-            navigate("../Search", { replace: true })
+        if (!val) {
+            navigate("../Movies");
+        } else {
+            navigate({
+                pathname: "../Search",
+                search: val,
+            }, { replace: true });
             dispatch(resetSearch());
             dispatch(getSearchAsync(val));
-        } else {
-            navigate("../Movies")
         };
     }, [val]);
 
@@ -30,8 +34,9 @@ const SearchBox = () => {
                 type="text" 
                 className="form-control" 
                 placeholder="Search Here"
+                value={val}
                 onChange={e => setVal(e.target.value)}
-            ></input>
+            />
         </div>
     );
 };
