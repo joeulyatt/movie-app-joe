@@ -17,7 +17,7 @@ const MoviesPage = () => {
 
     return ( 
         <Lists
-            data={movieTypes}
+            dataFile={movieTypes}
             results={movies}
             page="movie"
         />

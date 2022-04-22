@@ -17,7 +17,7 @@ const TVShowsPage = () => {
 
     return ( 
         <Lists
-            data={tvTypes}
+            dataFile={tvTypes}
             results={tv}
             page="tv"
         />
