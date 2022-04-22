@@ -17,7 +17,7 @@ const SearchBox = () => {
 
     useEffect(() => {
         if (!val) {
-            navigate("../Movies");
+            navigate("../Movies", { replace: true });
         } else {
             navigate({
                 pathname: "../Search",
@@ -28,6 +28,10 @@ const SearchBox = () => {
         };
     }, [val]);
 
+    const handleClearForm = () => {
+        setVal("");
+    };
+
     return (
         <form className="col col-sm-3 me-4 align-self-center">
             <input
@@ -37,7 +41,7 @@ const SearchBox = () => {
                 value={val}
                 onChange={e => setVal(e.target.value)}
             />
-            <button onClick={() => setVal("")}>X</button>
+            <button onClick={() => handleClearForm()}>X</button>
         </form>
     );
 };

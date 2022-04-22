@@ -21,7 +21,6 @@ const moviesTvSlice = createSlice({
     },
     extraReducers: {  
         [getMoviesTvAsync.fulfilled]: (state, action) => {
-
             state.push(action.payload)
         },    
     },

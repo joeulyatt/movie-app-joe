@@ -21,7 +21,8 @@ const searchSlice = createSlice({
     },
     extraReducers: {  
         [getSearchAsync.fulfilled]: (state, action) => {
-            state.push(...action.payload)
+            let filteredResults = action.payload.filter(e => e.poster_path);
+            state.push(...filteredResults);
         },        
     },
 });
