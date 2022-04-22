@@ -11,7 +11,7 @@ const SearchBox = () => {
 
     // Clears input on page change
     useEffect(() => {
-        if (location.pathname !== "/Search") 
+        if (location.pathname !== "/Search");
             setVal("")
     }, [location]);
 
@@ -29,15 +29,16 @@ const SearchBox = () => {
     }, [val]);
 
     return (
-        <div className="col col-sm-4 me-4 align-self-center">
-            <input 
-                type="text" 
-                className="form-control" 
+        <form className="col col-sm-3 me-4 align-self-center">
+            <input
+                type="text"
+                className="form-control"
                 placeholder="Search Here"
                 value={val}
                 onChange={e => setVal(e.target.value)}
             />
-        </div>
+            <button onClick={() => setVal("")}>X</button>
+        </form>
     );
 };
 

@@ -54,6 +54,32 @@ nav {
   color: white;
 }
 
+form { 
+  display: flex;
+  background: white;
+  border-radius: 8px;
+  padding: 2px;
+  padding-right:8px;
+}
+
+.form-control {
+  border: none;
+}
+
+.form-control:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+form button {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  font-family: inherit;
+  color: grey;
+}
+
 /* App Styling */
 
 .movie-app .row {
