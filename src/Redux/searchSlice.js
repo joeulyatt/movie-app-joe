@@ -17,7 +17,7 @@ const searchSlice = createSlice({
     name: "search",
     initialState,
     reducers: {
-        reset: () => initialState,
+        resetSearch: () => initialState,
     },
     extraReducers: {  
         [getSearchAsync.fulfilled]: (state, action) => {
@@ -26,6 +26,6 @@ const searchSlice = createSlice({
     },
 });
 
-export const { reset } = searchSlice.actions;
+export const { resetSearch } = searchSlice.actions;
 
 export default searchSlice.reducer;

@@ -13,7 +13,7 @@ const MoviesPage = () => {
     useEffect(() => {
         dispatch(reset());
         movieTypes.forEach(m => {       
-            dispatch(getMoviesTvAsync(m));     
+            dispatch(getMoviesTvAsync(m));
         });
     }, [dispatch]);
 
