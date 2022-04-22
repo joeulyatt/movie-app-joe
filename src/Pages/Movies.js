@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css'
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,8 +7,10 @@ import { movieTypes } from '../data/movieTypes';
 import GenreLists from '../Components/GenreLists';
 
 const MoviesPage = () => {
+    const [loading, setLoading] = useState(true);
     const movies = useSelector(state => state.moviesTv);
     const dispatch = useDispatch();
+
 
     useEffect(() => {
         dispatch(resetMovieTvSlice());

@@ -20,7 +20,11 @@ const moviesTvSlice = createSlice({
         resetMovieTvSlice: () => initialState,
     },
     extraReducers: {  
+        [getMoviesTvAsync.pending]: (state, action) => {
+            
+        },    
         [getMoviesTvAsync.fulfilled]: (state, action) => {
+            console.log("done")
             state.push(action.payload)
         },    
     },
