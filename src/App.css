@@ -80,6 +80,22 @@ form button {
   color: grey;
 }
 
+.filterButtons button {
+  background: none;
+  border: none;
+  font-size: 1.7rem;
+  font-family: inherit;
+  color: rgba(173, 239, 209, 0.766);
+}
+
+.filterButtons button:hover {
+  color: rgb(196, 196, 196);
+}
+
+.filterButtons h2 {
+  margin: 0px 5px;
+}
+
 /* App Styling */
 
 .movie-app .row {
@@ -184,6 +200,7 @@ form button {
 }
 
 /* Popup container */
+
 .popup {
   position: relative;
   display: inline-block;

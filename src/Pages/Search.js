@@ -8,18 +8,22 @@ import { useLocation } from 'react-router-dom';
 const SearchPage = () => {
     const searchResults = useSelector(state => state.search);
     const [filteredResults, setFilteredResults] = useState([]);
+    const [active, setActive] = useState("all");
     const location = useLocation();
 
     const filterMovies = () => {
         setFilteredResults(searchResults.filter(e => e.media_type === "movie"));
+        setActive("movies")
     };
 
     const filterTV = () => {
         setFilteredResults(searchResults.filter(e => e.media_type === "tv"));  
+        setActive("tv")
     };
 
     const filterAll = () => {
         setFilteredResults(searchResults);
+        setActive("all")
     };
 
     useEffect(() => {
@@ -29,11 +33,27 @@ const SearchPage = () => {
 
     return ( 
         <div className="movies-list">
-        <h2 className="text-end me-5">Filter
-            <button onClick={() => filterMovies()}>Movies</button>
-            <button onClick={() => filterTV()}>TV</button>
-            <button onClick={() => filterAll()}>All</button>
-        </h2>
+        <div className="text-end me-5 mb-2 filterButtons">
+            <h2>Filter</h2>
+            <button 
+                onClick={() => filterMovies()}
+                className={active === "movies" ? "active" : null}
+            >  
+                Movies
+            </button>
+            <button 
+                onClick={() => filterTV()}
+                className={active === "tv" ? "active" : null}
+            >  
+                TV
+            </button>
+            <button 
+                onClick={() => filterAll()}
+                className={active === "all" ? "active" : null}
+            >  
+                All
+            </button>
+        </div>
             <div className="row movies">
                 <Card
                     results={filteredResults.length === 0 ? searchResults : filteredResults}
