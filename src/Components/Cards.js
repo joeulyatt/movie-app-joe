@@ -37,7 +37,6 @@ const Card = ( {results, index, page} ) => {
                     <img 
                         src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} 
                         alt={movie.Title} 
-                        cSet=""
                     />
                     <div className="overlay">
                         <WatchlistComponent 

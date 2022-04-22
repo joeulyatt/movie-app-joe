@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card';
+import Card from './Cards';
 
 const Lists = ( {dataFile, results, page} ) => {
     return ( 
@@ -11,6 +11,7 @@ const Lists = ( {dataFile, results, page} ) => {
                         <Card
                             results={results}
                             index={index}
+                            key={index}
                             page={page}
                         />
                     }
