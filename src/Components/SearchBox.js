@@ -41,7 +41,7 @@ const SearchBox = () => {
                 value={val}
                 onChange={e => setVal(e.target.value)}
             />
-            <button onClick={() => handleClearForm()}>X</button>
+            <button onClick={() => handleClearForm()}>&#10006;</button>
         </form>
     );
 };
