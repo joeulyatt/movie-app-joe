@@ -17,7 +17,7 @@ const moviesTvSlice = createSlice({
     name: "moviesTv",
     initialState,
     reducers: {
-        reset: () => initialState,
+        resetMovieTvSlice: () => initialState,
     },
     extraReducers: {  
         [getMoviesTvAsync.fulfilled]: (state, action) => {
@@ -27,6 +27,6 @@ const moviesTvSlice = createSlice({
     },
 });
 
-export const { reset } = moviesTvSlice.actions;
+export const { resetMovieTvSlice } = moviesTvSlice.actions;
 
 export default moviesTvSlice.reducer;

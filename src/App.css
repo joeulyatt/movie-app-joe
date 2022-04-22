@@ -88,14 +88,8 @@ form button {
 }
 
 .movie-app .movies .image-container {
-  /* flex: 1 1 auto; */
   max-width: fit-content;
 }
-
-/* .movieFade {
-  -webkit-animation: fadeIn 2s;
-  animation: fadeIn 2s
-} */
 
 /* Header Styling */
 
@@ -118,15 +112,11 @@ form button {
   text-decoration: underline;
 }
 
-
-
 /* Movie Card Styling */
 
 .image-container {
   position: relative;
   transition: transform 0.2s;
-  /* -webkit-animation: fadeIn 0.5s;
-  animation: fadeIn 0.5s */
 }
 
 #root .movies {
@@ -170,14 +160,6 @@ form button {
   width: auto;
 }
 
-#root hr {
-  height: 6px;
-  margin-left: 20px;
-  margin-right: 24px;
-  opacity: 70%;
-}
-
-
 .myInfo:hover {
   color:rgb(255, 255, 255);
   transition: 0.2s;
@@ -201,7 +183,6 @@ form button {
   transition: 0.2s;
 }
 
-
 /* Popup container */
 .popup {
   position: relative;
@@ -209,35 +190,6 @@ form button {
   cursor: pointer;
 }
 
-/* The actual popup (appears on top) */
-.popup .popuptext {
-  visibility: hidden;
-  font-size: 0.9rem;
-  width: 200px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 8px 10px;
-  position: absolute;
-  z-index: 1;
-}
-
-
-
-/* Toggle this class when clicking on the popup container (hide and show the popup) */
-.popup .show {
-  visibility: visible;
-  -webkit-animation: fadeIn 0.5s;
-  animation: fadeIn 0.5s
-}
-
-
-/* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
 
 @keyframes fadeIn {
   from {opacity: 0;}
@@ -256,3 +208,36 @@ form button {
 footer {
   color:rgba(173, 239, 209, 0.635);
 }
+
+
+/* FUTURE USE */
+
+ /* can add extra info on top of Card */
+
+/* .popup .popuptext {
+  visibility: hidden;
+  font-size: 0.9rem;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 10px;
+  position: absolute;
+  z-index: 1;
+} */
+
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+/* .popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s
+} */
+
+
+/* Add animation (fade in the popup) */
+/* @-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+} */

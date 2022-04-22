@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../App.css'
+import '../App.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMoviesTvAsync, reset } from '../Redux/moviesTvSlice';
+import { getMoviesTvAsync, resetMovieTvSlice } from '../Redux/moviesTvSlice';
 import { tvTypes } from '../data/tvTypes';
 import Lists from '../Components/Lists';
 
@@ -11,10 +11,8 @@ const TVShowsPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(reset())
-        tvTypes.forEach(t => {       
-            dispatch(getMoviesTvAsync(t));     
-        });
+        dispatch(resetMovieTvSlice());
+        tvTypes.forEach(t => dispatch(getMoviesTvAsync(t)));
     }, [dispatch]);
 
     return ( 

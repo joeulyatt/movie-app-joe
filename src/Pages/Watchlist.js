@@ -1,5 +1,5 @@
-import React from 'react'
-import '../App.css'
+import React from 'react';
+import '../App.css';
 import Card from '../Components/Card';
 import { useSelector } from 'react-redux';
 
@@ -8,17 +8,15 @@ const Watchlist = () => {
 
     return ( 
         watchlist.length !== 0 ? 
-        <div className="movies-list">
-            <div className="row movies">
+            <div className="movies-list row movies">
                 <Card
                     results={watchlist}
                     page="watchlist"
                 />
             </div>
-        </div>
         :
-        <h2 className="watchlist-empty">Watchlist empty</h2>
+            <h2 className="watchlist-empty">Watchlist empty</h2>
     );
-}
+};
 
 export default Watchlist;

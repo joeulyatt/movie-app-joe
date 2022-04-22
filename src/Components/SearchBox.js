@@ -7,11 +7,11 @@ const SearchBox = () => {
     const [val, setVal] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation()
+    const location = useLocation();
 
     // Clears input on page change
     useEffect(() => {
-        if (location.pathname !== "/Search");
+        if (location.pathname !== "/Search")
             setVal("")
     }, [location]);
 

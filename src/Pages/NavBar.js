@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css';
 import { NavLink } from 'react-router-dom';
-import SearchBox from '../Components/SearchBox'
+import SearchBox from '../Components/SearchBox';
 import Logo from '../img/logo.png';
 
 const NavBar = () => {

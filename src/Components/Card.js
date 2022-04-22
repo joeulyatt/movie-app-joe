@@ -10,8 +10,8 @@ const Card = ( {results, index, page} ) => {
         const url = `https://api.themoviedb.org/3/${page}/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
         const response = await fetch(url);
         const json = await response.json();
-        const trailerKey = json.results.find(e => e.name.includes("Trailer"))
-        setVideo(trailerKey ? trailerKey.key : json.results[0].key)
+        const trailerKey = json.results.find(e => e.name.includes("Trailer"));
+        setVideo(trailerKey ? trailerKey.key : json.results[0].key);
         setCardIdx(idx);
     };
 
@@ -36,7 +36,9 @@ const Card = ( {results, index, page} ) => {
                         cSet=""
                     />
                     <div className="overlay">
-                        <WatchlistComponent movie={movie} page={page}/> 
+                        <WatchlistComponent 
+                            movie={movie} 
+                            page={page}/> 
                     </div>
                 </div>
             ))}
