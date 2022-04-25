@@ -10,7 +10,6 @@ const SearchPage = () => {
     const [filteredResults, setFilteredResults] = useState([]);
     const [active, setActive] = useState("all");
     const location = useLocation();
-    const mediaType = searchResults
 
     const filterMovies = () => {
         setFilteredResults(searchResults.filter(e => e.media_type === "movie"));

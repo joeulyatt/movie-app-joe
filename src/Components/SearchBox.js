@@ -16,9 +16,11 @@ const SearchBox = () => {
     }, [location]);
 
     useEffect(() => {
-        if (!val) {
+        if (!val && location.pathname === "/Search") {
             navigate("../Movies", { replace: true });
-        } else {
+        // } else if (location.pathname !== "/Search") {
+        //     setVal("") 
+        } else if (val) {
             navigate({
                 pathname: "../Search",
                 search: val,

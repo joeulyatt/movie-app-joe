@@ -9,7 +9,7 @@ const WatchlistComponent = ( { movie, page } ) => {
     // Adds media_type key to movie so watchList can request video
     const addWatchlistClick = () => {
         const newMovie = {...movie};
-        newMovie.media_type = (page === "movie" || page === "tv" ? page : movie.mediaType) ;
+        newMovie.media_type = (page === "movie" || page === "tv" ? page : movie.mediaType);
         dispatch(addWatchlist(newMovie));
     };
 
@@ -18,7 +18,7 @@ const WatchlistComponent = ( { movie, page } ) => {
             {!watchlist.find(m => m.id === movie.id) ? 
                 <i  
                     className="myIcon heart bi bi-suit-heart" 
-                    onClick={() => addWatchlistClick(movie)}
+                    onClick={() => addWatchlistClick()}
                 />
             :   
                 <i 
