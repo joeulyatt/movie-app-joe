@@ -11,18 +11,20 @@ import Footer from './Components/Footer';
 
 const App = () => {
     return (
-        <div className="container-fluid movie-app">
-            <Router>    
-                <NavBar/>
+        <>
+            <div className="container-fluid movie-app">
+                <Router>
+                    <NavBar/>
                     <Routes>
                         <Route path="/Movies" element={<Movies/>}/>
                         <Route path="/TVShows" element={<TVShows/>}/>
                         <Route path="/Watchlist" element={<Watchlist/>}/>
                         <Route path="/Search" element={<Search/>}/>
                     </Routes>
-            </Router>
+                </Router>
+            </div>
             <Footer/>
-        </div>
+        </>
     );
 };
 

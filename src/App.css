@@ -1,10 +1,29 @@
 /* General Styling */
+html, body {
+  min-height: 100vh;
+}
+
 body {
   background: #00203FFF;
   color: #ADEFD1FF;
   font-family: 'Oswald', sans-serif;
+  display: flex;
+  flex-direction: column;
   -webkit-animation: fadeIn 1.8s;
-  animation: fadeIn 1.8s
+  animation: fadeIn 1.8s;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+  overflow: hidden;
+  flex: 1;
 }
 
 .oswald {
@@ -24,11 +43,6 @@ h2 {
   margin: 15px 12px 15px 10px;
 }
 
-.container-fluid {
-  padding-left: 0px;
-  padding-right: 0px;
-  overflow: hidden;
-}
 
 /* Nav Styling */
 
@@ -227,6 +241,7 @@ form button {
   margin-top: 160px;
   margin-bottom: 160px;
 }
+
 
 footer {
   text-align: center;
