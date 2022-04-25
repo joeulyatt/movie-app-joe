@@ -8,6 +8,7 @@ const watchlistSlice = createSlice({
     reducers: {
         addWatchlist: (state, action) => {
 			state.push(action.payload);
+            console.log(action.payload);
 		},
         removeWatchlist: (state, action) => {
 			return state.filter((item => item.id !== action.payload.id))

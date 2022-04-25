@@ -4,10 +4,10 @@ import WatchlistComponent from './WatchlistComponent';
 const Cards = ( {results, index, page} ) => {
     const [video, setVideo] = useState("");
     const [cardIdx, setCardIdx] = useState(); 
-    const newResults = (page === "movies" || page === "tv" ? results[index] : results);
+    const newResults = (page === "movie" || page === "tv" ? results[index] : results);
 
     const getTrailer = async (movie, idx) => {
-        const url = `https://api.themoviedb.org/3/${page === "search" ? movie.media_type : page}/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
+        const url = `https://api.themoviedb.org/3/${movie.media_type}/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
         const response = await fetch(url);
         const json = await response.json();
         const trailerKey = json.results.find(e => e.name.includes("Trailer"));
