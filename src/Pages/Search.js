@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css'
-import Card from '../Components/Cards';
+import Cards from '../Components/Cards';
 import { useLocation } from 'react-router-dom';
 
 const SearchPage = () => {
@@ -10,6 +10,7 @@ const SearchPage = () => {
     const [filteredResults, setFilteredResults] = useState([]);
     const [active, setActive] = useState("all");
     const location = useLocation();
+    const mediaType = searchResults
 
     const filterMovies = () => {
         setFilteredResults(searchResults.filter(e => e.media_type === "movie"));
@@ -55,9 +56,9 @@ const SearchPage = () => {
             </button>
         </div>
             <div className="row movies">
-                <Card
+                <Cards
                     results={filteredResults.length === 0 ? searchResults : filteredResults}
-                    page="watchlist"
+                    page="search"
                 />
             </div>
         </div>

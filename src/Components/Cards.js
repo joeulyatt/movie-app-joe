@@ -4,7 +4,7 @@ import WatchlistComponent from './WatchlistComponent';
 const Cards = ( {results, index, page} ) => {
     const [video, setVideo] = useState("");
     const [cardIdx, setCardIdx] = useState(); 
-    const newResults = (page === "watchlist" ? results : results[index]);
+    const newResults = (page === "movies" || page === "tv" ? results[index] : results);
 
     const getTrailer = async (movie, idx) => {
         const url = `https://api.themoviedb.org/3/${page}/${movie.id}/videos?api_key=50eda2eddd31465d5fbf9f1c49d7b8a6&language=en-US`
