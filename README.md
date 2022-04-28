@@ -1,3 +1,5 @@
-React-based Movie App with Trailers, Search and Watchlist 
+Movie App with Trailers, Search and Watchlist.
+
+Built using Create React App, Redux, React Router and Bootstrap.
 
 Live Demo https://movie-go-joe.netlify.app/
