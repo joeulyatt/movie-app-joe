@@ -57,7 +57,7 @@ nav {
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 6rem;
+  justify-content: space-around;
   font-size: 2rem;
 }
 
