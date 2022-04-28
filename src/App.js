@@ -16,6 +16,7 @@ const App = () => {
                 <Router>
                     <NavBar/>
                     <Routes>
+                        <Route index element={<Movies/>}/>
                         <Route path="/Movies" element={<Movies/>}/>
                         <Route path="/TVShows" element={<TVShows/>}/>
                         <Route path="/Watchlist" element={<Watchlist/>}/>
