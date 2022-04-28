@@ -7,20 +7,20 @@ import Logo from '../img/logo.png';
 const NavBar = () => {
 
     return ( 
-        <nav>
-            <img src={Logo} alt="Logo" srcSet="" height="100px"/>     
-            <ul className="nav-links">
+        <nav className="row">
+            <div className="col-sm-12 col-md-2"><img src={Logo} alt="Logo" srcSet="" height="100px"/>    </div> 
+            <ul className="nav-links col-sm-6 col-md-6">
                 <NavLink to="/Movies">
-                    <li>Movies</li>
+                    <li className="">Movies</li>
                 </NavLink>
                 <NavLink to="/TVShows">
-                    <li>TV Shows</li>
+                    <li className="">TV Shows</li>
                 </NavLink>
                 <NavLink to="/Watchlist">
-                    <li>Watchlist</li>
+                    <li className="">Watchlist</li>
                 </NavLink>
             </ul>
-            <SearchBox/>
+            <SearchBox className="col-sm-4"/>
         </nav> 
     );
 };
