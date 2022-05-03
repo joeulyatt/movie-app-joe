@@ -11,6 +11,7 @@ const WatchlistComponent = ( { movie, page } ) => {
         const newMovie = {...movie};
         newMovie.media_type = (page === "movie" || page === "tv" ? page : movie.mediaType);
         dispatch(addWatchlist(newMovie));
+        localStorage.setItem('moviegojoe-watchlist', JSON.stringify(watchlist));
     };
 
     return (
