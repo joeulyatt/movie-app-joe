@@ -52,6 +52,10 @@ nav {
   min-height: 10vh;
 }
 
+.myLogo {
+  padding-left: 35px;
+}
+
 .nav-links {
   /* width: 50%; */
   display: flex;

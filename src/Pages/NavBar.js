@@ -8,7 +8,9 @@ const NavBar = () => {
 
     return ( 
         <nav className="row">
-            <div className="col-sm-12 col-md-2"><img src={Logo} alt="Logo" srcSet="" height="100px"/>    </div> 
+            <div className="myLogo col-sm-12 col-md-6 col-lg-2">
+                <img src={Logo} alt="Logo" srcSet="" height="100px"/>
+            </div> 
             <ul className="nav-links col-sm-6 col-md-6">
                 <NavLink to="/Movies">
                     <li className="">Movies</li>

@@ -33,7 +33,7 @@ const SearchBox = () => {
     };
 
     return (
-        <form className="col col-sm-3 me-4 align-self-center">
+        <form className="col col-sm-3 col-md-8 col-lg-3 me-4 align-self-center">
             <input
                 type="text"
                 className="form-control"
