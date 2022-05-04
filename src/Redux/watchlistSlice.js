@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+const initialState = JSON.parse(localStorage.getItem('moviegojoe-watchlist'));
 
 const watchlistSlice = createSlice({
     name: "watchlist",
@@ -8,10 +8,12 @@ const watchlistSlice = createSlice({
     reducers: {
         addWatchlist: (state, action) => {
 			state.push(action.payload);
-            console.log(action.payload);
+            localStorage.setItem('moviegojoe-watchlist', JSON.stringify(state));
 		},
         removeWatchlist: (state, action) => {
-			return state.filter((item => item.id !== action.payload.id))
+            let newWatchlist = state.filter((item => item.id !== action.payload.id))
+            localStorage.setItem('moviegojoe-watchlist', JSON.stringify(newWatchlist));
+            return newWatchlist;
 		},
     },
 });
