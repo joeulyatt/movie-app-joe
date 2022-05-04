@@ -6,13 +6,10 @@ const WatchlistComponent = ( { movie, page } ) => {
     const watchlist = useSelector(state => state.watchlist);
     const dispatch = useDispatch();
 
-
-    
     const addWatchlistClick = () => {
         const newMovie = {...movie};
         newMovie.media_type = (page === "movie" || page === "tv" ? page : movie.mediaType);
         dispatch(addWatchlist(newMovie));
-        
     };
 
     return (

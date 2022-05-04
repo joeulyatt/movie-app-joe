@@ -27,13 +27,13 @@ const Cards = ( {results, index, page} ) => {
                     onMouseEnter={() => getTrailer(movie, idx)} 
                     key={movie.id}
                 >
-                    {idx === cardIdx ?
+                    {idx === cardIdx &&
                         <iframe 
                             src={`https://www.youtube.com/embed/${video}?controls=0`} 
                             title={movie.title} 
                             className="overlay myVideo"
                         />
-                    : null}
+                    }
                     <img 
                         src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} 
                         alt={movie.Title} 

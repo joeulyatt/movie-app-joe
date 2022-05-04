@@ -37,19 +37,19 @@ const SearchPage = () => {
             <h2>Filter</h2>
             <button 
                 onClick={() => filterMovies()}
-                className={active === "movies" ? "active" : null}
+                className={active === "movies" && "active"}
             >  
                 Movies
             </button>
             <button 
                 onClick={() => filterTV()}
-                className={active === "tv" ? "active" : null}
+                className={active === "tv" && "active"}
             >  
                 TV
             </button>
             <button 
                 onClick={() => filterAll()}
-                className={active === "all" ? "active" : null}
+                className={active === "all" && "active"}
             >  
                 All
             </button>
