@@ -291,6 +291,11 @@ footer a:hover {
   margin-right: 25px;
 }
 
+.mySubmit {
+  display: flex;
+  justify-content: space-between;
+}
+
 .register-form form > * + * { margin-top: 0.2rem;}
 
 /* Responsive Design */

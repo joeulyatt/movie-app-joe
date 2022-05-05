@@ -112,21 +112,21 @@ const LogIn = () => {
                     </label>
                     <div className="invalid-feedback">{errors.acceptTerms?.message}</div>
                 </div>
-                <div className="form-group">
-                    <button type="submit" className="btn btn-primary">
+                <div className="form-group mySubmit">
+                    <button type="submit" className="btn btn-primary w-50">
                         Register
                     </button>
                     <button
                         type="button"
                         onClick={reset}
-                        className="btn btn-warning float-right"
+                        className="btn btn-warning w-25"
                     >
                         Reset
                     </button>
                 </div>
             </form>
         </div>
-      );
+    );
 };
 
 export default LogIn;
