@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import NavBar from './Pages/NavBar';
+import LogIn from './Pages/LogIn';
+import Home from './Pages/Home';
 import Movies from './Pages/Movies';
 import TVShows from './Pages/TVShows';
 import Watchlist from './Pages/Watchlist';
@@ -16,7 +18,8 @@ const App = () => {
                 <Router>
                     <NavBar/>
                     <Routes>
-                        <Route index element={<Movies/>}/>
+                        <Route index element={<LogIn/>}/>
+                        <Route path="/Home" element={<Home/>}/>
                         <Route path="/Movies" element={<Movies/>}/>
                         <Route path="/TVShows" element={<TVShows/>}/>
                         <Route path="/Watchlist" element={<Watchlist/>}/>

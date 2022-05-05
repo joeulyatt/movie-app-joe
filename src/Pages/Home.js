@@ -19,7 +19,7 @@ const HomePage = () => {
         <GenreLists
             dataFile={movieTypes}
             results={movies}
-            page="home"
+            page="movie"
         />
     );
 };
