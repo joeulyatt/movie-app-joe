@@ -57,7 +57,6 @@ nav {
 }
 
 .nav-links {
-  /* width: 50%; */
   display: flex;
   align-items: center;
   list-style: none;
@@ -273,6 +272,26 @@ footer a:hover {
   color:rgba(173, 239, 209, 0.635);
 }
 
+/* Form Stlying */
+
+.register-form {
+  display: flex;
+  justify-content: center;
+  min-height: 50vh;
+  align-items: flex-end;
+  font-size: 1.2rem;
+}
+
+.register-form form {
+  flex-direction: column;
+  background: #04203f;
+  min-width: 250px;
+  width: 33vw;
+  padding-right: 0px;
+  margin-right: 25px;
+}
+
+.register-form form > * + * { margin-top: 0.2rem;}
 
 /* Responsive Design */
 
