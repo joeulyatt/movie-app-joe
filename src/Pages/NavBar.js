@@ -12,6 +12,9 @@ const NavBar = () => {
                 <img src={Logo} alt="Logo" srcSet="" height="100px"/>
             </div> 
             <ul className="nav-links col-sm-6 col-md-6">
+                <NavLink to="/Home">
+                    <li className="">Home</li>
+                </NavLink>
                 <NavLink to="/Movies">
                     <li className="">Movies</li>
                 </NavLink>
