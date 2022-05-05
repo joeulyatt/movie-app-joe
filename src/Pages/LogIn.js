@@ -1,13 +1,11 @@
-import React from 'react'
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../App.css'
+import '../App.css';
 
-
-const LogIn = () => { 
-
+const LogIn = () => {
     const validationSchema = Yup.object().shape({
         fullname: Yup.string().required('Fullname is required'),
         username: Yup.string()
@@ -23,23 +21,26 @@ const LogIn = () => {
             .max(40, 'Password must not exceed 40 characters'),
         confirmPassword: Yup.string()
             .required('Confirm Password is required')
-            .oneOf([Yup.ref('password'), null], 'Confirm Password does not match'),
-        acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required')
+            .oneOf(
+                [Yup.ref('password'), null],
+                'Confirm Password does not match'
+            ),
+        acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required'),
     });
 
     const {
         register,
         handleSubmit,
         reset,
-        formState: { errors }
+        formState: { errors },
     } = useForm({
-        resolver: yupResolver(validationSchema)
+        resolver: yupResolver(validationSchema),
     });
-    
-    const onSubmit = data => {
+
+    const onSubmit = (data) => {
         console.log(JSON.stringify(data, null, 2));
     };
-    
+
     return (
         <div className="register-form">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -49,9 +50,13 @@ const LogIn = () => {
                         name="fullname"
                         type="text"
                         {...register('fullname')}
-                        className={`form-control ${errors.fullname ? 'is-invalid' : ''}`}
+                        className={`form-control ${
+                            errors.fullname ? 'is-invalid' : ''
+                        }`}
                     />
-                    <div className="invalid-feedback">{errors.fullname?.message}</div>
+                    <div className="invalid-feedback">
+                        {errors.fullname?.message}
+                    </div>
                 </div>
                 <div className="form-group">
                     <label>Username</label>
@@ -59,9 +64,13 @@ const LogIn = () => {
                         name="username"
                         type="text"
                         {...register('username')}
-                        className={`form-control ${errors.username ? 'is-invalid' : ''}`}
+                        className={`form-control ${
+                            errors.username ? 'is-invalid' : ''
+                        }`}
                     />
-                    <div className="invalid-feedback">{errors.username?.message}</div>
+                    <div className="invalid-feedback">
+                        {errors.username?.message}
+                    </div>
                 </div>
                 <div className="form-group">
                     <label>Email</label>
@@ -69,9 +78,13 @@ const LogIn = () => {
                         name="email"
                         type="text"
                         {...register('email')}
-                        className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                        className={`form-control ${
+                            errors.email ? 'is-invalid' : ''
+                        }`}
                     />
-                    <div className="invalid-feedback">{errors.email?.message}</div>
+                    <div className="invalid-feedback">
+                        {errors.email?.message}
+                    </div>
                 </div>
                 <div className="form-group">
                     <label>Password</label>
@@ -79,11 +92,15 @@ const LogIn = () => {
                         name="password"
                         type="password"
                         {...register('password')}
-                        className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                        className={`form-control ${
+                            errors.password ? 'is-invalid' : ''
+                        }`}
                     />
-                    <div className="invalid-feedback">{errors.password?.message}</div>
+                    <div className="invalid-feedback">
+                        {errors.password?.message}
+                    </div>
                 </div>
-                
+
                 <div className="form-group">
                     <label>Confirm Password</label>
                     <input
@@ -91,7 +108,7 @@ const LogIn = () => {
                         type="password"
                         {...register('confirmPassword')}
                         className={`form-control ${
-                        errors.confirmPassword ? 'is-invalid' : ''
+                            errors.confirmPassword ? 'is-invalid' : ''
                         }`}
                     />
                     <div className="invalid-feedback">
@@ -104,13 +121,15 @@ const LogIn = () => {
                         type="checkbox"
                         {...register('acceptTerms')}
                         className={`form-check-input ${
-                        errors.acceptTerms ? 'is-invalid' : ''
+                            errors.acceptTerms ? 'is-invalid' : ''
                         }`}
                     />
                     <label htmlFor="acceptTerms" className="form-check-label">
                         I have read and agree to the Terms
                     </label>
-                    <div className="invalid-feedback">{errors.acceptTerms?.message}</div>
+                    <div className="invalid-feedback">
+                        {errors.acceptTerms?.message}
+                    </div>
                 </div>
                 <div className="form-group mySubmit">
                     <button type="submit" className="btn btn-primary w-50">
