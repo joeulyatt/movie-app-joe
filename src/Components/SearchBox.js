@@ -16,7 +16,7 @@ const SearchBox = () => {
     }, [location]);
 
     useEffect(() => {
-        if (!val && location.pathname === "/Search") {
+        if (!val) {
             navigate("../Movies", { replace: true });
         } else if (val) {
             navigate({
@@ -28,7 +28,8 @@ const SearchBox = () => {
         };
     }, [val]);
 
-    const handleClearForm = () => {
+    const handleClearForm = (e) => {
+        e.preventDefault();
         setVal("");
     };
 
@@ -41,7 +42,7 @@ const SearchBox = () => {
                 value={val}
                 onChange={e => setVal(e.target.value)}
             />
-            <button onClick={() => handleClearForm()}>&#10006;</button>
+            <button onClick={(e) => handleClearForm(e)}>&#10006;</button>
         </form>
     );
 };
