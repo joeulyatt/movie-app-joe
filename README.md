@@ -11,7 +11,7 @@
     <img src="/src/img/logo.png" alt="Logo">
   </a>
 
-<h3 align="center">Pomodoro Joe</h3>
+<h3 align="center">Movie Go Joe</h3>
 
   <p align="center">
     A Movie Trailer App with Genres, Catergories, Search and Watchlist features.
